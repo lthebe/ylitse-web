@@ -31,7 +31,7 @@ The project depends on the following libraries:
 * [webpack][]
 
 [React]: https://reactjs.org/
-[npm][]: https://www.npmjs.com/
+[npm]: https://www.npmjs.com/
 [make]: https://www.gnu.org/software/make/
 [Babel]: https://babeljs.io/
 [ESLint]: https://eslint.org/
