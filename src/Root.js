@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Button from 'material-ui/Button';
-import Info from 'material-ui-icons/Info';
+import IconButton from 'material-ui/IconButton';
+import Snackbar from 'material-ui/Snackbar';
+import CloseIcon from 'material-ui-icons/Close';
+import InfoIcon from 'material-ui-icons/Info';
 
 import { version as uiVersion } from '../package.json';
 import About from './AboutDialog';
@@ -8,18 +11,29 @@ import About from './AboutDialog';
 class Root extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             aboutOpen: false,
             apiVersion: 'N/A',
+            errorOpen: false,
+            errorMessage: 'Error',
         };
     }
 
-    async componentDidMount() {
-        const resp = await fetch('http://127.0.0.1:8080/version');
-        const data = await resp.json();
+    componentDidMount() {
+        this.fetchVersion();
+    }
 
-        // eslint-disable-next-line react/no-did-mount-set-state
-        this.setState({ apiVersion: data.api });
+    fetchVersion = async () => {
+        try {
+            const resp = await fetch('http://127.0.0.1:8080/version');
+            const data = await resp.json();
+
+            this.setState({ apiVersion: data.api });
+        } catch (e) {
+            this.setState({ errorMessage: e.message });
+            this.openError();
+        }
     }
 
     openAbout = () => {
@@ -28,6 +42,14 @@ class Root extends Component {
 
     closeAbout = () => {
         this.setState({ aboutOpen: false });
+    }
+
+    openError = () => {
+        this.setState({ errorOpen: true });
+    }
+
+    closeError = () => {
+        this.setState({ errorOpen: false });
     }
 
     render() {
@@ -39,7 +61,7 @@ class Root extends Component {
                     onClick={this.openAbout}
                 >
                     About
-                    <Info />
+                    <InfoIcon />
                 </Button>
                 <About
                     open={this.state.aboutOpen}
@@ -47,6 +69,16 @@ class Root extends Component {
                     apiVersion={this.state.apiVersion}
                     onOkClick={this.closeAbout}
                     onRequestClose={this.closeAbout}
+                />
+                <Snackbar
+                    open={this.state.errorOpen}
+                    onRequestClose={this.closeError}
+                    message={this.state.errorMessage}
+                    action={[
+                        <IconButton color="inherit" onClick={this.closeError}>
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
                 />
             </div>
         );
