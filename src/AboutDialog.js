@@ -14,9 +14,6 @@ const AboutDialog = ({ uiVersion, apiVersion, onOkClick, ...props }) => (
         <DialogTitle>About</DialogTitle>
         <DialogContent>
             <DialogContentText>
-                Ylitse Project
-            </DialogContentText>
-            <DialogContentText>
                 UI version: {uiVersion}
             </DialogContentText>
             <DialogContentText>
