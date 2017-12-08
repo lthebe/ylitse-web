@@ -4,6 +4,8 @@ import Paper from 'material-ui/Paper';
 import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 
+import ProfileForm from './ProfileForm';
+
 const styles = theme => ({
     root: theme.mixins.gutters({
         marginTop: theme.spacing.unit * 4,
@@ -18,6 +20,7 @@ const ProfileSheet = props => (
         <Typography type="headline" component="h3">
             Create mentor account
         </Typography>
+        <ProfileForm />
     </Paper>
 );
 
