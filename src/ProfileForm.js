@@ -68,6 +68,8 @@ class ProfileForm extends Component {
             email: '',
             area: '',
             story: '',
+            skill: '',
+            skills: [],
         };
     }
 
@@ -75,6 +77,32 @@ class ProfileForm extends Component {
         this.setState({
             [target.name]: target.value,
         });
+    }
+
+    deleteSkill = skill => () => {
+        const skills = [...this.state.skills];
+        const skillToDelete = skills.indexOf(skill);
+        skills.splice(skillToDelete, 1);
+        this.setState({ skills });
+    }
+
+    addSkill = (event) => {
+        switch (event.key) {
+            case 'Enter':
+            case 'Tab': {
+                const skills = this.state.skills.slice();
+                if (skills.indexOf(this.state.skill) > -1) {
+                    this.setState({ skill: 'Already in the list' });
+                } else {
+                    skills.push(this.state.skill);
+                    this.setState({ skills });
+                    this.setState({ skill: '' });
+                }
+                break;
+            }
+            default:
+                break;
+        }
     }
 
     sendProfile = (event) => {
@@ -87,6 +115,7 @@ class ProfileForm extends Component {
         console.log(`Email: ${this.state.email}`);
         console.log(`Area: ${this.state.area}`);
         console.log(`Story: ${this.state.story}`);
+        console.log(`Skills: ${this.state.skills}`);
 
         this.setState({
             username: '',
@@ -201,23 +230,21 @@ class ProfileForm extends Component {
                     >
                         <FormLabel component="legend">Skills</FormLabel>
                         <FormGroup row className={classes.chipContainer}>
-                            <Chip
-                                label="Parenting"
-                                onRequestDelete
-                                className={classes.chip}
-                            />
-                            <Chip
-                                label="Finances"
-                                onRequestDelete
-                                className={classes.chip}
-                            />
-                            <Chip
-                                label="Job-hunting"
-                                onRequestDelete
-                                className={classes.chip}
-                            />
+                            {this.state.skills.map(skill => (
+                                <Chip
+                                    label={skill}
+                                    key={skill}
+                                    onRequestDelete={this.deleteSkill(skill)}
+                                    className={classes.chip}
+                                />
+                            ))}
                             <TextField
+                                name="skill"
+                                value={this.state.skill}
+                                className={classes.row}
+                                onChange={this.updateText}
                                 label="Add a skill"
+                                onKeyDown={this.addSkill}
                             />
                         </FormGroup>
                     </FormControl>
