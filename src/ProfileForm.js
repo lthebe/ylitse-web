@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import Checkbox from 'material-ui/Checkbox';
@@ -44,140 +44,212 @@ const styles = theme => ({
     },
 });
 
-const ProfileForm = props => (
-    <form autoComplete="off">
-        <FormGroup>
-            <TextField
-                label="Username"
-                required
-                className={props.classes.row}
-            />
-            <TextField
-                label="Password"
-                required
-                type="password"
-                helperText="Use a strong password"
-                className={props.classes.row}
-            />
-            <TextField
-                label="Phone number"
-                className={props.classes.row}
-            />
-            <TextField
-                label="Email"
-                className={props.classes.row}
-            />
-            <FormControl
-                component="fieldset"
-                required
-                className={props.classes.radioRow}
-            >
-                <FormLabel component="legend">Gender</FormLabel>
-                <RadioGroup row>
-                    <FormControlLabel
-                        value="male"
-                        control={<Radio />}
-                        label="Male"
-                    />
-                    <FormControlLabel
-                        value="female"
-                        control={<Radio />}
-                        label="Female"
-                    />
-                </RadioGroup>
-            </FormControl>
-            <TextField
-                label="Birth year"
-                type="number"
-                defaultValue="2000"
-                InputLabelProps={{
-                    shrink: true,
-                }}
-                className={props.classes.row}
-            />
-            <TextField
-                label="Area"
-                className={props.classes.row}
-            />
-            <FormControl
-                component="fieldset"
-                className={props.classes.checkboxRow}
-            >
-                <FormLabel component="legend">Languages</FormLabel>
-                <FormGroup row>
-                    <FormControlLabel
-                        label="Finnish"
-                        control={<Checkbox />}
-                    />
-                    <FormControlLabel
-                        label="English"
-                        control={<Checkbox />}
-                    />
-                    <FormControlLabel
-                        label="Swedish"
-                        control={<Checkbox />}
-                    />
-                </FormGroup>
-            </FormControl>
-            <FormControl
-                component="fieldset"
-                className={props.classes.chipRow}
-            >
-                <FormLabel component="legend">Skills</FormLabel>
-                <FormGroup row className={props.classes.chipContainer}>
-                    <Chip
-                        label="Parenting"
-                        onRequestDelete
-                        className={props.classes.chip}
-                    />
-                    <Chip
-                        label="Finances"
-                        onRequestDelete
-                        className={props.classes.chip}
-                    />
-                    <Chip
-                        label="Job-hunting"
-                        onRequestDelete
-                        className={props.classes.chip}
+class ProfileForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: '',
+            password: '',
+            phone: '',
+            email: '',
+            sex: '',
+            birthyear: '',
+            area: '',
+            finnish: false,
+            swedish: false,
+            english: false,
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+    handleChange({ target }) {
+        this.setState({
+            [target.name]: target.value,
+        });
+    }
+    handleSubmit(event) {
+        event.preventDefault();
+        // dummy use of the state to shut up lint complaining
+        console.log(
+            this.state.username,
+            this.state.password,
+            this.state.phone,
+            this.state.email,
+            this.state.sex,
+            this.state.birthyear,
+            this.state.area,
+            this.state.finnish,
+            this.state.english,
+            this.state.swedish,
+        );
+    }
+    render() {
+        const { classes } = this.props;
+        return (
+            <form autoComplete="off">
+                <FormGroup>
+                    <TextField
+                        onChange={this.handleChange}
+                        label="Username"
+                        name="username"
+                        required
+                        className={classes.row}
                     />
                     <TextField
-                        label="Add a skill"
+                        onChange={this.handleChange}
+                        label="Password"
+                        required
+                        name="password"
+                        type="password"
+                        helperText="Use a strong password"
+                        className={classes.row}
                     />
-                </FormGroup>
-            </FormControl>
-            <FormControl
-                component="fieldset"
-                className={props.classes.checkboxRow}
-            >
-                <FormLabel component="legend">
-                    Communication channels
-                </FormLabel>
-                <FormGroup row>
-                    <FormControlLabel
+                    <TextField
+                        onChange={this.handleChange}
+                        name="phone"
+                        label="Phone number"
+                        className={classes.row}
+                    />
+                    <TextField
+                        onChange={this.handleChange}
+                        name="email"
                         label="Email"
-                        control={<Checkbox />}
+                        className={classes.row}
                     />
-                    <FormControlLabel
-                        label="Phone"
-                        control={<Checkbox />}
+                    <FormControl
+                        component="fieldset"
+                        required
+                        className={classes.radioRow}
+                    >
+                        <FormLabel component="legend">Gender</FormLabel>
+                        <RadioGroup
+                            row
+                            name="sex"
+                            value={this.state.sex}
+                            onChange={this.handleChange}
+                        >
+                            <FormControlLabel
+                                value="male"
+                                control={<Radio />}
+                                label="Male"
+                            />
+                            <FormControlLabel
+                                value="female"
+                                control={<Radio />}
+                                label="Female"
+                            />
+                        </RadioGroup>
+                    </FormControl>
+                    <TextField
+                        label="Birth year"
+                        type="number"
+                        defaultValue="2000"
+                        name="birthyear"
+                        onChange={this.handleChange}
+                        InputLabelProps={{
+                            shrink: true,
+                        }}
+                        className={classes.row}
+                    />
+                    <TextField
+                        name="area"
+                        onChange={this.handleChange}
+                        label="Area"
+                        className={classes.row}
+                    />
+                    <FormControl
+                        component="fieldset"
+                        className={classes.checkboxRow}
+                    >
+                        <FormLabel component="legend">Languages</FormLabel>
+                        <FormGroup row>
+                            <FormControlLabel
+                                label="Finnish"
+                                control={<Checkbox />
+                                    // checked={this.state.finnish}
+                                    // name="finnish"
+                                    // value="finnish"
+                                    // onChange={this.handleChange}
+                                }
+                            />
+                            <FormControlLabel
+                                label="English"
+                                control={<Checkbox />
+                                }
+                            />
+                            <FormControlLabel
+                                label="Swedish"
+                                control={<Checkbox />
+                                }
+                            />
+                        </FormGroup>
+                    </FormControl>
+                    <FormControl
+                        component="fieldset"
+                        className={classes.chipRow}
+                    >
+                        <FormLabel component="legend">Skills</FormLabel>
+                        <FormGroup row className={classes.chipContainer}>
+                            <Chip
+                                label="Parenting"
+                                onRequestDelete
+                                className={classes.chip}
+                            />
+                            <Chip
+                                label="Finances"
+                                onRequestDelete
+                                className={classes.chip}
+                            />
+                            <Chip
+                                label="Job-hunting"
+                                onRequestDelete
+                                className={classes.chip}
+                            />
+                            <TextField
+                                label="Add a skill"
+                            />
+                        </FormGroup>
+                    </FormControl>
+                    <FormControl
+                        component="fieldset"
+                        className={classes.checkboxRow}
+                    >
+                        <FormLabel component="legend">
+                    Communication channels
+                        </FormLabel>
+                        <FormGroup row>
+                            <FormControlLabel
+                                label="Email"
+                                control={<Checkbox />}
+                            />
+                            <FormControlLabel
+                                label="Phone"
+                                control={<Checkbox />}
+                            />
+                        </FormGroup>
+                    </FormControl>
+                    <TextField
+                        label="Story"
+                        multiline
+                        rows="1"
+                        rowsMax="8"
+                        helperText="Tell something about yourself"
+                        className={classes.row}
                     />
                 </FormGroup>
-            </FormControl>
-            <TextField
-                label="Story"
-                multiline
-                rows="1"
-                rowsMax="8"
-                helperText="Tell something about yourself"
-                className={props.classes.row}
-            />
-        </FormGroup>
-        <Button raised color="primary" className={props.classes.button}>
+                <Button
+                    raised
+                    onClick={this.handleSubmit}
+                    color="primary"
+                    className={classes.button}
+                >
             Create
-            <SaveIcon className={props.classes.buttonIcon} />
-        </Button>
-    </form>
-);
+                    <SaveIcon className={classes.buttonIcon} />
+                </Button>
+            </form>
+        );
+    }
+}
 
 ProfileForm.propTypes = {
     classes: PropTypes.shape({
