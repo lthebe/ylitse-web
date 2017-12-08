@@ -45,76 +45,82 @@ const styles = theme => ({
 });
 
 class ProfileForm extends Component {
+    static propTypes = {
+        classes: PropTypes.shape({
+            row: PropTypes.string,
+            radioRow: PropTypes.string,
+            checkboxRow: PropTypes.string,
+            chipRow: PropTypes.string,
+            chipContainer: PropTypes.string,
+            chip: PropTypes.string,
+            button: PropTypes.string,
+            buttonIcon: PropTypes.string,
+        }).isRequired,
+    }
+
     constructor(props) {
         super(props);
+
         this.state = {
             username: '',
             password: '',
             phone: '',
             email: '',
-            sex: '',
-            birthyear: '',
             area: '',
-            finnish: false,
-            swedish: false,
-            english: false,
+            story: '',
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
-    handleChange({ target }) {
+
+    updateText = ({ target }) => {
         this.setState({
             [target.name]: target.value,
         });
     }
-    handleSubmit(event) {
+
+    sendProfile = (event) => {
         event.preventDefault();
-        // dummy use of the state to shut up lint complaining
-        console.log(
-            this.state.username,
-            this.state.password,
-            this.state.phone,
-            this.state.email,
-            this.state.sex,
-            this.state.birthyear,
-            this.state.area,
-            this.state.finnish,
-            this.state.english,
-            this.state.swedish,
-        );
+
+        console.log('Sending profile...');
+        console.log(`Username: ${this.state.username}`);
+        console.log(`Password: ${this.state.password}`);
+        console.log(`Phone: ${this.state.phone}`);
+        console.log(`Email: ${this.state.email}`);
+        console.log(`Area: ${this.state.area}`);
+        console.log(`Story: ${this.state.story}`);
     }
+
     render() {
         const { classes } = this.props;
         return (
             <form autoComplete="off">
                 <FormGroup>
                     <TextField
-                        onChange={this.handleChange}
                         label="Username"
                         name="username"
                         required
                         className={classes.row}
+                        onChange={this.updateText}
                     />
                     <TextField
-                        onChange={this.handleChange}
                         label="Password"
                         required
                         name="password"
                         type="password"
                         helperText="Use a strong password"
                         className={classes.row}
+                        onChange={this.updateText}
                     />
                     <TextField
-                        onChange={this.handleChange}
                         name="phone"
                         label="Phone number"
                         className={classes.row}
+                        onChange={this.updateText}
                     />
                     <TextField
-                        onChange={this.handleChange}
                         name="email"
                         label="Email"
                         className={classes.row}
+                        onChange={this.updateText}
                     />
                     <FormControl
                         component="fieldset"
@@ -126,7 +132,6 @@ class ProfileForm extends Component {
                             row
                             name="sex"
                             value={this.state.sex}
-                            onChange={this.handleChange}
                         >
                             <FormControlLabel
                                 value="male"
@@ -145,7 +150,6 @@ class ProfileForm extends Component {
                         type="number"
                         defaultValue="2000"
                         name="birthyear"
-                        onChange={this.handleChange}
                         InputLabelProps={{
                             shrink: true,
                         }}
@@ -153,9 +157,9 @@ class ProfileForm extends Component {
                     />
                     <TextField
                         name="area"
-                        onChange={this.handleChange}
                         label="Area"
                         className={classes.row}
+                        onChange={this.updateText}
                     />
                     <FormControl
                         component="fieldset"
@@ -165,22 +169,15 @@ class ProfileForm extends Component {
                         <FormGroup row>
                             <FormControlLabel
                                 label="Finnish"
-                                control={<Checkbox />
-                                    // checked={this.state.finnish}
-                                    // name="finnish"
-                                    // value="finnish"
-                                    // onChange={this.handleChange}
-                                }
+                                control={<Checkbox />}
                             />
                             <FormControlLabel
                                 label="English"
-                                control={<Checkbox />
-                                }
+                                control={<Checkbox />}
                             />
                             <FormControlLabel
                                 label="Swedish"
-                                control={<Checkbox />
-                                }
+                                control={<Checkbox />}
                             />
                         </FormGroup>
                     </FormControl>
@@ -229,39 +226,28 @@ class ProfileForm extends Component {
                         </FormGroup>
                     </FormControl>
                     <TextField
+                        name="story"
                         label="Story"
                         multiline
                         rows="1"
                         rowsMax="8"
                         helperText="Tell something about yourself"
                         className={classes.row}
+                        onChange={this.updateText}
                     />
                 </FormGroup>
                 <Button
                     raised
-                    onClick={this.handleSubmit}
                     color="primary"
                     className={classes.button}
+                    onClick={this.sendProfile}
                 >
-            Create
+                    Create
                     <SaveIcon className={classes.buttonIcon} />
                 </Button>
             </form>
         );
     }
 }
-
-ProfileForm.propTypes = {
-    classes: PropTypes.shape({
-        row: PropTypes.string,
-        radioRow: PropTypes.string,
-        checkboxRow: PropTypes.string,
-        chipRow: PropTypes.string,
-        chipContainer: PropTypes.string,
-        chip: PropTypes.string,
-        button: PropTypes.string,
-        buttonIcon: PropTypes.string,
-    }).isRequired,
-};
 
 export default withStyles(styles)(ProfileForm);
