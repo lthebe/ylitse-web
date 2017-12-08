@@ -87,6 +87,15 @@ class ProfileForm extends Component {
         console.log(`Email: ${this.state.email}`);
         console.log(`Area: ${this.state.area}`);
         console.log(`Story: ${this.state.story}`);
+
+        this.setState({
+            username: '',
+            password: '',
+            phone: '',
+            email: '',
+            area: '',
+            story: '',
+        });
     }
 
     render() {
@@ -97,28 +106,32 @@ class ProfileForm extends Component {
                     <TextField
                         label="Username"
                         name="username"
+                        value={this.state.username}
                         required
                         className={classes.row}
                         onChange={this.updateText}
                     />
                     <TextField
                         label="Password"
-                        required
                         name="password"
                         type="password"
+                        value={this.state.password}
                         helperText="Use a strong password"
+                        required
                         className={classes.row}
                         onChange={this.updateText}
                     />
                     <TextField
                         name="phone"
                         label="Phone number"
+                        value={this.state.phone}
                         className={classes.row}
                         onChange={this.updateText}
                     />
                     <TextField
                         name="email"
                         label="Email"
+                        value={this.state.email}
                         className={classes.row}
                         onChange={this.updateText}
                     />
@@ -158,6 +171,7 @@ class ProfileForm extends Component {
                     <TextField
                         name="area"
                         label="Area"
+                        value={this.state.area}
                         className={classes.row}
                         onChange={this.updateText}
                     />
@@ -228,10 +242,11 @@ class ProfileForm extends Component {
                     <TextField
                         name="story"
                         label="Story"
+                        value={this.state.story}
+                        helperText="Tell something about yourself"
                         multiline
                         rows="1"
                         rowsMax="8"
-                        helperText="Tell something about yourself"
                         className={classes.row}
                         onChange={this.updateText}
                     />
