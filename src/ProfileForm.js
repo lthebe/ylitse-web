@@ -9,6 +9,9 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
 import { withStyles } from 'material-ui/styles';
 import SaveIcon from 'material-ui-icons/Save';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from 'material-ui-icons/Close';
 
 import CheckboxInput from './CheckboxInput';
 
@@ -82,6 +85,8 @@ class ProfileForm extends Component {
                 Email: false,
             },
             errors: {},
+            errorOpen: false,
+            errorMessage: '',
         };
     }
 
@@ -140,8 +145,18 @@ class ProfileForm extends Component {
         }));
     }
 
-    sendProfile = (event) => {
+    sendProfile = async (event) => {
         event.preventDefault();
+
+        const data = {
+            username: this.state.username,
+            password: this.state.password,
+            phone: this.state.phone,
+            email: this.state.email,
+            area: this.state.area,
+            story: this.state.story,
+        };
+        const url = 'http://127.0.0.1:8080/mentors';
 
         console.log('Sending profile...');
         console.log(`Username: ${this.state.username}`);
@@ -154,6 +169,21 @@ class ProfileForm extends Component {
         console.log(`Channels: ${Object.entries(this.state.commChannels)}`);
         console.log(`Story: ${this.state.story}`);
 
+        try {
+            const resp = await fetch(url, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(data),
+            });
+            const ret = await resp.json();
+            console.log(ret);
+        } catch (e) {
+            this.setState({ errorMessage: e.message });
+            this.openError();
+        }
+
         this.setState({
             username: '',
             password: '',
@@ -162,6 +192,14 @@ class ProfileForm extends Component {
             area: '',
             story: '',
         });
+    }
+
+    openError = () => {
+        this.setState({ errorOpen: true });
+    }
+
+    closeError = () => {
+        this.setState({ errorOpen: false });
     }
 
     render() {
@@ -300,6 +338,16 @@ class ProfileForm extends Component {
                     Create
                     <SaveIcon className={classes.buttonIcon} />
                 </Button>
+                <Snackbar
+                    open={this.state.errorOpen}
+                    onRequestClose={this.closeError}
+                    message={this.state.errorMessage}
+                    action={[
+                        <IconButton color="inherit" onClick={this.closeError}>
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </form>
         );
     }
