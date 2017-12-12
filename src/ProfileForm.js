@@ -148,29 +148,26 @@ class ProfileForm extends Component {
     sendProfile = async (event) => {
         event.preventDefault();
 
+        const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
         const data = {
             username: this.state.username,
             password: this.state.password,
             phone: this.state.phone,
             email: this.state.email,
             area: this.state.area,
+            languages: Object.keys(this.state.languages)
+                .filter(lang => this.state.languages[lang]),
+            skills: this.state.skills,
+            commChannels: Object.keys(this.state.commChannels)
+                .filter(ch => this.state.commChannels[ch]),
             story: this.state.story,
         };
-        const url = 'http://127.0.0.1:8080/mentors';
 
-        console.log('Sending profile...');
-        console.log(`Username: ${this.state.username}`);
-        console.log(`Password: ${this.state.password}`);
-        console.log(`Phone: ${this.state.phone}`);
-        console.log(`Email: ${this.state.email}`);
-        console.log(`Area: ${this.state.area}`);
-        console.log(`Languages: ${Object.entries(this.state.languages)}`);
-        console.log(`Skills: ${this.state.skills}`);
-        console.log(`Channels: ${Object.entries(this.state.commChannels)}`);
-        console.log(`Story: ${this.state.story}`);
+        console.log('Sending profile:');
+        console.log(data);
 
         try {
-            const resp = await fetch(url, {
+            const resp = await fetch(`${apiUrl}/mentors`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -178,6 +175,8 @@ class ProfileForm extends Component {
                 body: JSON.stringify(data),
             });
             const ret = await resp.json();
+
+            console.log('Response:');
             console.log(ret);
         } catch (e) {
             this.setState({ errorMessage: e.message });
@@ -190,6 +189,9 @@ class ProfileForm extends Component {
             phone: '',
             email: '',
             area: '',
+            languages: {},
+            skills: [],
+            commChannels: {},
             story: '',
         });
     }
