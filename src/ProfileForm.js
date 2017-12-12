@@ -68,13 +68,59 @@ class ProfileForm extends Component {
             email: '',
             area: '',
             story: '',
+            skills: [],
+            newSkill: '',
+            errors: {},
         };
     }
 
     updateText = ({ target }) => {
-        this.setState({
+        let error = '';
+
+        switch (target.name) {
+            case 'newSkill':
+                if (this.state.skills.includes(target.value)) {
+                    error = 'Already in the list';
+                }
+                break;
+            default:
+                break;
+        }
+
+        this.setState(prevState => ({
             [target.name]: target.value,
-        });
+            errors: { ...prevState.errors, [target.name]: error },
+        }));
+    }
+
+    addSkill = (event) => {
+        switch (event.key) {
+            case 'Enter': {
+                if (this.state.errors.newSkill) {
+                    return;
+                }
+                this.setState(prevState => ({
+                    newSkill: '',
+                    skills: [...prevState.skills, prevState.newSkill],
+                }));
+                break;
+            }
+            case 'Escape': {
+                this.setState(prevState => ({
+                    newSkill: '',
+                    errors: { ...prevState.errors, newSkill: '' },
+                }));
+                break;
+            }
+            default:
+                break;
+        }
+    }
+
+    deleteSkill = skill => () => {
+        this.setState(prevState => ({
+            skills: prevState.skills.filter(s => s !== skill),
+        }));
     }
 
     sendProfile = (event) => {
@@ -87,6 +133,7 @@ class ProfileForm extends Component {
         console.log(`Email: ${this.state.email}`);
         console.log(`Area: ${this.state.area}`);
         console.log(`Story: ${this.state.story}`);
+        console.log(`Skills: ${this.state.skills}`);
 
         this.setState({
             username: '',
@@ -201,23 +248,23 @@ class ProfileForm extends Component {
                     >
                         <FormLabel component="legend">Skills</FormLabel>
                         <FormGroup row className={classes.chipContainer}>
-                            <Chip
-                                label="Parenting"
-                                onRequestDelete
-                                className={classes.chip}
-                            />
-                            <Chip
-                                label="Finances"
-                                onRequestDelete
-                                className={classes.chip}
-                            />
-                            <Chip
-                                label="Job-hunting"
-                                onRequestDelete
-                                className={classes.chip}
-                            />
+                            {this.state.skills.map(skill => (
+                                <Chip
+                                    key={skill}
+                                    label={skill}
+                                    className={classes.chip}
+                                    onRequestDelete={this.deleteSkill(skill)}
+                                />
+                            ))}
                             <TextField
+                                name="newSkill"
                                 label="Add a skill"
+                                value={this.state.newSkill}
+                                className={classes.row}
+                                error={Boolean(this.state.errors.newSkill)}
+                                helperText={this.state.errors.newSkill}
+                                onChange={this.updateText}
+                                onKeyDown={this.addSkill}
                             />
                         </FormGroup>
                     </FormControl>
