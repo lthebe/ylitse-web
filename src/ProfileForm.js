@@ -72,6 +72,7 @@ class ProfileForm extends Component {
             phone: '',
             email: '',
             gender: '',
+            birthyear: 2000,
             area: '',
             story: '',
             skills: [],
@@ -158,6 +159,7 @@ class ProfileForm extends Component {
             phone: this.state.phone,
             email: this.state.email,
             gender: this.state.gender,
+            birthyear: this.state.birthyear,
             area: this.state.area,
             languages: Object.keys(this.state.languages)
                 .filter(lang => this.state.languages[lang]),
@@ -194,6 +196,7 @@ class ProfileForm extends Component {
             phone: '',
             email: '',
             gender: '',
+            birthyear: 2000,
             area: '',
             languages: {},
             skills: [],
@@ -280,14 +283,15 @@ class ProfileForm extends Component {
                         </RadioGroup>
                     </FormControl>
                     <TextField
+                        name="birthyear"
                         label="Birth year"
                         type="number"
-                        defaultValue="2000"
-                        name="birthyear"
+                        value={this.state.birthyear}
                         InputLabelProps={{
                             shrink: true,
                         }}
                         className={classes.row}
+                        onChange={this.updateValue}
                     />
                     <TextField
                         name="area"
