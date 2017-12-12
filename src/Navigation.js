@@ -47,7 +47,8 @@ class Navigation extends Component {
 
     fetchVersion = async () => {
         try {
-            const resp = await fetch('http://127.0.0.1:8080/version');
+            const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
+            const resp = await fetch(`${apiUrl}/version`);
             const data = await resp.json();
 
             this.setState({ apiVersion: data.api });
