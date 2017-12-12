@@ -169,7 +169,7 @@ class ProfileForm extends Component {
             story: this.state.story,
         };
 
-        console.log('Sending profile:');
+        console.log(`POSTing profile to ${apiUrl}/mentors:`);
         console.log(data);
 
         try {
