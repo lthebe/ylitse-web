@@ -92,8 +92,8 @@ class ProfileForm extends Component {
             commChannels: DEFAULT_CHANNELS,
             story: '',
             errors: {},
-            errorOpen: false,
-            errorMessage: '',
+            feedback: '',
+            feedbackOpen: false,
         };
     }
 
@@ -176,8 +176,9 @@ class ProfileForm extends Component {
         event.preventDefault();
 
         const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
+        const { username } = this.state;
         const data = {
-            username: this.state.username,
+            username,
             password: this.state.password,
             nickname: this.state.nickname,
             phone: this.state.phone,
@@ -209,8 +210,7 @@ class ProfileForm extends Component {
             console.log('Response:');
             console.log(ret);
         } catch (e) {
-            this.setState({ errorMessage: e.message });
-            this.openError();
+            this.openFeedback(e.message);
         }
 
         this.setState({
@@ -228,14 +228,16 @@ class ProfileForm extends Component {
             commChannels: DEFAULT_CHANNELS,
             story: '',
         });
+
+        this.openFeedback(`Profile for ${username} created`);
     }
 
-    openError = () => {
-        this.setState({ errorOpen: true });
+    openFeedback = (feedback) => {
+        this.setState({ feedback, feedbackOpen: true });
     }
 
-    closeError = () => {
-        this.setState({ errorOpen: false });
+    closeFeedback = () => {
+        this.setState({ feedbackOpen: false });
     }
 
     render() {
@@ -393,14 +395,18 @@ class ProfileForm extends Component {
                     <SaveIcon className={classes.buttonIcon} />
                 </Button>
                 <Snackbar
-                    open={this.state.errorOpen}
-                    onRequestClose={this.closeError}
-                    message={this.state.errorMessage}
+                    open={this.state.feedbackOpen}
+                    message={this.state.feedback}
+                    autoHideDuration="3000"
                     action={
-                        <IconButton color="inherit" onClick={this.closeError}>
+                        <IconButton
+                            color="inherit"
+                            onClick={this.closeFeedback}
+                        >
                             <CloseIcon />
                         </IconButton>
                     }
+                    onRequestClose={this.closeFeedback}
                 />
             </form>
         );

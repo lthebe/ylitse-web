@@ -65,11 +65,8 @@ class Navigation extends Component {
         this.setState({ aboutOpen: false });
     }
 
-    openError = (message) => {
-        this.setState({
-            errorOpen: true,
-            errorMessage: message,
-        });
+    openError = (errorMessage) => {
+        this.setState({ errorMessage, errorOpen: true });
     }
 
     closeError = () => {
