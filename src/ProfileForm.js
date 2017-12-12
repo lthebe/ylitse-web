@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import Checkbox from 'material-ui/Checkbox';
 import Chip from 'material-ui/Chip';
 import {
     FormControl, FormControlLabel, FormGroup, FormLabel,
@@ -10,6 +9,8 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
 import { withStyles } from 'material-ui/styles';
 import SaveIcon from 'material-ui-icons/Save';
+
+import CheckboxInput from './CheckboxInput';
 
 const styles = theme => ({
     row: {
@@ -70,6 +71,16 @@ class ProfileForm extends Component {
             story: '',
             skills: [],
             newSkill: '',
+            languages: {
+                Finnish: false,
+                Swedish: false,
+                English: false,
+                Russian: false,
+            },
+            commChannels: {
+                Phone: false,
+                Email: false,
+            },
             errors: {},
         };
     }
@@ -121,6 +132,22 @@ class ProfileForm extends Component {
         this.setState(prevState => ({
             skills: prevState.skills.filter(s => s !== skill),
         }));
+    }
+
+    updateLanguages = ({ target }, checked) => {
+        const langs = this.state.languages;
+        langs[target.name] = checked;
+        this.setState({
+            languages: langs,
+        });
+    }
+
+    updateCommChannels = ({ target }, checked) => {
+        const comms = this.state.commChannels;
+        comms[target.name] = checked;
+        this.setState({
+            commChannels: comms,
+        });
     }
 
     sendProfile = (event) => {
@@ -222,26 +249,12 @@ class ProfileForm extends Component {
                         className={classes.row}
                         onChange={this.updateText}
                     />
-                    <FormControl
-                        component="fieldset"
+                    <CheckboxInput
+                        label="Languages"
+                        data={this.state.languages}
                         className={classes.checkboxRow}
-                    >
-                        <FormLabel component="legend">Languages</FormLabel>
-                        <FormGroup row>
-                            <FormControlLabel
-                                label="Finnish"
-                                control={<Checkbox />}
-                            />
-                            <FormControlLabel
-                                label="English"
-                                control={<Checkbox />}
-                            />
-                            <FormControlLabel
-                                label="Swedish"
-                                control={<Checkbox />}
-                            />
-                        </FormGroup>
-                    </FormControl>
+                        onChange={this.updateLanguages}
+                    />
                     <FormControl
                         component="fieldset"
                         className={classes.chipRow}
@@ -268,24 +281,12 @@ class ProfileForm extends Component {
                             />
                         </FormGroup>
                     </FormControl>
-                    <FormControl
-                        component="fieldset"
+                    <CheckboxInput
+                        label="Communication channels"
+                        data={this.state.commChannels}
                         className={classes.checkboxRow}
-                    >
-                        <FormLabel component="legend">
-                    Communication channels
-                        </FormLabel>
-                        <FormGroup row>
-                            <FormControlLabel
-                                label="Email"
-                                control={<Checkbox />}
-                            />
-                            <FormControlLabel
-                                label="Phone"
-                                control={<Checkbox />}
-                            />
-                        </FormGroup>
-                    </FormControl>
+                        onChange={this.updateCommChannels}
+                    />
                     <TextField
                         name="story"
                         label="Story"
