@@ -37,7 +37,7 @@ class Navigation extends Component {
             aboutOpen: false,
             apiVersion: 'N/A',
             errorOpen: false,
-            errorMessage: 'Error',
+            errorMessage: '',
         };
     }
 
@@ -53,8 +53,7 @@ class Navigation extends Component {
 
             this.setState({ apiVersion: data.api });
         } catch (e) {
-            this.setState({ errorMessage: e.message });
-            this.openError();
+            this.openError(e.message);
         }
     }
 
@@ -66,8 +65,11 @@ class Navigation extends Component {
         this.setState({ aboutOpen: false });
     }
 
-    openError = () => {
-        this.setState({ errorOpen: true });
+    openError = (message) => {
+        this.setState({
+            errorOpen: true,
+            errorMessage: message,
+        });
     }
 
     closeError = () => {
@@ -106,11 +108,12 @@ class Navigation extends Component {
                     open={this.state.errorOpen}
                     onRequestClose={this.closeError}
                     message={this.state.errorMessage}
-                    action={[
+                    autoHideDuration="3000"
+                    action={
                         <IconButton color="inherit" onClick={this.closeError}>
                             <CloseIcon />
-                        </IconButton>,
-                    ]}
+                        </IconButton>
+                    }
                 />
             </AppBar>
         );

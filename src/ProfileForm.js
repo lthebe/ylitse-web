@@ -101,6 +101,26 @@ class ProfileForm extends Component {
         let error = '';
 
         switch (target.name) {
+            case 'username':
+                if (target.value.length < 2) {
+                    error = 'Username is too short';
+                }
+                break;
+            case 'password':
+                if (target.value.length < 6) {
+                    error = 'Password is too short';
+                }
+                break;
+            case 'nickname':
+                if (target.value.length < 2) {
+                    error = 'Screen name is too short';
+                }
+                break;
+            case 'email':
+                if (!/\S+@\S+\.\S+/.test(target.value)) {
+                    error = 'Invalid email address';
+                }
+                break;
             case 'newSkill':
                 if (this.state.skills.includes(target.value)) {
                     error = 'Already in the list';
@@ -220,6 +240,8 @@ class ProfileForm extends Component {
 
     render() {
         const { classes } = this.props;
+        const { errors } = this.state;
+
         return (
             <form autoComplete="off">
                 <FormGroup>
@@ -227,6 +249,8 @@ class ProfileForm extends Component {
                         name="username"
                         label="Username"
                         value={this.state.username}
+                        error={Boolean(errors.username)}
+                        helperText={errors.username}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
@@ -235,7 +259,8 @@ class ProfileForm extends Component {
                         name="password"
                         label="Password"
                         value={this.state.password}
-                        helperText="Use a strong password"
+                        error={Boolean(errors.password)}
+                        helperText={errors.password}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
@@ -244,6 +269,8 @@ class ProfileForm extends Component {
                         name="nickname"
                         label="Screen name"
                         value={this.state.nickname}
+                        error={Boolean(errors.nickname)}
+                        helperText={errors.nickname}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
@@ -259,6 +286,8 @@ class ProfileForm extends Component {
                         name="email"
                         label="Email"
                         value={this.state.email}
+                        error={Boolean(errors.email)}
+                        helperText={errors.email}
                         className={classes.row}
                         onChange={this.updateValue}
                     />
@@ -329,8 +358,8 @@ class ProfileForm extends Component {
                                 label="Add a skill"
                                 value={this.state.newSkill}
                                 className={classes.row}
-                                error={Boolean(this.state.errors.newSkill)}
-                                helperText={this.state.errors.newSkill}
+                                error={Boolean(errors.newSkill)}
+                                helperText={errors.newSkill}
                                 onChange={this.updateValue}
                                 onKeyDown={this.addSkill}
                             />
@@ -367,11 +396,11 @@ class ProfileForm extends Component {
                     open={this.state.errorOpen}
                     onRequestClose={this.closeError}
                     message={this.state.errorMessage}
-                    action={[
+                    action={
                         <IconButton color="inherit" onClick={this.closeError}>
                             <CloseIcon />
-                        </IconButton>,
-                    ]}
+                        </IconButton>
+                    }
                 />
             </form>
         );
