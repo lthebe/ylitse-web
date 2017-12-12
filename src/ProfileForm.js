@@ -134,20 +134,10 @@ class ProfileForm extends Component {
         }));
     }
 
-    updateLanguages = ({ target }, checked) => {
-        const langs = this.state.languages;
-        langs[target.name] = checked;
-        this.setState({
-            languages: langs,
-        });
-    }
-
-    updateCommChannels = ({ target }, checked) => {
-        const comms = this.state.commChannels;
-        comms[target.name] = checked;
-        this.setState({
-            commChannels: comms,
-        });
+    updateCheckboxes = checkboxes => ({ target }, checked) => {
+        this.setState(prevState => ({
+            [checkboxes]: { ...prevState[checkboxes], [target.name]: checked },
+        }));
     }
 
     sendProfile = (event) => {
@@ -159,8 +149,10 @@ class ProfileForm extends Component {
         console.log(`Phone: ${this.state.phone}`);
         console.log(`Email: ${this.state.email}`);
         console.log(`Area: ${this.state.area}`);
-        console.log(`Story: ${this.state.story}`);
+        console.log(`Languages: ${Object.entries(this.state.languages)}`);
         console.log(`Skills: ${this.state.skills}`);
+        console.log(`Channels: ${Object.entries(this.state.commChannels)}`);
+        console.log(`Story: ${this.state.story}`);
 
         this.setState({
             username: '',
@@ -253,7 +245,7 @@ class ProfileForm extends Component {
                         label="Languages"
                         data={this.state.languages}
                         className={classes.checkboxRow}
-                        onChange={this.updateLanguages}
+                        onChange={this.updateCheckboxes('languages')}
                     />
                     <FormControl
                         component="fieldset"
@@ -285,7 +277,7 @@ class ProfileForm extends Component {
                         label="Communication channels"
                         data={this.state.commChannels}
                         className={classes.checkboxRow}
-                        onChange={this.updateCommChannels}
+                        onChange={this.updateCheckboxes('commChannels')}
                     />
                     <TextField
                         name="story"

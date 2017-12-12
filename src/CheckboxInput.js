@@ -30,7 +30,8 @@ const CheckboxInput = ({
 
 CheckboxInput.propTypes = {
     label: PropTypes.string.isRequired,
-    data: PropTypes.arrayOf(PropTypes.object).isRequired,
+    // eslint-disable-next-line react/forbid-prop-types
+    data: PropTypes.object.isRequired,
     className: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };
