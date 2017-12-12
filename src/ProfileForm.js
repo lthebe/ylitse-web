@@ -70,6 +70,7 @@ class ProfileForm extends Component {
             password: '',
             phone: '',
             email: '',
+            gender: '',
             area: '',
             story: '',
             skills: [],
@@ -90,7 +91,7 @@ class ProfileForm extends Component {
         };
     }
 
-    updateText = ({ target }) => {
+    updateValue = ({ target }) => {
         let error = '';
 
         switch (target.name) {
@@ -154,6 +155,7 @@ class ProfileForm extends Component {
             password: this.state.password,
             phone: this.state.phone,
             email: this.state.email,
+            gender: this.state.gender,
             area: this.state.area,
             languages: Object.keys(this.state.languages)
                 .filter(lang => this.state.languages[lang]),
@@ -188,6 +190,7 @@ class ProfileForm extends Component {
             password: '',
             phone: '',
             email: '',
+            gender: '',
             area: '',
             languages: {},
             skills: [],
@@ -215,7 +218,7 @@ class ProfileForm extends Component {
                         value={this.state.username}
                         required
                         className={classes.row}
-                        onChange={this.updateText}
+                        onChange={this.updateValue}
                     />
                     <TextField
                         label="Password"
@@ -225,21 +228,21 @@ class ProfileForm extends Component {
                         helperText="Use a strong password"
                         required
                         className={classes.row}
-                        onChange={this.updateText}
+                        onChange={this.updateValue}
                     />
                     <TextField
                         name="phone"
                         label="Phone number"
                         value={this.state.phone}
                         className={classes.row}
-                        onChange={this.updateText}
+                        onChange={this.updateValue}
                     />
                     <TextField
                         name="email"
                         label="Email"
                         value={this.state.email}
                         className={classes.row}
-                        onChange={this.updateText}
+                        onChange={this.updateValue}
                     />
                     <FormControl
                         component="fieldset"
@@ -249,8 +252,9 @@ class ProfileForm extends Component {
                         <FormLabel component="legend">Gender</FormLabel>
                         <RadioGroup
                             row
-                            name="sex"
-                            value={this.state.sex}
+                            name="gender"
+                            value={this.state.gender}
+                            onChange={this.updateValue}
                         >
                             <FormControlLabel
                                 value="male"
@@ -279,7 +283,7 @@ class ProfileForm extends Component {
                         label="Area"
                         value={this.state.area}
                         className={classes.row}
-                        onChange={this.updateText}
+                        onChange={this.updateValue}
                     />
                     <CheckboxInput
                         label="Languages"
@@ -308,7 +312,7 @@ class ProfileForm extends Component {
                                 className={classes.row}
                                 error={Boolean(this.state.errors.newSkill)}
                                 helperText={this.state.errors.newSkill}
-                                onChange={this.updateText}
+                                onChange={this.updateValue}
                                 onKeyDown={this.addSkill}
                             />
                         </FormGroup>
@@ -328,7 +332,7 @@ class ProfileForm extends Component {
                         rows="1"
                         rowsMax="8"
                         className={classes.row}
-                        onChange={this.updateText}
+                        onChange={this.updateValue}
                     />
                 </FormGroup>
                 <Button
