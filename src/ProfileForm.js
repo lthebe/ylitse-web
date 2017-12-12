@@ -159,12 +159,12 @@ class ProfileForm extends Component {
             phone: this.state.phone,
             email: this.state.email,
             gender: this.state.gender,
-            birthyear: this.state.birthyear,
+            birth_year: this.state.birthyear,
             area: this.state.area,
             languages: Object.keys(this.state.languages)
                 .filter(lang => this.state.languages[lang]),
             skills: this.state.skills,
-            commChannels: Object.keys(this.state.commChannels)
+            comm_channels: Object.keys(this.state.commChannels)
                 .filter(ch => this.state.commChannels[ch]),
             story: this.state.story,
         };
