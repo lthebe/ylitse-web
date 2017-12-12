@@ -15,6 +15,17 @@ import CloseIcon from 'material-ui-icons/Close';
 
 import CheckboxInput from './CheckboxInput';
 
+const DEFAULT_LANGUAGES = {
+    Finnish: false,
+    Swedish: false,
+    English: false,
+    Russian: false,
+};
+const DEFAULT_CHANNELS = {
+    Phone: false,
+    Email: false,
+};
+
 const styles = theme => ({
     row: {
         marginBottom: theme.spacing.unit,
@@ -68,23 +79,17 @@ class ProfileForm extends Component {
         this.state = {
             username: '',
             password: '',
+            nickname: '',
             phone: '',
             email: '',
             gender: '',
+            birthyear: 2000,
             area: '',
-            story: '',
+            languages: DEFAULT_LANGUAGES,
             skills: [],
             newSkill: '',
-            languages: {
-                Finnish: false,
-                Swedish: false,
-                English: false,
-                Russian: false,
-            },
-            commChannels: {
-                Phone: false,
-                Email: false,
-            },
+            commChannels: DEFAULT_CHANNELS,
+            story: '',
             errors: {},
             errorOpen: false,
             errorMessage: '',
@@ -153,19 +158,21 @@ class ProfileForm extends Component {
         const data = {
             username: this.state.username,
             password: this.state.password,
+            nickname: this.state.nickname,
             phone: this.state.phone,
             email: this.state.email,
             gender: this.state.gender,
+            birth_year: this.state.birthyear,
             area: this.state.area,
             languages: Object.keys(this.state.languages)
                 .filter(lang => this.state.languages[lang]),
             skills: this.state.skills,
-            commChannels: Object.keys(this.state.commChannels)
+            comm_channels: Object.keys(this.state.commChannels)
                 .filter(ch => this.state.commChannels[ch]),
             story: this.state.story,
         };
 
-        console.log('Sending profile:');
+        console.log(`POSTing profile to ${apiUrl}/mentors:`);
         console.log(data);
 
         try {
@@ -188,13 +195,16 @@ class ProfileForm extends Component {
         this.setState({
             username: '',
             password: '',
+            nickname: '',
             phone: '',
             email: '',
             gender: '',
+            birthyear: 2000,
             area: '',
-            languages: {},
+            languages: DEFAULT_LANGUAGES,
             skills: [],
-            commChannels: {},
+            newSkill: '',
+            commChannels: DEFAULT_CHANNELS,
             story: '',
         });
     }
@@ -226,6 +236,14 @@ class ProfileForm extends Component {
                         type="password"
                         value={this.state.password}
                         helperText="Use a strong password"
+                        required
+                        className={classes.row}
+                        onChange={this.updateValue}
+                    />
+                    <TextField
+                        label="Screen name"
+                        name="nickname"
+                        value={this.state.nickname}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
@@ -269,14 +287,15 @@ class ProfileForm extends Component {
                         </RadioGroup>
                     </FormControl>
                     <TextField
+                        name="birthyear"
                         label="Birth year"
                         type="number"
-                        defaultValue="2000"
-                        name="birthyear"
+                        value={this.state.birthyear}
                         InputLabelProps={{
                             shrink: true,
                         }}
                         className={classes.row}
+                        onChange={this.updateValue}
                     />
                     <TextField
                         name="area"
