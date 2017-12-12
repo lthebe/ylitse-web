@@ -14,6 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 
 import CheckboxInput from './CheckboxInput';
+import PasswordField from './PasswordField';
 
 const DEFAULT_LANGUAGES = {
     Finnish: false,
@@ -223,17 +224,16 @@ class ProfileForm extends Component {
             <form autoComplete="off">
                 <FormGroup>
                     <TextField
-                        label="Username"
                         name="username"
+                        label="Username"
                         value={this.state.username}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
                     />
-                    <TextField
-                        label="Password"
+                    <PasswordField
                         name="password"
-                        type="password"
+                        label="Password"
                         value={this.state.password}
                         helperText="Use a strong password"
                         required
@@ -241,8 +241,8 @@ class ProfileForm extends Component {
                         onChange={this.updateValue}
                     />
                     <TextField
-                        label="Screen name"
                         name="nickname"
+                        label="Screen name"
                         value={this.state.nickname}
                         required
                         className={classes.row}
@@ -269,20 +269,20 @@ class ProfileForm extends Component {
                     >
                         <FormLabel component="legend">Gender</FormLabel>
                         <RadioGroup
-                            row
                             name="gender"
                             value={this.state.gender}
+                            row
                             onChange={this.updateValue}
                         >
                             <FormControlLabel
+                                label="Male"
                                 value="male"
                                 control={<Radio />}
-                                label="Male"
                             />
                             <FormControlLabel
+                                label="Female"
                                 value="female"
                                 control={<Radio />}
-                                label="Female"
                             />
                         </RadioGroup>
                     </FormControl>
