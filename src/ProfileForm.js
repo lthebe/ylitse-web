@@ -68,41 +68,59 @@ class ProfileForm extends Component {
             email: '',
             area: '',
             story: '',
-            skill: '',
             skills: [],
+            newSkill: '',
+            errors: {},
         };
     }
 
     updateText = ({ target }) => {
-        this.setState({
-            [target.name]: target.value,
-        });
-    }
+        let error = '';
 
-    deleteSkill = skill => () => {
-        const skills = [...this.state.skills];
-        const skillToDelete = skills.indexOf(skill);
-        skills.splice(skillToDelete, 1);
-        this.setState({ skills });
+        switch (target.name) {
+            case 'newSkill':
+                if (this.state.skills.includes(target.value)) {
+                    error = 'Already in the list';
+                }
+                break;
+            default:
+                break;
+        }
+
+        this.setState(prevState => ({
+            [target.name]: target.value,
+            errors: { ...prevState.errors, [target.name]: error },
+        }));
     }
 
     addSkill = (event) => {
         switch (event.key) {
-            case 'Enter':
-            case 'Tab': {
-                const skills = this.state.skills.slice();
-                if (skills.indexOf(this.state.skill) > -1) {
-                    this.setState({ skill: 'Already in the list' });
-                } else {
-                    skills.push(this.state.skill);
-                    this.setState({ skills });
-                    this.setState({ skill: '' });
+            case 'Enter': {
+                if (this.state.errors.newSkill) {
+                    return;
                 }
+                this.setState(prevState => ({
+                    newSkill: '',
+                    skills: [...prevState.skills, prevState.newSkill],
+                }));
+                break;
+            }
+            case 'Escape': {
+                this.setState(prevState => ({
+                    newSkill: '',
+                    errors: { ...prevState.errors, newSkill: '' },
+                }));
                 break;
             }
             default:
                 break;
         }
+    }
+
+    deleteSkill = skill => () => {
+        this.setState(prevState => ({
+            skills: prevState.skills.filter(s => s !== skill),
+        }));
     }
 
     sendProfile = (event) => {
@@ -232,18 +250,20 @@ class ProfileForm extends Component {
                         <FormGroup row className={classes.chipContainer}>
                             {this.state.skills.map(skill => (
                                 <Chip
-                                    label={skill}
                                     key={skill}
-                                    onRequestDelete={this.deleteSkill(skill)}
+                                    label={skill}
                                     className={classes.chip}
+                                    onRequestDelete={this.deleteSkill(skill)}
                                 />
                             ))}
                             <TextField
-                                name="skill"
-                                value={this.state.skill}
-                                className={classes.row}
-                                onChange={this.updateText}
+                                name="newSkill"
                                 label="Add a skill"
+                                value={this.state.newSkill}
+                                className={classes.row}
+                                error={Boolean(this.state.errors.newSkill)}
+                                helperText={this.state.errors.newSkill}
+                                onChange={this.updateText}
                                 onKeyDown={this.addSkill}
                             />
                         </FormGroup>
