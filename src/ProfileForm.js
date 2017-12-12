@@ -15,6 +15,17 @@ import CloseIcon from 'material-ui-icons/Close';
 
 import CheckboxInput from './CheckboxInput';
 
+const DEFAULT_LANGUAGES = {
+    Finnish: false,
+    Swedish: false,
+    English: false,
+    Russian: false,
+};
+const DEFAULT_CHANNELS = {
+    Phone: false,
+    Email: false,
+};
+
 const styles = theme => ({
     row: {
         marginBottom: theme.spacing.unit,
@@ -74,19 +85,11 @@ class ProfileForm extends Component {
             gender: '',
             birthyear: 2000,
             area: '',
-            story: '',
+            languages: DEFAULT_LANGUAGES,
             skills: [],
             newSkill: '',
-            languages: {
-                Finnish: false,
-                Swedish: false,
-                English: false,
-                Russian: false,
-            },
-            commChannels: {
-                Phone: false,
-                Email: false,
-            },
+            commChannels: DEFAULT_CHANNELS,
+            story: '',
             errors: {},
             errorOpen: false,
             errorMessage: '',
@@ -198,9 +201,10 @@ class ProfileForm extends Component {
             gender: '',
             birthyear: 2000,
             area: '',
-            languages: {},
+            languages: DEFAULT_LANGUAGES,
             skills: [],
-            commChannels: {},
+            newSkill: '',
+            commChannels: DEFAULT_CHANNELS,
             story: '',
         });
     }
