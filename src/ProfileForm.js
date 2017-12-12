@@ -68,6 +68,7 @@ class ProfileForm extends Component {
         this.state = {
             username: '',
             password: '',
+            nickname: '',
             phone: '',
             email: '',
             gender: '',
@@ -153,6 +154,7 @@ class ProfileForm extends Component {
         const data = {
             username: this.state.username,
             password: this.state.password,
+            nickname: this.state.nickname,
             phone: this.state.phone,
             email: this.state.email,
             gender: this.state.gender,
@@ -188,6 +190,7 @@ class ProfileForm extends Component {
         this.setState({
             username: '',
             password: '',
+            nickname: '',
             phone: '',
             email: '',
             gender: '',
@@ -226,6 +229,14 @@ class ProfileForm extends Component {
                         type="password"
                         value={this.state.password}
                         helperText="Use a strong password"
+                        required
+                        className={classes.row}
+                        onChange={this.updateValue}
+                    />
+                    <TextField
+                        label="Screen name"
+                        name="nickname"
+                        value={this.state.nickname}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
