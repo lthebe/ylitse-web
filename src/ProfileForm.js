@@ -9,6 +9,9 @@ import Radio, { RadioGroup } from 'material-ui/Radio';
 import TextField from 'material-ui/TextField';
 import { withStyles } from 'material-ui/styles';
 import SaveIcon from 'material-ui-icons/Save';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from 'material-ui-icons/Close';
 
 import CheckboxInput from './CheckboxInput';
 
@@ -82,6 +85,8 @@ class ProfileForm extends Component {
                 Email: false,
             },
             errors: {},
+            errorOpen: false,
+            errorMessage: '',
         };
     }
 
@@ -140,19 +145,43 @@ class ProfileForm extends Component {
         }));
     }
 
-    sendProfile = (event) => {
+    sendProfile = async (event) => {
         event.preventDefault();
 
-        console.log('Sending profile...');
-        console.log(`Username: ${this.state.username}`);
-        console.log(`Password: ${this.state.password}`);
-        console.log(`Phone: ${this.state.phone}`);
-        console.log(`Email: ${this.state.email}`);
-        console.log(`Area: ${this.state.area}`);
-        console.log(`Languages: ${Object.entries(this.state.languages)}`);
-        console.log(`Skills: ${this.state.skills}`);
-        console.log(`Channels: ${Object.entries(this.state.commChannels)}`);
-        console.log(`Story: ${this.state.story}`);
+        const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
+        const data = {
+            username: this.state.username,
+            password: this.state.password,
+            phone: this.state.phone,
+            email: this.state.email,
+            area: this.state.area,
+            languages: Object.keys(this.state.languages)
+                .filter(lang => this.state.languages[lang]),
+            skills: this.state.skills,
+            commChannels: Object.keys(this.state.commChannels)
+                .filter(ch => this.state.commChannels[ch]),
+            story: this.state.story,
+        };
+
+        console.log('Sending profile:');
+        console.log(data);
+
+        try {
+            const resp = await fetch(`${apiUrl}/mentors`, {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                method: 'POST',
+                body: JSON.stringify(data),
+            });
+            const ret = await resp.json();
+
+            console.log('Response:');
+            console.log(ret);
+        } catch (e) {
+            this.setState({ errorMessage: e.message });
+            this.openError();
+        }
 
         this.setState({
             username: '',
@@ -160,8 +189,19 @@ class ProfileForm extends Component {
             phone: '',
             email: '',
             area: '',
+            languages: {},
+            skills: [],
+            commChannels: {},
             story: '',
         });
+    }
+
+    openError = () => {
+        this.setState({ errorOpen: true });
+    }
+
+    closeError = () => {
+        this.setState({ errorOpen: false });
     }
 
     render() {
@@ -300,6 +340,16 @@ class ProfileForm extends Component {
                     Create
                     <SaveIcon className={classes.buttonIcon} />
                 </Button>
+                <Snackbar
+                    open={this.state.errorOpen}
+                    onRequestClose={this.closeError}
+                    message={this.state.errorMessage}
+                    action={[
+                        <IconButton color="inherit" onClick={this.closeError}>
+                            <CloseIcon />
+                        </IconButton>,
+                    ]}
+                />
             </form>
         );
     }

@@ -1,5 +1,7 @@
-PATH := $(PATH):node_modules/.bin
-.DEFAULT_GOAL := run
+PATH:=${PATH}:node_modules/.bin
+API_URL=http://127.0.0.1:8080
+
+all: run
 
 version:
 	npm run version --silent
@@ -15,10 +17,10 @@ lint:
 	eslint src
 
 run: clean lint
-	webpack-dev-server -d --port 3000 --color
+	API_URL=${API_URL} webpack-dev-server -d --port 3000 --color
 
 dist: clean lint
-	NODE_ENV=production webpack -p --progress --colors
+	NODE_ENV=production API_URL=${API_URL} webpack -p --progress --colors
 
 clean:
 	find . -type f -name '*~' -exec rm -f {} \;
