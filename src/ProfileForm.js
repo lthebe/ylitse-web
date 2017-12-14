@@ -16,17 +16,6 @@ import CloseIcon from 'material-ui-icons/Close';
 import CheckboxInput from './CheckboxInput';
 import PasswordField from './PasswordField';
 
-const DEFAULT_LANGUAGES = {
-    Finnish: false,
-    Swedish: false,
-    English: false,
-    Russian: false,
-};
-const DEFAULT_CHANNELS = {
-    Phone: false,
-    Email: false,
-};
-
 const styles = theme => ({
     row: {
         marginBottom: theme.spacing.unit,
@@ -60,6 +49,31 @@ const styles = theme => ({
     },
 });
 
+const initialFormState = {
+    username: '',
+    password: '',
+    nickname: '',
+    phone: '',
+    email: '',
+    gender: '',
+    birthyear: 2000,
+    area: '',
+    languages: {
+        Finnish: false,
+        Swedish: false,
+        English: false,
+        Russian: false,
+    },
+    skills: [],
+    newSkill: '',
+    commChannels: {
+        Phone: false,
+        Email: false,
+    },
+    story: '',
+    errors: {},
+};
+
 class ProfileForm extends Component {
     static propTypes = {
         classes: PropTypes.shape({
@@ -78,20 +92,7 @@ class ProfileForm extends Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
-            nickname: '',
-            phone: '',
-            email: '',
-            gender: '',
-            birthyear: 2000,
-            area: '',
-            languages: DEFAULT_LANGUAGES,
-            skills: [],
-            newSkill: '',
-            commChannels: DEFAULT_CHANNELS,
-            story: '',
-            errors: {},
+            ...initialFormState,
             feedback: '',
             feedbackOpen: false,
         };
@@ -209,31 +210,15 @@ class ProfileForm extends Component {
 
             console.log('Response:');
             console.log(ret);
+
+            this.setState({
+                ...initialFormState,
+                feedbackOpen: true,
+                feedback: `Profile for ${username} created`,
+            });
         } catch (e) {
-            this.openFeedback(e.message);
+            this.setState({ feedbackOpen: true, feedback: e.message });
         }
-
-        this.setState({
-            username: '',
-            password: '',
-            nickname: '',
-            phone: '',
-            email: '',
-            gender: '',
-            birthyear: 2000,
-            area: '',
-            languages: DEFAULT_LANGUAGES,
-            skills: [],
-            newSkill: '',
-            commChannels: DEFAULT_CHANNELS,
-            story: '',
-        });
-
-        this.openFeedback(`Profile for ${username} created`);
-    }
-
-    openFeedback = (feedback) => {
-        this.setState({ feedback, feedbackOpen: true });
     }
 
     closeFeedback = () => {
