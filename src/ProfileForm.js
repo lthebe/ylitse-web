@@ -14,17 +14,7 @@ import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 
 import CheckboxInput from './CheckboxInput';
-
-const DEFAULT_LANGUAGES = {
-    Finnish: false,
-    Swedish: false,
-    English: false,
-    Russian: false,
-};
-const DEFAULT_CHANNELS = {
-    Phone: false,
-    Email: false,
-};
+import PasswordField from './PasswordField';
 
 const styles = theme => ({
     row: {
@@ -59,6 +49,31 @@ const styles = theme => ({
     },
 });
 
+const initialFormState = {
+    username: '',
+    password: '',
+    nickname: '',
+    phone: '',
+    email: '',
+    gender: '',
+    birthyear: 2000,
+    area: '',
+    languages: {
+        Finnish: false,
+        Swedish: false,
+        English: false,
+        Russian: false,
+    },
+    skills: [],
+    newSkill: '',
+    commChannels: {
+        Phone: false,
+        Email: false,
+    },
+    story: '',
+    errors: {},
+};
+
 class ProfileForm extends Component {
     static propTypes = {
         classes: PropTypes.shape({
@@ -77,22 +92,9 @@ class ProfileForm extends Component {
         super(props);
 
         this.state = {
-            username: '',
-            password: '',
-            nickname: '',
-            phone: '',
-            email: '',
-            gender: '',
-            birthyear: 2000,
-            area: '',
-            languages: DEFAULT_LANGUAGES,
-            skills: [],
-            newSkill: '',
-            commChannels: DEFAULT_CHANNELS,
-            story: '',
-            errors: {},
-            errorOpen: false,
-            errorMessage: '',
+            ...initialFormState,
+            feedback: '',
+            feedbackOpen: false,
         };
     }
 
@@ -100,6 +102,26 @@ class ProfileForm extends Component {
         let error = '';
 
         switch (target.name) {
+            case 'username':
+                if (target.value.length < 2) {
+                    error = 'Username is too short';
+                }
+                break;
+            case 'password':
+                if (target.value.length < 6) {
+                    error = 'Password is too short';
+                }
+                break;
+            case 'nickname':
+                if (target.value.length < 2) {
+                    error = 'Screen name is too short';
+                }
+                break;
+            case 'email':
+                if (!/\S+@\S+\.\S+/.test(target.value)) {
+                    error = 'Invalid email address';
+                }
+                break;
             case 'newSkill':
                 if (this.state.skills.includes(target.value)) {
                     error = 'Already in the list';
@@ -155,8 +177,9 @@ class ProfileForm extends Component {
         event.preventDefault();
 
         const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
+        const { username } = this.state;
         const data = {
-            username: this.state.username,
+            username,
             password: this.state.password,
             nickname: this.state.nickname,
             phone: this.state.phone,
@@ -172,9 +195,6 @@ class ProfileForm extends Component {
             story: this.state.story,
         };
 
-        console.log(`POSTing profile to ${apiUrl}/mentors:`);
-        console.log(data);
-
         try {
             const resp = await fetch(`${apiUrl}/mentors`, {
                 headers: {
@@ -183,67 +203,55 @@ class ProfileForm extends Component {
                 method: 'POST',
                 body: JSON.stringify(data),
             });
-            const ret = await resp.json();
+            const saved = await resp.json();
 
-            console.log('Response:');
-            console.log(ret);
+            this.setState({
+                ...initialFormState,
+                feedbackOpen: true,
+                feedback: `Profile for ${saved.username} created`,
+            });
         } catch (e) {
-            this.setState({ errorMessage: e.message });
-            this.openError();
+            this.setState({ feedbackOpen: true, feedback: e.message });
         }
-
-        this.setState({
-            username: '',
-            password: '',
-            nickname: '',
-            phone: '',
-            email: '',
-            gender: '',
-            birthyear: 2000,
-            area: '',
-            languages: DEFAULT_LANGUAGES,
-            skills: [],
-            newSkill: '',
-            commChannels: DEFAULT_CHANNELS,
-            story: '',
-        });
     }
 
-    openError = () => {
-        this.setState({ errorOpen: true });
-    }
-
-    closeError = () => {
-        this.setState({ errorOpen: false });
+    closeFeedback = () => {
+        this.setState({ feedbackOpen: false });
     }
 
     render() {
         const { classes } = this.props;
+        const { errors } = this.state;
+
         return (
             <form autoComplete="off">
                 <FormGroup>
                     <TextField
-                        label="Username"
                         name="username"
+                        label="Username"
                         value={this.state.username}
+                        error={Boolean(errors.username)}
+                        helperText={errors.username}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
                     />
-                    <TextField
-                        label="Password"
+                    <PasswordField
                         name="password"
-                        type="password"
+                        label="Password"
                         value={this.state.password}
-                        helperText="Use a strong password"
+                        error={Boolean(errors.password)}
+                        helperText={errors.password}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
                     />
                     <TextField
-                        label="Screen name"
                         name="nickname"
+                        label="Screen name"
                         value={this.state.nickname}
+                        error={Boolean(errors.nickname)}
+                        helperText={errors.nickname}
                         required
                         className={classes.row}
                         onChange={this.updateValue}
@@ -259,6 +267,8 @@ class ProfileForm extends Component {
                         name="email"
                         label="Email"
                         value={this.state.email}
+                        error={Boolean(errors.email)}
+                        helperText={errors.email}
                         className={classes.row}
                         onChange={this.updateValue}
                     />
@@ -269,20 +279,20 @@ class ProfileForm extends Component {
                     >
                         <FormLabel component="legend">Gender</FormLabel>
                         <RadioGroup
-                            row
                             name="gender"
                             value={this.state.gender}
+                            row
                             onChange={this.updateValue}
                         >
                             <FormControlLabel
+                                label="Male"
                                 value="male"
                                 control={<Radio />}
-                                label="Male"
                             />
                             <FormControlLabel
+                                label="Female"
                                 value="female"
                                 control={<Radio />}
-                                label="Female"
                             />
                         </RadioGroup>
                     </FormControl>
@@ -329,8 +339,8 @@ class ProfileForm extends Component {
                                 label="Add a skill"
                                 value={this.state.newSkill}
                                 className={classes.row}
-                                error={Boolean(this.state.errors.newSkill)}
-                                helperText={this.state.errors.newSkill}
+                                error={Boolean(errors.newSkill)}
+                                helperText={errors.newSkill}
                                 onChange={this.updateValue}
                                 onKeyDown={this.addSkill}
                             />
@@ -364,14 +374,18 @@ class ProfileForm extends Component {
                     <SaveIcon className={classes.buttonIcon} />
                 </Button>
                 <Snackbar
-                    open={this.state.errorOpen}
-                    onRequestClose={this.closeError}
-                    message={this.state.errorMessage}
-                    action={[
-                        <IconButton color="inherit" onClick={this.closeError}>
+                    open={this.state.feedbackOpen}
+                    message={this.state.feedback}
+                    autoHideDuration="3000"
+                    action={
+                        <IconButton
+                            color="inherit"
+                            onClick={this.closeFeedback}
+                        >
                             <CloseIcon />
-                        </IconButton>,
-                    ]}
+                        </IconButton>
+                    }
+                    onRequestClose={this.closeFeedback}
                 />
             </form>
         );
