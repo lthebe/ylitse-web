@@ -195,9 +195,6 @@ class ProfileForm extends Component {
             story: this.state.story,
         };
 
-        console.log(`POSTing profile to ${apiUrl}/mentors:`);
-        console.log(data);
-
         try {
             const resp = await fetch(`${apiUrl}/mentors`, {
                 headers: {
@@ -206,15 +203,12 @@ class ProfileForm extends Component {
                 method: 'POST',
                 body: JSON.stringify(data),
             });
-            const ret = await resp.json();
-
-            console.log('Response:');
-            console.log(ret);
+            const saved = await resp.json();
 
             this.setState({
                 ...initialFormState,
                 feedbackOpen: true,
-                feedback: `Profile for ${username} created`,
+                feedback: `Profile for ${saved.username} created`,
             });
         } catch (e) {
             this.setState({ feedbackOpen: true, feedback: e.message });
