@@ -95,52 +95,81 @@ class ProfileForm extends Component {
             ...initialFormState,
             feedback: '',
             feedbackOpen: false,
+            emailValid: false,
+            userValid: false,
+            passwdValid: false,
+            nickValid: false,
+            genderValid: false,
+            formValid: false,
         };
     }
-
     updateValue = ({ target }) => {
-        let error = '';
+        this.setState(
+            { [target.name]: target.value },
+            () => { this.validateField(target.name, target.value); },
+        );
+    }
+    validateField = (fieldName, value) => {
+        const validationErrors = this.state.errors;
+        let {
+            userValid, passwdValid, nickValid, emailValid,
+            genderValid,
+        } = this.state;
 
-        switch (target.name) {
+        switch (fieldName) {
             case 'username':
-                if (target.value.length < 2) {
-                    error = 'Username is too short';
-                }
+                userValid = value.length > 2;
+                validationErrors.username = userValid ? '' : 'Username is too short';
                 break;
+
             case 'password':
-                if (target.value.length < 6) {
-                    error = 'Password is too short';
-                }
+                passwdValid = value.length > 6;
+                validationErrors.password = passwdValid ? '' : 'Password is too short';
                 break;
+
+            case 'gender':
+                genderValid = value.length > 2;
+                validationErrors.gender = nickValid ? '' : 'Screen name is too short';
+                break;
+
             case 'nickname':
-                if (target.value.length < 2) {
-                    error = 'Screen name is too short';
-                }
+                nickValid = value.length > 2;
+                validationErrors.nickname = nickValid ? '' : 'Screen name is too short';
                 break;
+
             case 'email':
-                if (!/\S+@\S+\.\S+/.test(target.value)) {
-                    error = 'Invalid email address';
-                }
+                emailValid = /\S+@\S+\.\S+/.test(value);
+                validationErrors.email = emailValid ? '' : 'Invalid email address';
                 break;
+
             case 'newSkill':
-                if (this.state.skills.includes(target.value)) {
-                    error = 'Already in the list';
+                if (this.state.skills.includes(value)) {
+                    validationErrors.newSkill = 'Already in the list';
                 }
                 break;
             default:
                 break;
         }
-
-        this.setState(prevState => ({
-            [target.name]: target.value,
-            errors: { ...prevState.errors, [target.name]: error },
-        }));
+        this.setState({
+            errors: validationErrors,
+            userValid,
+            passwdValid,
+            nickValid,
+            emailValid,
+            genderValid,
+        }, this.validate);
+    }
+    validate() {
+        this.setState({
+            formValid: this.state.userValid && this.state.passwdValid &&
+            this.state.nickValid && this.state.emailValid && this.state.genderValid,
+        });
     }
 
     addSkill = (event) => {
         switch (event.key) {
             case 'Enter': {
-                if (this.state.errors.newSkill) {
+                if (this.state.errors.newSkill || this.state.newSkill === 0) {
                     return;
                 }
                 this.setState(prevState => ({
@@ -269,6 +298,7 @@ class ProfileForm extends Component {
                         value={this.state.email}
                         error={Boolean(errors.email)}
                         helperText={errors.email}
+                        required
                         className={classes.row}
                         onChange={this.updateValue}
                     />
@@ -367,6 +397,7 @@ class ProfileForm extends Component {
                 <Button
                     raised
                     color="primary"
+                    disabled={!this.state.formValid}
                     className={classes.button}
                     onClick={this.sendProfile}
                 >
