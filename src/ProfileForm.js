@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import Chip from 'material-ui/Chip';
+// import Chip from 'material-ui/Chip';
 import {
     FormControl, FormControlLabel, FormGroup, FormLabel,
 } from 'material-ui/Form';
@@ -12,6 +12,9 @@ import SaveIcon from 'material-ui-icons/Save';
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
+import Select from 'material-ui/Select';
+import { MenuItem } from 'material-ui/Menu';
+import Input, { InputLabel } from 'material-ui/Input';
 
 import CheckboxInput from './CheckboxInput';
 import PasswordField from './PasswordField';
@@ -28,16 +31,12 @@ const styles = theme => ({
         marginTop: theme.spacing.unit * 2,
         marginBottom: 0,
     },
-    chipRow: {
+    formControl: {
         marginTop: theme.spacing.unit,
         marginBottom: theme.spacing.unit,
     },
-    chipContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    chip: {
-        marginTop: theme.spacing.unit * 2,
+    menu: {
+        marginTop: theme.spacing.unit,
         marginRight: theme.spacing.unit,
     },
     button: {
@@ -48,6 +47,15 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
     },
 });
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const skillset = [
+    'Cooking',
+    'Baby sitting',
+    'Parenting',
+    'Legal',
+    'Education',
+];
 
 const initialFormState = {
     username: '',
@@ -80,11 +88,10 @@ class ProfileForm extends Component {
             row: PropTypes.string,
             radioRow: PropTypes.string,
             checkboxRow: PropTypes.string,
-            chipRow: PropTypes.string,
-            chipContainer: PropTypes.string,
-            chip: PropTypes.string,
+            menu: PropTypes.string,
             button: PropTypes.string,
             buttonIcon: PropTypes.string,
+            formControl: PropTypes.string,
         }).isRequired,
     }
 
@@ -101,6 +108,7 @@ class ProfileForm extends Component {
             nickValid: false,
             genderValid: false,
             formValid: false,
+            skills: [],
         };
     }
     updateValue = ({ target }) => {
@@ -119,27 +127,32 @@ class ProfileForm extends Component {
         switch (fieldName) {
             case 'username':
                 userValid = value.length > 2;
-                validationErrors.username = userValid ? '' : 'Username is too short';
+                validationErrors.username =
+                userValid ? '' : 'Username is too short';
                 break;
 
             case 'password':
                 passwdValid = value.length > 6;
-                validationErrors.password = passwdValid ? '' : 'Password is too short';
+                validationErrors.password =
+                passwdValid ? '' : 'Password is too short';
                 break;
 
             case 'gender':
                 genderValid = value.length > 2;
-                validationErrors.gender = nickValid ? '' : 'Screen name is too short';
+                validationErrors.gender =
+                genderValid ? '' : 'Screen name is too short';
                 break;
 
             case 'nickname':
                 nickValid = value.length > 2;
-                validationErrors.nickname = nickValid ? '' : 'Screen name is too short';
+                validationErrors.nickname =
+                nickValid ? '' : 'Screen name is too short';
                 break;
 
             case 'email':
                 emailValid = /\S+@\S+\.\S+/.test(value);
-                validationErrors.email = emailValid ? '' : 'Invalid email address';
+                validationErrors.email =
+                emailValid ? '' : 'Invalid email address';
                 break;
 
             case 'newSkill':
@@ -162,38 +175,12 @@ class ProfileForm extends Component {
     validate() {
         this.setState({
             formValid: this.state.userValid && this.state.passwdValid &&
-            this.state.nickValid && this.state.emailValid && this.state.genderValid,
+          this.state.nickValid && this.state.emailValid &&
+          this.state.genderValid,
         });
     }
-
-    addSkill = (event) => {
-        switch (event.key) {
-            case 'Enter': {
-                if (this.state.errors.newSkill || this.state.newSkill === 0) {
-                    return;
-                }
-                this.setState(prevState => ({
-                    newSkill: '',
-                    skills: [...prevState.skills, prevState.newSkill],
-                }));
-                break;
-            }
-            case 'Escape': {
-                this.setState(prevState => ({
-                    newSkill: '',
-                    errors: { ...prevState.errors, newSkill: '' },
-                }));
-                break;
-            }
-            default:
-                break;
-        }
-    }
-
-    deleteSkill = skill => () => {
-        this.setState(prevState => ({
-            skills: prevState.skills.filter(s => s !== skill),
-        }));
+    handleChange = (event) => {
+        this.setState({ skills: event.target.value });
     }
 
     updateCheckboxes = checkboxes => ({ target }, checked) => {
@@ -350,31 +337,35 @@ class ProfileForm extends Component {
                         className={classes.checkboxRow}
                         onChange={this.updateCheckboxes('languages')}
                     />
-                    <FormControl
-                        component="fieldset"
-                        className={classes.chipRow}
-                    >
-                        <FormLabel component="legend">Skills</FormLabel>
-                        <FormGroup row className={classes.chipContainer}>
-                            {this.state.skills.map(skill => (
-                                <Chip
+                    <FormControl className={classes.formControl}>
+                        <InputLabel htmlFor="name-multiple">Skills</InputLabel>
+                        <Select
+                            multiple
+                            className={classes.row}
+                            value={this.state.skills}
+                            onChange={this.handleChange}
+                            input={<Input id="name-multiple" />}
+                            MenuProps={{
+                                PaperProps: {
+                                    style: {
+                                        maxHeight:
+                                      ITEM_HEIGHT * 6.5 + ITEM_PADDING_TOP,
+                                        width: 200,
+                                    },
+                                },
+                            }}
+                        >
+                            {skillset.map(skill => (
+                                <MenuItem
                                     key={skill}
-                                    label={skill}
-                                    className={classes.chip}
-                                    onDelete={this.deleteSkill(skill)}
-                                />
+                                    value={skill}
+                                    className={classes.menu}
+
+                                >
+                                    {skill}
+                                </MenuItem>
                             ))}
-                            <TextField
-                                name="newSkill"
-                                label="Add a skill"
-                                value={this.state.newSkill}
-                                className={classes.row}
-                                error={Boolean(errors.newSkill)}
-                                helperText={errors.newSkill}
-                                onChange={this.updateValue}
-                                onKeyDown={this.addSkill}
-                            />
-                        </FormGroup>
+                        </Select>
                     </FormControl>
                     <CheckboxInput
                         label="Communication channels"
