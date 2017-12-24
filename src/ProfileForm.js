@@ -35,7 +35,7 @@ const styles = theme => ({
         marginBottom: theme.spacing.unit,
     },
     menu: {
-        marginTop: theme.spacing.unit,
+        marginTop: theme.spacing.unit * 2,
         marginRight: theme.spacing.unit,
     },
     button: {
@@ -54,6 +54,7 @@ const skillset = [
     'Parenting',
     'Legal',
     'Education',
+    'Cleaning',
 ];
 
 const initialFormState = {
