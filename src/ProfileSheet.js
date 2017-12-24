@@ -18,7 +18,7 @@ const styles = theme => ({
 const ProfileSheet = props => (
     <Paper className={props.classes.root}>
         <Typography type="headline" component="h3">
-            Create mentor account
+            Create account
         </Typography>
         <ProfileForm />
     </Paper>

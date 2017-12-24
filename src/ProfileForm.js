@@ -15,7 +15,7 @@ import Select from 'material-ui/Select';
 import { MenuItem } from 'material-ui/Menu';
 import Input, { InputLabel } from 'material-ui/Input';
 
-import CheckboxInput from './CheckboxInput';
+import CheckboxGroup from './CheckboxGroup';
 import PasswordField from './PasswordField';
 
 const styles = theme => ({
@@ -161,11 +161,6 @@ class ProfileForm extends Component {
                 emailValid ? '' : 'Invalid email address';
                 break;
 
-            case 'newSkill':
-                if (this.state.skills.includes(value)) {
-                    validationErrors.newSkill = 'Already in the list';
-                }
-                break;
             default:
                 break;
         }
@@ -220,7 +215,7 @@ class ProfileForm extends Component {
         };
 
         try {
-            const resp = await fetch(`${apiUrl}/ ${ext}`, {
+            const resp = await fetch(`${apiUrl}/${ext}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -362,7 +357,7 @@ class ProfileForm extends Component {
                         className={classes.row}
                         onChange={this.updateValue}
                     />
-                    <CheckboxInput
+                    <CheckboxGroup
                         label="Languages"
                         data={this.state.languages}
                         className={classes.checkboxRow}
@@ -398,7 +393,7 @@ class ProfileForm extends Component {
                             ))}
                         </Select>
                     </FormControl>
-                    <CheckboxInput
+                    <CheckboxGroup
                         label="Communication channels"
                         data={this.state.commChannels}
                         className={classes.checkboxRow}
