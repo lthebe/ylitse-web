@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-// import Chip from 'material-ui/Chip';
 import {
     FormControl, FormControlLabel, FormGroup, FormLabel,
 } from 'material-ui/Form';
@@ -73,7 +72,7 @@ const initialFormState = {
         Russian: false,
     },
     skills: [],
-    newSkill: '',
+    account: '',
     commChannels: {
         Phone: false,
         Email: false,
@@ -108,6 +107,7 @@ class ProfileForm extends Component {
             nickValid: false,
             genderValid: false,
             formValid: false,
+            accountValid: false,
             skills: [],
         };
     }
@@ -121,7 +121,7 @@ class ProfileForm extends Component {
         const validationErrors = this.state.errors;
         let {
             userValid, passwdValid, nickValid, emailValid,
-            genderValid,
+            genderValid, accountValid,
         } = this.state;
 
         switch (fieldName) {
@@ -140,7 +140,13 @@ class ProfileForm extends Component {
             case 'gender':
                 genderValid = value.length > 2;
                 validationErrors.gender =
-                genderValid ? '' : 'Screen name is too short';
+                genderValid ? '' : 'Gender must be set';
+                break;
+
+            case 'account':
+                accountValid = value.length > 2;
+                validationErrors.account =
+                accountValid ? '' : 'Accounnt must be selected';
                 break;
 
             case 'nickname':
@@ -170,13 +176,14 @@ class ProfileForm extends Component {
             nickValid,
             emailValid,
             genderValid,
+            accountValid,
         }, this.validate);
     }
     validate() {
         this.setState({
             formValid: this.state.userValid && this.state.passwdValid &&
           this.state.nickValid && this.state.emailValid &&
-          this.state.genderValid,
+          this.state.genderValid && this.state.accountValid,
         });
     }
     handleChange = (event) => {
@@ -194,6 +201,7 @@ class ProfileForm extends Component {
 
         const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
         const { username } = this.state;
+        const ext = this.state.account === 'mentor' ? 'mentors' : 'mentees';
         const data = {
             username,
             password: this.state.password,
@@ -212,7 +220,7 @@ class ProfileForm extends Component {
         };
 
         try {
-            const resp = await fetch(`${apiUrl}/mentors`, {
+            const resp = await fetch(`${apiUrl}/ ${ext}`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -241,6 +249,29 @@ class ProfileForm extends Component {
 
         return (
             <form autoComplete="off">
+                <FormControl
+                    component="fieldset"
+                    className={classes.radioRow}
+                >
+                    <FormLabel component="legend">Select account type</FormLabel>
+                    <RadioGroup
+                        name="account"
+                        value={this.state.account}
+                        row
+                        onChange={this.updateValue}
+                    >
+                        <FormControlLabel
+                            label="Mentor"
+                            value="mentor"
+                            control={<Radio />}
+                        />
+                        <FormControlLabel
+                            label="Mentee"
+                            value="mentee"
+                            control={<Radio />}
+                        />
+                    </RadioGroup>
+                </FormControl>
                 <FormGroup>
                     <TextField
                         name="username"
