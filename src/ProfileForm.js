@@ -109,6 +109,7 @@ class ProfileForm extends Component {
             genderValid: false,
             formValid: false,
             accountValid: false,
+            phoneValid: false,
             skills: [],
         };
     }
@@ -122,7 +123,7 @@ class ProfileForm extends Component {
         const validationErrors = this.state.errors;
         let {
             userValid, passwdValid, nickValid, emailValid,
-            genderValid, accountValid,
+            genderValid, accountValid, phoneValid,
         } = this.state;
 
         switch (fieldName) {
@@ -160,6 +161,11 @@ class ProfileForm extends Component {
                 emailValid = /\S+@\S+\.\S+/.test(value);
                 validationErrors.email =
                 emailValid ? '' : 'Invalid email address';
+                break;
+            case 'phone':
+                phoneValid = /^[0-9\b]+$/.test(value) && value.length === 10;
+                validationErrors.phone =
+                phoneValid ? '' : 'Invalid phone number';
                 break;
 
             default:
@@ -249,7 +255,8 @@ class ProfileForm extends Component {
                     component="fieldset"
                     className={classes.radioRow}
                 >
-                    <FormLabel component="legend">Select account type</FormLabel>
+                    <FormLabel component="legend">Select account type
+                    </FormLabel>
                     <RadioGroup
                         name="account"
                         value={this.state.account}
@@ -303,6 +310,8 @@ class ProfileForm extends Component {
                         name="phone"
                         label="Phone number"
                         value={this.state.phone}
+                        error={Boolean(errors.phone)}
+                        helperText={errors.phone}
                         className={classes.row}
                         onChange={this.updateValue}
                     />
