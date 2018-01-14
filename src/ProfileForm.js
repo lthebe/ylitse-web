@@ -331,7 +331,7 @@ class ProfileForm extends Component {
                                     key={skill}
                                     label={skill}
                                     className={classes.chip}
-                                    onRequestDelete={this.deleteSkill(skill)}
+                                    onDelete={this.deleteSkill(skill)}
                                 />
                             ))}
                             <TextField
@@ -376,7 +376,7 @@ class ProfileForm extends Component {
                 <Snackbar
                     open={this.state.feedbackOpen}
                     message={this.state.feedback}
-                    autoHideDuration="3000"
+                    autoHideDuration={3000}
                     action={
                         <IconButton
                             color="inherit"
@@ -385,7 +385,7 @@ class ProfileForm extends Component {
                             <CloseIcon />
                         </IconButton>
                     }
-                    onRequestClose={this.closeFeedback}
+                    onClose={this.closeFeedback}
                 />
             </form>
         );
