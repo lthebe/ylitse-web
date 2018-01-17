@@ -1,0 +1,285 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AboutDialog renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AboutDialog
+    apiVersion="N/A"
+    onOkClick={[Function]}
+    uiVersion="N/A"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <WithStyles(DialogTitle)>
+          About
+        </WithStyles(DialogTitle)>,
+        <WithStyles(DialogContent)>
+          <WithStyles(DialogContentText)>
+            UI version: 
+            N/A
+          </WithStyles(DialogContentText)>
+          <WithStyles(DialogContentText)>
+            API version: 
+            N/A
+          </WithStyles(DialogContentText)>
+        </WithStyles(DialogContent)>,
+        <WithStyles(DialogActions)>
+          <WithStyles(Button)
+            color="primary"
+            onClick={[Function]}
+          >
+            OK
+          </WithStyles(Button)>
+        </WithStyles(DialogActions)>,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "About",
+        },
+        "ref": null,
+        "rendered": "About",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <WithStyles(DialogContentText)>
+              UI version: 
+              N/A
+            </WithStyles(DialogContentText)>,
+            <WithStyles(DialogContentText)>
+              API version: 
+              N/A
+            </WithStyles(DialogContentText)>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "UI version: ",
+                "N/A",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "UI version: ",
+              "N/A",
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "API version: ",
+                "N/A",
+              ],
+            },
+            "ref": null,
+            "rendered": Array [
+              "API version: ",
+              "N/A",
+            ],
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <WithStyles(Button)
+            color="primary"
+            onClick={[Function]}
+          >
+            OK
+          </WithStyles(Button)>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "OK",
+            "color": "primary",
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": "OK",
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <WithStyles(DialogTitle)>
+            About
+          </WithStyles(DialogTitle)>,
+          <WithStyles(DialogContent)>
+            <WithStyles(DialogContentText)>
+              UI version: 
+              N/A
+            </WithStyles(DialogContentText)>
+            <WithStyles(DialogContentText)>
+              API version: 
+              N/A
+            </WithStyles(DialogContentText)>
+          </WithStyles(DialogContent)>,
+          <WithStyles(DialogActions)>
+            <WithStyles(Button)
+              color="primary"
+              onClick={[Function]}
+            >
+              OK
+            </WithStyles(Button)>
+          </WithStyles(DialogActions)>,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "About",
+          },
+          "ref": null,
+          "rendered": "About",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <WithStyles(DialogContentText)>
+                UI version: 
+                N/A
+              </WithStyles(DialogContentText)>,
+              <WithStyles(DialogContentText)>
+                API version: 
+                N/A
+              </WithStyles(DialogContentText)>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "UI version: ",
+                  "N/A",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "UI version: ",
+                "N/A",
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  "API version: ",
+                  "N/A",
+                ],
+              },
+              "ref": null,
+              "rendered": Array [
+                "API version: ",
+                "N/A",
+              ],
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": <WithStyles(Button)
+              color="primary"
+              onClick={[Function]}
+            >
+              OK
+            </WithStyles(Button)>,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "OK",
+              "color": "primary",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": "OK",
+            "type": [Function],
+          },
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
