@@ -132,45 +132,40 @@ class ProfileForm extends Component {
                 validationErrors.username =
                 userValid ? '' : 'Username is too short';
                 break;
-
             case 'password':
                 passwdValid = value.length > 6;
                 validationErrors.password =
                 passwdValid ? '' : 'Password is too short';
                 break;
-
             case 'gender':
                 genderValid = value.length > 2;
                 validationErrors.gender =
                 genderValid ? '' : 'Gender must be set';
                 break;
-
             case 'account':
                 accountValid = value.length > 2;
                 validationErrors.account =
                 accountValid ? '' : 'Accounnt must be selected';
                 break;
-
             case 'nickname':
                 nickValid = value.length > 2;
                 validationErrors.nickname =
                 nickValid ? '' : 'Screen name is too short';
                 break;
-
             case 'email':
                 emailValid = /\S+@\S+\.\S+/.test(value);
                 validationErrors.email =
                 emailValid ? '' : 'Invalid email address';
                 break;
             case 'phone':
-                phoneValid = /^[0-9\b]+$/.test(value) && value.length === 10;
+                phoneValid = /^\+?[0-9()-]+$/.test(value);
                 validationErrors.phone =
                 phoneValid ? '' : 'Invalid phone number';
                 break;
-
             default:
                 break;
         }
+
         this.setState({
             errors: validationErrors,
             userValid,
@@ -181,6 +176,7 @@ class ProfileForm extends Component {
             accountValid,
         }, this.validate);
     }
+
     validate() {
         this.setState({
             formValid: this.state.userValid && this.state.passwdValid &&
@@ -188,6 +184,7 @@ class ProfileForm extends Component {
           this.state.genderValid && this.state.accountValid,
         });
     }
+
     handleChange = (event) => {
         this.setState({ skills: event.target.value });
     }
@@ -251,12 +248,8 @@ class ProfileForm extends Component {
 
         return (
             <form autoComplete="off">
-                <FormControl
-                    component="fieldset"
-                    className={classes.radioRow}
-                >
-                    <FormLabel component="legend">Select account type
-                    </FormLabel>
+                <FormControl component="fieldset" className={classes.radioRow}>
+                    <FormLabel component="legend">Account type</FormLabel>
                     <RadioGroup
                         name="account"
                         value={this.state.account}
