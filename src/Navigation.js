@@ -10,7 +10,7 @@ import CloseIcon from 'material-ui-icons/Close';
 import InfoIcon from 'material-ui-icons/Info';
 
 import { version as uiVersion } from '../package.json';
-import About from './AboutDialog';
+import AboutDialog from './AboutDialog';
 
 const styles = () => ({
     flex: {
@@ -94,23 +94,23 @@ class Navigation extends Component {
                         <InfoIcon />
                     </IconButton>
                 </Toolbar>
-                <About
+                <AboutDialog
                     open={this.state.aboutOpen}
                     uiVersion={uiVersion}
                     apiVersion={this.state.apiVersion}
                     onOkClick={this.closeAbout}
-                    onRequestClose={this.closeAbout}
+                    onClose={this.closeAbout}
                 />
                 <Snackbar
                     open={this.state.errorOpen}
-                    onRequestClose={this.closeError}
                     message={this.state.errorMessage}
-                    autoHideDuration="3000"
+                    autoHideDuration={3000}
                     action={
                         <IconButton color="inherit" onClick={this.closeError}>
                             <CloseIcon />
                         </IconButton>
                     }
+                    onClose={this.closeError}
                 />
             </AppBar>
         );

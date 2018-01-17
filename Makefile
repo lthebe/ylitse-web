@@ -4,7 +4,7 @@ API_URL=http://127.0.0.1:8080
 all: run
 
 version:
-	npm run version --silent
+	@echo $(shell grep '"version":' package.json | cut -d\" -f4)
 
 install:
 	npm install --force fsevents
@@ -14,9 +14,17 @@ list-installed:
 	npm list --depth 0
 
 lint:
-	eslint src
+	eslint *.js src
 
-run: clean lint
+unittest:
+	jest
+
+unittest-watch:
+	jest --watch
+
+test: unittest lint
+
+run: clean test
 	API_URL=${API_URL} webpack-dev-server -d --port 3000 --color
 
 dist: clean lint
@@ -24,6 +32,7 @@ dist: clean lint
 
 clean:
 	find . -type f -name '*~' -exec rm -f {} \;
-	rm -rf dist src/bundle.*
+	rm -rf dist coverage src/bundle.*
+	jest --clearCache
 
-.PHONY: version install list-installed lint run dist clean
+.PHONY: all version install list-installed lint unittest unittest-watch test run dist clean

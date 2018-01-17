@@ -16,19 +16,22 @@ Dependencies
 
 Ylitse Web is a [React][] application so you will need [npm][] package
 manager to install dependencies. It is also recommended to have [make][] in
-order to run preconfigured targets. To have everything installed just run:
-
-    make install
+order to run preconfigured targets.
 
 The project depends on the following libraries:
 
 * [Babel][]
 * [ESLint][]
 * [Fetch][]
+* [Jest][]
 * [Material UI][]
 * [React][]
 * [Roboto font][]
 * [webpack][]
+
+To have them installed just run:
+
+    make install
 
 [React]: https://reactjs.org/
 [npm]: https://www.npmjs.com/
@@ -36,6 +39,7 @@ The project depends on the following libraries:
 [Babel]: https://babeljs.io/
 [ESLint]: https://eslint.org/
 [Fetch]: https://fetch.spec.whatwg.org/
+[Jest]: https://facebook.github.io/jest/
 [Material UI]: https://material-ui.com/
 [Roboto font]: https://fonts.google.com/specimen/Roboto
 [webpack]: https://webpack.js.org/
