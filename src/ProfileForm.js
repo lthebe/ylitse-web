@@ -24,7 +24,7 @@ const styles = theme => ({
     },
     radioRow: {
         marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit,
+        marginBottom: 0,
     },
     checkboxRow: {
         marginTop: theme.spacing.unit * 2,
@@ -34,10 +34,6 @@ const styles = theme => ({
         marginTop: theme.spacing.unit,
         marginBottom: theme.spacing.unit,
     },
-    menu: {
-        marginTop: theme.spacing.unit * 2,
-        marginRight: theme.spacing.unit,
-    },
     button: {
         marginTop: theme.spacing.unit * 2,
         marginBottom: theme.spacing.unit * 3,
@@ -46,8 +42,6 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
     },
 });
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
 const skillset = [
     'Cooking',
     'Baby sitting',
@@ -56,14 +50,14 @@ const skillset = [
     'Education',
     'Cleaning',
 ];
-
 const initialFormState = {
+    role: 'mentee',
     username: '',
     password: '',
     nickname: '',
     phone: '',
     email: '',
-    gender: '',
+    gender: 'male',
     birthyear: 2000,
     area: '',
     languages: {
@@ -73,13 +67,19 @@ const initialFormState = {
         Russian: false,
     },
     skills: [],
-    account: '',
     commChannels: {
         Phone: false,
         Email: false,
     },
     story: '',
-    errors: {},
+    errors: {
+        username: undefined,
+        password: undefined,
+        nickname: undefined,
+        phone: undefined,
+        email: undefined,
+    },
+    formValid: false,
 };
 
 class ProfileForm extends Component {
@@ -88,7 +88,6 @@ class ProfileForm extends Component {
             row: PropTypes.string,
             radioRow: PropTypes.string,
             checkboxRow: PropTypes.string,
-            menu: PropTypes.string,
             button: PropTypes.string,
             buttonIcon: PropTypes.string,
             formControl: PropTypes.string,
@@ -102,90 +101,47 @@ class ProfileForm extends Component {
             ...initialFormState,
             feedback: '',
             feedbackOpen: false,
-            emailValid: false,
-            userValid: false,
-            passwdValid: false,
-            nickValid: false,
-            genderValid: false,
-            formValid: false,
-            accountValid: false,
-            phoneValid: false,
-            skills: [],
         };
     }
-    updateValue = ({ target }) => {
-        this.setState(
-            { [target.name]: target.value },
-            () => { this.validateField(target.name, target.value); },
-        );
-    }
-    validateField = (fieldName, value) => {
-        const validationErrors = this.state.errors;
-        let {
-            userValid, passwdValid, nickValid, emailValid,
-            genderValid, accountValid, phoneValid,
-        } = this.state;
 
-        switch (fieldName) {
+    updateValue = ({ target }) => {
+        const { name, value } = target;
+        const { errors } = this.state;
+        let valid;
+
+        switch (name) {
             case 'username':
-                userValid = value.length > 2;
-                validationErrors.username =
-                userValid ? '' : 'Username is too short';
+                valid = value.length > 2;
+                errors.username = valid ? '' : 'Username is too short';
                 break;
             case 'password':
-                passwdValid = value.length > 6;
-                validationErrors.password =
-                passwdValid ? '' : 'Password is too short';
-                break;
-            case 'gender':
-                genderValid = value.length > 2;
-                validationErrors.gender =
-                genderValid ? '' : 'Gender must be set';
-                break;
-            case 'account':
-                accountValid = value.length > 2;
-                validationErrors.account =
-                accountValid ? '' : 'Accounnt must be selected';
+                valid = value.length > 6;
+                errors.password = valid ? '' : 'Password is too short';
                 break;
             case 'nickname':
-                nickValid = value.length > 2;
-                validationErrors.nickname =
-                nickValid ? '' : 'Screen name is too short';
-                break;
-            case 'email':
-                emailValid = /\S+@\S+\.\S+/.test(value);
-                validationErrors.email =
-                emailValid ? '' : 'Invalid email address';
+                valid = value.length > 2;
+                errors.nickname = valid ? '' : 'Screen name is too short';
                 break;
             case 'phone':
-                phoneValid = /^\+?[0-9()-]+$/.test(value);
-                validationErrors.phone =
-                phoneValid ? '' : 'Invalid phone number';
+                valid = /^\+?[0-9()-]+$/.test(value);
+                errors.phone = valid ? '' : 'Invalid phone number';
+                break;
+            case 'email':
+                valid = /\S+@\S+\.\S+/.test(value);
+                errors.email = valid ? '' : 'Invalid email address';
                 break;
             default:
                 break;
         }
 
         this.setState({
-            errors: validationErrors,
-            userValid,
-            passwdValid,
-            nickValid,
-            emailValid,
-            genderValid,
-            accountValid,
-        }, this.validate);
-    }
-
-    validate() {
-        this.setState({
-            formValid: this.state.userValid && this.state.passwdValid &&
-          this.state.nickValid && this.state.emailValid &&
-          this.state.genderValid && this.state.accountValid,
+            [target.name]: target.value,
+            formValid: Object.values(errors).every(e => e === ''),
+            errors,
         });
     }
 
-    handleChange = (event) => {
+    updateSkills = (event) => {
         this.setState({ skills: event.target.value });
     }
 
@@ -199,27 +155,29 @@ class ProfileForm extends Component {
         event.preventDefault();
 
         const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
-        const { username } = this.state;
-        const ext = this.state.account === 'mentor' ? 'mentors' : 'mentees';
+        const {
+            role, username, password, nickname, phone, email, gender,
+            birthYear, area, languages, skills, commChannels, story,
+        } = this.state;
+
         const data = {
+            role,
             username,
-            password: this.state.password,
-            nickname: this.state.nickname,
-            phone: this.state.phone,
-            email: this.state.email,
-            gender: this.state.gender,
-            birth_year: this.state.birthyear,
-            area: this.state.area,
-            languages: Object.keys(this.state.languages)
-                .filter(lang => this.state.languages[lang]),
-            skills: this.state.skills,
-            comm_channels: Object.keys(this.state.commChannels)
-                .filter(ch => this.state.commChannels[ch]),
-            story: this.state.story,
+            password,
+            nickname,
+            phone,
+            email,
+            gender,
+            birth_year: birthYear,
+            area,
+            languages: Object.keys(languages).filter(lang => languages[lang]),
+            skills,
+            comm_channels: Object.keys(commChannels).filter(ch => commChannels[ch]),
+            story,
         };
 
         try {
-            const resp = await fetch(`${apiUrl}/${ext}`, {
+            const resp = await fetch(`${apiUrl}/accounts`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -248,27 +206,31 @@ class ProfileForm extends Component {
 
         return (
             <form autoComplete="off">
-                <FormControl component="fieldset" className={classes.radioRow}>
-                    <FormLabel component="legend">Account type</FormLabel>
-                    <RadioGroup
-                        name="account"
-                        value={this.state.account}
-                        row
-                        onChange={this.updateValue}
-                    >
-                        <FormControlLabel
-                            label="Mentor"
-                            value="mentor"
-                            control={<Radio />}
-                        />
-                        <FormControlLabel
-                            label="Mentee"
-                            value="mentee"
-                            control={<Radio />}
-                        />
-                    </RadioGroup>
-                </FormControl>
                 <FormGroup>
+                    <FormControl
+                        component="fieldset"
+                        required
+                        className={classes.radioRow}
+                    >
+                        <FormLabel component="legend">Account type</FormLabel>
+                        <RadioGroup
+                            name="role"
+                            value={this.state.role}
+                            row
+                            onChange={this.updateValue}
+                        >
+                            <FormControlLabel
+                                label="Mentee"
+                                value="mentee"
+                                control={<Radio />}
+                            />
+                            <FormControlLabel
+                                label="Mentor"
+                                value="mentor"
+                                control={<Radio />}
+                            />
+                        </RadioGroup>
+                    </FormControl>
                     <TextField
                         name="username"
                         label="Username"
@@ -343,13 +305,10 @@ class ProfileForm extends Component {
                         </RadioGroup>
                     </FormControl>
                     <TextField
-                        name="birthyear"
+                        name="birthYear"
                         label="Birth year"
                         type="number"
-                        value={this.state.birthyear}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
+                        value={this.state.birthYear}
                         className={classes.row}
                         onChange={this.updateValue}
                     />
@@ -372,25 +331,11 @@ class ProfileForm extends Component {
                             multiple
                             className={classes.row}
                             value={this.state.skills}
-                            onChange={this.handleChange}
+                            onChange={this.updateSkills}
                             input={<Input id="name-multiple" />}
-                            MenuProps={{
-                                PaperProps: {
-                                    style: {
-                                        maxHeight:
-                                      ITEM_HEIGHT * 6.5 + ITEM_PADDING_TOP,
-                                        width: 200,
-                                    },
-                                },
-                            }}
                         >
                             {skillset.map(skill => (
-                                <MenuItem
-                                    key={skill}
-                                    value={skill}
-                                    className={classes.menu}
-
-                                >
+                                <MenuItem key={skill} value={skill}>
                                     {skill}
                                 </MenuItem>
                             ))}
