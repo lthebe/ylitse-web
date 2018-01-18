@@ -42,7 +42,16 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
     },
 });
-const skillset = [
+const availableRoles = [
+    'Mentee',
+    'Mentor',
+    'Admin',
+];
+const availableGenders = [
+    'Male',
+    'Female',
+];
+const availableSkills = [
     'Cooking',
     'Baby sitting',
     'Parenting',
@@ -51,13 +60,13 @@ const skillset = [
     'Cleaning',
 ];
 const initialFormState = {
-    role: 'mentee',
+    role: availableRoles[0],
     username: '',
     password: '',
     nickname: '',
     phone: '',
     email: '',
-    gender: 'male',
+    gender: availableGenders[0],
     birthyear: 2000,
     area: '',
     languages: {
@@ -67,7 +76,7 @@ const initialFormState = {
         Russian: false,
     },
     skills: [],
-    commChannels: {
+    channels: {
         Phone: false,
         Email: false,
     },
@@ -157,7 +166,7 @@ class ProfileForm extends Component {
         const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
         const {
             role, username, password, nickname, phone, email, gender,
-            birthYear, area, languages, skills, commChannels, story,
+            birthYear, area, languages, skills, channels, story,
         } = this.state;
 
         const data = {
@@ -172,7 +181,7 @@ class ProfileForm extends Component {
             area,
             languages: Object.keys(languages).filter(lang => languages[lang]),
             skills,
-            comm_channels: Object.keys(commChannels).filter(ch => commChannels[ch]),
+            comm_channels: Object.keys(channels).filter(ch => channels[ch]),
             story,
         };
 
@@ -189,7 +198,7 @@ class ProfileForm extends Component {
             this.setState({
                 ...initialFormState,
                 feedbackOpen: true,
-                feedback: `Profile for ${saved.username} created`,
+                feedback: `Account for ${saved.username} created`,
             });
         } catch (e) {
             this.setState({ feedbackOpen: true, feedback: e.message });
@@ -219,16 +228,13 @@ class ProfileForm extends Component {
                             row
                             onChange={this.updateValue}
                         >
-                            <FormControlLabel
-                                label="Mentee"
-                                value="mentee"
-                                control={<Radio />}
-                            />
-                            <FormControlLabel
-                                label="Mentor"
-                                value="mentor"
-                                control={<Radio />}
-                            />
+                            {availableRoles.map(role => (
+                                <FormControlLabel
+                                    label={role}
+                                    value={role}
+                                    control={<Radio />}
+                                />
+                            ))}
                         </RadioGroup>
                     </FormControl>
                     <TextField
@@ -292,16 +298,13 @@ class ProfileForm extends Component {
                             row
                             onChange={this.updateValue}
                         >
-                            <FormControlLabel
-                                label="Male"
-                                value="male"
-                                control={<Radio />}
-                            />
-                            <FormControlLabel
-                                label="Female"
-                                value="female"
-                                control={<Radio />}
-                            />
+                            {availableGenders.map(gender => (
+                                <FormControlLabel
+                                    label={gender}
+                                    value={gender}
+                                    control={<Radio />}
+                                />
+                            ))}
                         </RadioGroup>
                     </FormControl>
                     <TextField
@@ -334,7 +337,7 @@ class ProfileForm extends Component {
                             onChange={this.updateSkills}
                             input={<Input id="name-multiple" />}
                         >
-                            {skillset.map(skill => (
+                            {availableSkills.map(skill => (
                                 <MenuItem key={skill} value={skill}>
                                     {skill}
                                 </MenuItem>
@@ -343,9 +346,9 @@ class ProfileForm extends Component {
                     </FormControl>
                     <CheckboxGroup
                         label="Communication channels"
-                        data={this.state.commChannels}
+                        data={this.state.channels}
                         className={classes.checkboxRow}
-                        onChange={this.updateCheckboxes('commChannels')}
+                        onChange={this.updateCheckboxes('channels')}
                     />
                     <TextField
                         name="story"
