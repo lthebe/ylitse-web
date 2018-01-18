@@ -175,20 +175,21 @@ class ProfileForm extends Component {
             role, username, password, nickname, phone, email, gender,
             birthYear, area, languages, skills, channels, story,
         } = this.state;
-
+        const pickedLangs = Object.keys(languages).filter(l => languages[l]);
+        const pickedChannels = Object.keys(channels).filter(c => channels[c]);
         const data = {
-            role,
+            role: role.toLowerCase(),
             username,
             password,
             nickname,
             phone,
             email,
-            gender,
+            gender: gender.toLowerCase(),
             birth_year: parseInt(birthYear, 10),
             area,
-            languages: Object.keys(languages).filter(lang => languages[lang]),
+            languages: pickedLangs.map(l => l.toLowerCase()),
             skills,
-            comm_channels: Object.keys(channels).filter(ch => channels[ch]),
+            comm_channels: pickedChannels.map(ch => ch.toLowerCase()),
             story,
         };
 
