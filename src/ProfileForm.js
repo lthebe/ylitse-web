@@ -67,7 +67,7 @@ const initialFormState = {
     phone: '',
     email: '',
     gender: availableGenders[0],
-    birthyear: 2000,
+    birthYear: '',
     area: '',
     languages: {
         Finnish: false,
@@ -139,6 +139,13 @@ class ProfileForm extends Component {
                 valid = /\S+@\S+\.\S+/.test(value);
                 errors.email = valid ? '' : 'Invalid email address';
                 break;
+            case 'birthYear':
+                valid = value === '' ||
+                        /^\d{4}$/.test(value) &&
+                        parseInt(value, 10) >= 1900 &&
+                        parseInt(value, 10) <= new Date().getFullYear();
+                errors.birthYear = valid ? '' : 'Invalid birth year';
+                break;
             default:
                 break;
         }
@@ -177,7 +184,7 @@ class ProfileForm extends Component {
             phone,
             email,
             gender,
-            birth_year: birthYear,
+            birth_year: parseInt(birthYear, 10),
             area,
             languages: Object.keys(languages).filter(lang => languages[lang]),
             skills,
@@ -230,6 +237,7 @@ class ProfileForm extends Component {
                         >
                             {availableRoles.map(role => (
                                 <FormControlLabel
+                                    key={role}
                                     label={role}
                                     value={role}
                                     control={<Radio />}
@@ -300,6 +308,7 @@ class ProfileForm extends Component {
                         >
                             {availableGenders.map(gender => (
                                 <FormControlLabel
+                                    key={gender}
                                     label={gender}
                                     value={gender}
                                     control={<Radio />}
@@ -310,8 +319,9 @@ class ProfileForm extends Component {
                     <TextField
                         name="birthYear"
                         label="Birth year"
-                        type="number"
                         value={this.state.birthYear}
+                        error={Boolean(errors.birthYear)}
+                        helperText={errors.birthYear}
                         className={classes.row}
                         onChange={this.updateValue}
                     />
