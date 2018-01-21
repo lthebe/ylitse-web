@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import Chip from 'material-ui/Chip';
 import {
     FormControl, FormControlLabel, FormGroup, FormLabel,
 } from 'material-ui/Form';
@@ -12,8 +11,11 @@ import SaveIcon from 'material-ui-icons/Save';
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
+import Select from 'material-ui/Select';
+import { MenuItem } from 'material-ui/Menu';
+import Input, { InputLabel } from 'material-ui/Input';
 
-import CheckboxInput from './CheckboxInput';
+import CheckboxGroup from './CheckboxGroup';
 import PasswordField from './PasswordField';
 
 const styles = theme => ({
@@ -22,23 +24,15 @@ const styles = theme => ({
     },
     radioRow: {
         marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit,
+        marginBottom: 0,
     },
     checkboxRow: {
         marginTop: theme.spacing.unit * 2,
         marginBottom: 0,
     },
-    chipRow: {
+    formControl: {
         marginTop: theme.spacing.unit,
         marginBottom: theme.spacing.unit,
-    },
-    chipContainer: {
-        display: 'flex',
-        flexWrap: 'wrap',
-    },
-    chip: {
-        marginTop: theme.spacing.unit * 2,
-        marginRight: theme.spacing.unit,
     },
     button: {
         marginTop: theme.spacing.unit * 2,
@@ -48,15 +42,32 @@ const styles = theme => ({
         marginLeft: theme.spacing.unit,
     },
 });
-
+const availableRoles = [
+    'Mentee',
+    'Mentor',
+    'Admin',
+];
+const availableGenders = [
+    'Male',
+    'Female',
+];
+const availableSkills = [
+    'Cooking',
+    'Baby sitting',
+    'Parenting',
+    'Legal',
+    'Education',
+    'Cleaning',
+];
 const initialFormState = {
+    role: availableRoles[0],
     username: '',
     password: '',
     nickname: '',
     phone: '',
     email: '',
-    gender: '',
-    birthyear: 2000,
+    gender: availableGenders[0],
+    birthYear: '',
     area: '',
     languages: {
         Finnish: false,
@@ -65,13 +76,19 @@ const initialFormState = {
         Russian: false,
     },
     skills: [],
-    newSkill: '',
-    commChannels: {
+    channels: {
         Phone: false,
         Email: false,
     },
     story: '',
-    errors: {},
+    errors: {
+        username: undefined,
+        password: undefined,
+        nickname: undefined,
+        phone: undefined,
+        email: undefined,
+    },
+    formValid: false,
 };
 
 class ProfileForm extends Component {
@@ -80,11 +97,9 @@ class ProfileForm extends Component {
             row: PropTypes.string,
             radioRow: PropTypes.string,
             checkboxRow: PropTypes.string,
-            chipRow: PropTypes.string,
-            chipContainer: PropTypes.string,
-            chip: PropTypes.string,
             button: PropTypes.string,
             buttonIcon: PropTypes.string,
+            formControl: PropTypes.string,
         }).isRequired,
     }
 
@@ -99,72 +114,51 @@ class ProfileForm extends Component {
     }
 
     updateValue = ({ target }) => {
-        let error = '';
+        const { name, value } = target;
+        const { errors } = this.state;
+        let valid;
 
-        switch (target.name) {
+        switch (name) {
             case 'username':
-                if (target.value.length < 2) {
-                    error = 'Username is too short';
-                }
+                valid = value.length > 2;
+                errors.username = valid ? '' : 'Username is too short';
                 break;
             case 'password':
-                if (target.value.length < 6) {
-                    error = 'Password is too short';
-                }
+                valid = value.length > 6;
+                errors.password = valid ? '' : 'Password is too short';
                 break;
             case 'nickname':
-                if (target.value.length < 2) {
-                    error = 'Screen name is too short';
-                }
+                valid = value.length > 2;
+                errors.nickname = valid ? '' : 'Screen name is too short';
+                break;
+            case 'phone':
+                valid = /^\+?[0-9()-]+$/.test(value);
+                errors.phone = valid ? '' : 'Invalid phone number';
                 break;
             case 'email':
-                if (!/\S+@\S+\.\S+/.test(target.value)) {
-                    error = 'Invalid email address';
-                }
+                valid = /\S+@\S+\.\S+/.test(value);
+                errors.email = valid ? '' : 'Invalid email address';
                 break;
-            case 'newSkill':
-                if (this.state.skills.includes(target.value)) {
-                    error = 'Already in the list';
-                }
+            case 'birthYear':
+                valid = value === '' ||
+                        /^\d{4}$/.test(value) &&
+                        parseInt(value, 10) >= 1900 &&
+                        parseInt(value, 10) <= new Date().getFullYear();
+                errors.birthYear = valid ? '' : 'Invalid birth year';
                 break;
             default:
                 break;
         }
 
-        this.setState(prevState => ({
+        this.setState({
             [target.name]: target.value,
-            errors: { ...prevState.errors, [target.name]: error },
-        }));
+            formValid: Object.values(errors).every(e => e === ''),
+            errors,
+        });
     }
 
-    addSkill = (event) => {
-        switch (event.key) {
-            case 'Enter': {
-                if (this.state.errors.newSkill) {
-                    return;
-                }
-                this.setState(prevState => ({
-                    newSkill: '',
-                    skills: [...prevState.skills, prevState.newSkill],
-                }));
-                break;
-            }
-            case 'Escape': {
-                this.setState(prevState => ({
-                    newSkill: '',
-                    errors: { ...prevState.errors, newSkill: '' },
-                }));
-                break;
-            }
-            default:
-                break;
-        }
-    }
-
-    deleteSkill = skill => () => {
-        this.setState(prevState => ({
-            skills: prevState.skills.filter(s => s !== skill),
-        }));
+    updateSkills = (event) => {
+        this.setState({ skills: event.target.value });
     }
 
     updateCheckboxes = checkboxes => ({ target }, checked) => {
@@ -177,26 +171,30 @@ class ProfileForm extends Component {
         event.preventDefault();
 
         const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
-        const { username } = this.state;
+        const {
+            role, username, password, nickname, phone, email, gender,
+            birthYear, area, languages, skills, channels, story,
+        } = this.state;
+        const pickedLangs = Object.keys(languages).filter(l => languages[l]);
+        const pickedChannels = Object.keys(channels).filter(c => channels[c]);
         const data = {
+            role: role.toLowerCase(),
             username,
-            password: this.state.password,
-            nickname: this.state.nickname,
-            phone: this.state.phone,
-            email: this.state.email,
-            gender: this.state.gender,
-            birth_year: this.state.birthyear,
-            area: this.state.area,
-            languages: Object.keys(this.state.languages)
-                .filter(lang => this.state.languages[lang]),
-            skills: this.state.skills,
-            comm_channels: Object.keys(this.state.commChannels)
-                .filter(ch => this.state.commChannels[ch]),
-            story: this.state.story,
+            password,
+            nickname,
+            phone,
+            email,
+            gender: gender.toLowerCase(),
+            birth_year: parseInt(birthYear, 10),
+            area,
+            languages: pickedLangs.map(l => l.toLowerCase()),
+            skills,
+            comm_channels: pickedChannels.map(ch => ch.toLowerCase()),
+            story,
         };
 
         try {
-            const resp = await fetch(`${apiUrl}/mentors`, {
+            const resp = await fetch(`${apiUrl}/accounts`, {
                 headers: {
                     'Content-Type': 'application/json',
                 },
@@ -208,7 +206,7 @@ class ProfileForm extends Component {
             this.setState({
                 ...initialFormState,
                 feedbackOpen: true,
-                feedback: `Profile for ${saved.username} created`,
+                feedback: `Account for ${saved.username} created`,
             });
         } catch (e) {
             this.setState({ feedbackOpen: true, feedback: e.message });
@@ -226,6 +224,28 @@ class ProfileForm extends Component {
         return (
             <form autoComplete="off">
                 <FormGroup>
+                    <FormControl
+                        component="fieldset"
+                        required
+                        className={classes.radioRow}
+                    >
+                        <FormLabel component="legend">Account type</FormLabel>
+                        <RadioGroup
+                            name="role"
+                            value={this.state.role}
+                            row
+                            onChange={this.updateValue}
+                        >
+                            {availableRoles.map(role => (
+                                <FormControlLabel
+                                    key={role}
+                                    label={role}
+                                    value={role}
+                                    control={<Radio />}
+                                />
+                            ))}
+                        </RadioGroup>
+                    </FormControl>
                     <TextField
                         name="username"
                         label="Username"
@@ -260,6 +280,8 @@ class ProfileForm extends Component {
                         name="phone"
                         label="Phone number"
                         value={this.state.phone}
+                        error={Boolean(errors.phone)}
+                        helperText={errors.phone}
                         className={classes.row}
                         onChange={this.updateValue}
                     />
@@ -269,6 +291,7 @@ class ProfileForm extends Component {
                         value={this.state.email}
                         error={Boolean(errors.email)}
                         helperText={errors.email}
+                        required
                         className={classes.row}
                         onChange={this.updateValue}
                     />
@@ -284,26 +307,22 @@ class ProfileForm extends Component {
                             row
                             onChange={this.updateValue}
                         >
-                            <FormControlLabel
-                                label="Male"
-                                value="male"
-                                control={<Radio />}
-                            />
-                            <FormControlLabel
-                                label="Female"
-                                value="female"
-                                control={<Radio />}
-                            />
+                            {availableGenders.map(gender => (
+                                <FormControlLabel
+                                    key={gender}
+                                    label={gender}
+                                    value={gender}
+                                    control={<Radio />}
+                                />
+                            ))}
                         </RadioGroup>
                     </FormControl>
                     <TextField
-                        name="birthyear"
+                        name="birthYear"
                         label="Birth year"
-                        type="number"
-                        value={this.state.birthyear}
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
+                        value={this.state.birthYear}
+                        error={Boolean(errors.birthYear)}
+                        helperText={errors.birthYear}
                         className={classes.row}
                         onChange={this.updateValue}
                     />
@@ -314,43 +333,33 @@ class ProfileForm extends Component {
                         className={classes.row}
                         onChange={this.updateValue}
                     />
-                    <CheckboxInput
+                    <CheckboxGroup
                         label="Languages"
                         data={this.state.languages}
                         className={classes.checkboxRow}
                         onChange={this.updateCheckboxes('languages')}
                     />
-                    <FormControl
-                        component="fieldset"
-                        className={classes.chipRow}
-                    >
-                        <FormLabel component="legend">Skills</FormLabel>
-                        <FormGroup row className={classes.chipContainer}>
-                            {this.state.skills.map(skill => (
-                                <Chip
-                                    key={skill}
-                                    label={skill}
-                                    className={classes.chip}
-                                    onDelete={this.deleteSkill(skill)}
-                                />
+                    <FormControl className={classes.formControl}>
+                        <InputLabel htmlFor="name-multiple">Skills</InputLabel>
+                        <Select
+                            multiple
+                            className={classes.row}
+                            value={this.state.skills}
+                            onChange={this.updateSkills}
+                            input={<Input id="name-multiple" />}
+                        >
+                            {availableSkills.map(skill => (
+                                <MenuItem key={skill} value={skill}>
+                                    {skill}
+                                </MenuItem>
                             ))}
-                            <TextField
-                                name="newSkill"
-                                label="Add a skill"
-                                value={this.state.newSkill}
-                                className={classes.row}
-                                error={Boolean(errors.newSkill)}
-                                helperText={errors.newSkill}
-                                onChange={this.updateValue}
-                                onKeyDown={this.addSkill}
-                            />
-                        </FormGroup>
+                        </Select>
                     </FormControl>
-                    <CheckboxInput
+                    <CheckboxGroup
                         label="Communication channels"
-                        data={this.state.commChannels}
+                        data={this.state.channels}
                         className={classes.checkboxRow}
-                        onChange={this.updateCheckboxes('commChannels')}
+                        onChange={this.updateCheckboxes('channels')}
                     />
                     <TextField
                         name="story"
@@ -367,6 +376,7 @@ class ProfileForm extends Component {
                 <Button
                     raised
                     color="primary"
+                    disabled={!this.state.formValid}
                     className={classes.button}
                     onClick={this.sendProfile}
                 >

@@ -5,7 +5,7 @@ import {
 } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
-const CheckboxInput = ({
+const CheckboxGroup = ({
     label, data, className, onChange,
 }) => (
     <FormControl
@@ -28,7 +28,7 @@ const CheckboxInput = ({
     </FormControl>
 );
 
-CheckboxInput.propTypes = {
+CheckboxGroup.propTypes = {
     label: PropTypes.string.isRequired,
     // eslint-disable-next-line react/forbid-prop-types
     data: PropTypes.object.isRequired,
@@ -36,4 +36,4 @@ CheckboxInput.propTypes = {
     onChange: PropTypes.func.isRequired,
 };
 
-export default CheckboxInput;
+export default CheckboxGroup;
