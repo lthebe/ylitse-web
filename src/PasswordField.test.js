@@ -1,9 +1,19 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
-
+import { createMount, createShallow } from 'material-ui/test-utils';
+// import Input from 'material-ui/Input';
 import PasswordField from './PasswordField';
 
 describe('PasswordField', () => {
+    let mount;
+    let shallow;
+    beforeAll(() => {
+        mount = createMount();
+        shallow = createShallow();
+    });
+    afterAll(() => {
+        mount.cleanUp();
+        shallow.cleanUp();
+    });
     test('renders correctly', () => {
         // PasswordField is a HOC, so diving
         const wrapper = shallow(<PasswordField />).dive();
@@ -17,12 +27,11 @@ describe('PasswordField', () => {
         expect(wrapper.find('Input').prop('type')).toBe('text');
     });
 
-    test('password validation', () => {
-        const wrapper = mount(<PasswordField />);
-        const input = wrapper.find('Input');
-        input.simulate('change', { target: { value: '1234' } });
-        console.log(wrapper.find('InputLabel').prop('error'));
-        // a.find('input').node.value = 'Task1';
-        //
+    test('helperText displayed in FormHelperText', () => {
+        const deepWrapper = mount(<PasswordField />);
+        deepWrapper.setProps({
+            helperText: 'Not good password',
+        });
+        expect(deepWrapper.find('FormHelperText').length).toBe(1);
     });
 });

@@ -1,8 +1,8 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import CheckboxInput from './CheckboxInput';
+import CheckboxGroup from './CheckboxGroup';
 
-describe('CheckboxInput', () => {
+describe('CheckboxGroup', () => {
     const clickEvent = jest.fn();
     const languages = {
         Finnish: false,
@@ -17,11 +17,11 @@ describe('CheckboxInput', () => {
         onChange: clickEvent,
     };
     it('renders correctly', () => {
-        const wrapper = shallow(<CheckboxInput {...props} />);
+        const wrapper = shallow(<CheckboxGroup {...props} />);
         expect(wrapper).toMatchSnapshot();
     });
     it('checkbox can be checked and unchecked', () => {
-        const wrapper = mount(<CheckboxInput {...props} />);
+        const wrapper = mount(<CheckboxGroup {...props} />);
         expect(clickEvent).not.toHaveBeenCalled();
         const input = wrapper.find('FormControlLabel')
             .find('[label="Finnish"]').find('input');
