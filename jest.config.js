@@ -2,7 +2,7 @@ const config = {
     verbose: true,
     collectCoverage: true,
     collectCoverageFrom: ['src/**/*.js'],
-    coverageReporters: ['text-summary', 'html'],
+    coverageReporters: ['text', 'html'],
     setupFiles: ['./enzyme.config.js'],
 };
 
