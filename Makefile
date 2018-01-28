@@ -18,6 +18,10 @@ lint:
 
 unittest:
 	jest
+	@echo "Full report in browser: file://${PWD}/coverage/index.html"
+
+unittest-update:
+	jest -u
 
 unittest-watch:
 	jest --watch
@@ -35,4 +39,4 @@ clean:
 	rm -rf dist coverage src/bundle.*
 	jest --clearCache
 
-.PHONY: all version install list-installed lint unittest unittest-watch test run dist clean
+.PHONY: all version install list-installed lint unittest unittest-update unittest-watch test run dist clean
