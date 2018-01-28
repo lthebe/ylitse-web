@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CheckboxGroup renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <CheckboxGroup
+    className=""
+    data={
+      Object {
+        "Finnish": false,
+      }
+    }
+    label="Language"
+    onChange={[MockFunction]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <WithStyles(FormLabel)
+          component="legend"
+        >
+          Language
+        </WithStyles(FormLabel)>,
+        <WithStyles(FormGroup)
+          row={true}
+        >
+          <WithStyles(FormControlLabel)
+            checked={false}
+            control={
+              <WithStyles(Checkbox)
+                onChange={[MockFunction]}
+              />
+            }
+            label="Finnish"
+            name="Finnish"
+          />
+        </WithStyles(FormGroup)>,
+      ],
+      "className": "",
+      "component": "fieldset",
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Language",
+          "component": "legend",
+        },
+        "ref": null,
+        "rendered": "Language",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <WithStyles(FormControlLabel)
+              checked={false}
+              control={
+                <WithStyles(Checkbox)
+                  onChange={[MockFunction]}
+                />
+              }
+              label="Finnish"
+              name="Finnish"
+            />,
+          ],
+          "row": true,
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "Finnish",
+            "nodeType": "class",
+            "props": Object {
+              "checked": false,
+              "control": <WithStyles(Checkbox)
+                onChange={[MockFunction]}
+              />,
+              "label": "Finnish",
+              "name": "Finnish",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <WithStyles(FormLabel)
+            component="legend"
+          >
+            Language
+          </WithStyles(FormLabel)>,
+          <WithStyles(FormGroup)
+            row={true}
+          >
+            <WithStyles(FormControlLabel)
+              checked={false}
+              control={
+                <WithStyles(Checkbox)
+                  onChange={[MockFunction]}
+                />
+              }
+              label="Finnish"
+              name="Finnish"
+            />
+          </WithStyles(FormGroup)>,
+        ],
+        "className": "",
+        "component": "fieldset",
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Language",
+            "component": "legend",
+          },
+          "ref": null,
+          "rendered": "Language",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <WithStyles(FormControlLabel)
+                checked={false}
+                control={
+                  <WithStyles(Checkbox)
+                    onChange={[MockFunction]}
+                  />
+                }
+                label="Finnish"
+                name="Finnish"
+              />,
+            ],
+            "row": true,
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "Finnish",
+              "nodeType": "class",
+              "props": Object {
+                "checked": false,
+                "control": <WithStyles(Checkbox)
+                  onChange={[MockFunction]}
+                />,
+                "label": "Finnish",
+                "name": "Finnish",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
