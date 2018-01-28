@@ -38,10 +38,6 @@ class PasswordField extends Component {
         this.state = { showPassword: false };
     }
 
-    ignoreMouseDown = (event) => {
-        event.preventDefault();
-    };
-
     toggleVisibility = () => {
         this.setState({ showPassword: !this.state.showPassword });
     };
@@ -63,7 +59,6 @@ class PasswordField extends Component {
                             <IconButton
                                 className={classes.iconButton}
                                 onClick={this.toggleVisibility}
-                                onMouseDown={this.ignoreMouseDown}
                             >
                                 {showPassword ?
                                     <VisibilityOffIcon /> :
