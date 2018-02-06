@@ -189,7 +189,7 @@ class ProfileForm extends Component {
             area,
             languages: pickedLangs.map(l => l.toLowerCase()),
             skills,
-            comm_channels: pickedChannels.map(ch => ch.toLowerCase()),
+            channels: pickedChannels.map(ch => ch.toLowerCase()),
             story,
         };
 
