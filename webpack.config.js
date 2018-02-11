@@ -20,6 +20,7 @@ const config = {
         hot: true,
         inline: true,
         stats: 'minimal',
+        historyApiFallback: true,
     },
     module: {
         rules: [{

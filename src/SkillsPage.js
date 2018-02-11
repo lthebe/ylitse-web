@@ -2,15 +2,16 @@ import React from 'react';
 import Typography from 'material-ui/Typography';
 
 import Page from './Page';
-import ProfileForm from './ProfileForm';
 
-const ProfileSheet = () => (
+const SkillsPage = () => (
     <Page>
         <Typography type="headline" component="h3">
-            Create account
+            Mentor skills
         </Typography>
-        <ProfileForm />
+        {/*
+        <SkillsList />
+        */}
     </Page>
 );
 
-export default ProfileSheet;
+export default SkillsPage;

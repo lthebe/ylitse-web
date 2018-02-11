@@ -36,7 +36,6 @@ const styles = theme => ({
     },
     button: {
         marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 3,
     },
     buttonIcon: {
         marginLeft: theme.spacing.unit,

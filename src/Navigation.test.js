@@ -1,31 +1,33 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { shallow, mount } from 'enzyme';
 
 import Navigation from './Navigation';
 
 describe('Navigation', () => {
+    const navigation = <MemoryRouter><Navigation /></MemoryRouter>;
+
     test('renders correctly', () => {
-        // Navigation is a HOC, so diving
-        const wrapper = shallow(<Navigation />).dive();
+        const wrapper = shallow(navigation).dive().dive().shallow();
 
         expect(wrapper).toMatchSnapshot();
     });
 
     test('has the right title', () => {
-        const wrapper = shallow(<Navigation />).dive();
+        const wrapper = shallow(navigation).dive().dive().shallow();
         const title = 'Ylitse Admin';
 
         expect(wrapper.find('[type="title"]').render().text()).toBe(title);
     });
 
     test('about dialog is hidden', () => {
-        const wrapper = shallow(<Navigation />).dive();
+        const wrapper = shallow(navigation).dive().dive().shallow();
 
         expect(wrapper.find('AboutDialog').prop('open')).toBe(false);
     });
 
     test('about dialog can be opened and closed', () => {
-        const wrapper = mount(<Navigation />);
+        const wrapper = mount(navigation);
 
         wrapper.find('Toolbar').find('IconButton').simulate('click');
         expect(wrapper.find('AboutDialog').prop('open')).toBe(true);
@@ -34,7 +36,7 @@ describe('Navigation', () => {
     });
 
     test('fetched version is shown in about dialog', async () => {
-        const wrapper = shallow(<Navigation />).dive();
+        const wrapper = shallow(navigation).dive().dive().shallow();
         const version = '0.1.0';
         const res = new Response(`{"api": "${version}"}`, {
             status: 200,
@@ -52,7 +54,7 @@ describe('Navigation', () => {
     });
 
     test('error message is shown upon fetch error', async () => {
-        const wrapper = shallow(<Navigation />).dive();
+        const wrapper = shallow(navigation).dive().dive().shallow();
         const error = 'Test error';
 
         window.fetch = jest.fn();

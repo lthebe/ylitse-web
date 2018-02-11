@@ -35,6 +35,18 @@ ShallowWrapper {
           >
             Ylitse Admin
           </WithStyles(Typography)>
+          <WithStyles(Button)
+            color="inherit"
+            component={[Function]}
+          >
+            Accounts
+          </WithStyles(Button)>
+          <WithStyles(Button)
+            color="inherit"
+            component={[Function]}
+          >
+            Skills
+          </WithStyles(Button)>
           <WithStyles(IconButton)
             className="Navigation-infoButton-2"
             color="contrast"
@@ -82,6 +94,18 @@ ShallowWrapper {
             >
               Ylitse Admin
             </WithStyles(Typography)>,
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Accounts
+            </WithStyles(Button)>,
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Skills
+            </WithStyles(Button)>,
             <WithStyles(IconButton)
               className="Navigation-infoButton-2"
               color="contrast"
@@ -106,6 +130,32 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": "Ylitse Admin",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "Accounts",
+              "color": "inherit",
+              "component": [Function],
+            },
+            "ref": null,
+            "rendered": "Accounts",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "Skills",
+              "color": "inherit",
+              "component": [Function],
+            },
+            "ref": null,
+            "rendered": "Skills",
             "type": [Function],
           },
           Object {
@@ -188,6 +238,18 @@ ShallowWrapper {
             >
               Ylitse Admin
             </WithStyles(Typography)>
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Accounts
+            </WithStyles(Button)>
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Skills
+            </WithStyles(Button)>
             <WithStyles(IconButton)
               className="Navigation-infoButton-2"
               color="contrast"
@@ -235,6 +297,18 @@ ShallowWrapper {
               >
                 Ylitse Admin
               </WithStyles(Typography)>,
+              <WithStyles(Button)
+                color="inherit"
+                component={[Function]}
+              >
+                Accounts
+              </WithStyles(Button)>,
+              <WithStyles(Button)
+                color="inherit"
+                component={[Function]}
+              >
+                Skills
+              </WithStyles(Button)>,
               <WithStyles(IconButton)
                 className="Navigation-infoButton-2"
                 color="contrast"
@@ -259,6 +333,32 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": "Ylitse Admin",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Accounts",
+                "color": "inherit",
+                "component": [Function],
+              },
+              "ref": null,
+              "rendered": "Accounts",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Skills",
+                "color": "inherit",
+                "component": [Function],
+              },
+              "ref": null,
+              "rendered": "Skills",
               "type": [Function],
             },
             Object {

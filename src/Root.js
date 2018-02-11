@@ -1,16 +1,21 @@
 import React from 'react';
-import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
+import { Switch, Redirect, Route } from 'react-router-dom';
 
 import Navigation from './Navigation';
+import MissingPage from './MissingPage';
+import SkillsPage from './SkillsPage';
 import ProfileSheet from './ProfileSheet';
 
-const theme = createMuiTheme();
-
 const Root = () => (
-    <MuiThemeProvider theme={theme}>
-        <Navigation />
-        <ProfileSheet />
-    </MuiThemeProvider>
+    <main>
+        <Route component={Navigation} />
+        <Switch>
+            <Route path="/" exact><Redirect to="/accounts" /></Route>
+            <Route path="/accounts" exact component={ProfileSheet} />
+            <Route path="/skills" exact component={SkillsPage} />
+            <Route component={MissingPage} />
+        </Switch>
+    </main>
 );
 
 export default Root;
