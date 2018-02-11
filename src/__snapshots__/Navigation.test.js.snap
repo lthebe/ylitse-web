@@ -31,13 +31,25 @@ ShallowWrapper {
           <WithStyles(Typography)
             className="Navigation-flex-1"
             color="inherit"
-            type="title"
+            variant="title"
           >
             Ylitse Admin
           </WithStyles(Typography)>
+          <WithStyles(Button)
+            color="inherit"
+            component={[Function]}
+          >
+            Accounts
+          </WithStyles(Button)>
+          <WithStyles(Button)
+            color="inherit"
+            component={[Function]}
+          >
+            Skills
+          </WithStyles(Button)>
           <WithStyles(IconButton)
             className="Navigation-infoButton-2"
-            color="contrast"
+            color="inherit"
             onClick={[Function]}
           >
             <pure(Info) />
@@ -78,13 +90,25 @@ ShallowWrapper {
             <WithStyles(Typography)
               className="Navigation-flex-1"
               color="inherit"
-              type="title"
+              variant="title"
             >
               Ylitse Admin
             </WithStyles(Typography)>,
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Accounts
+            </WithStyles(Button)>,
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Skills
+            </WithStyles(Button)>,
             <WithStyles(IconButton)
               className="Navigation-infoButton-2"
-              color="contrast"
+              color="inherit"
               onClick={[Function]}
             >
               <pure(Info) />
@@ -102,7 +126,7 @@ ShallowWrapper {
               "children": "Ylitse Admin",
               "className": "Navigation-flex-1",
               "color": "inherit",
-              "type": "title",
+              "variant": "title",
             },
             "ref": null,
             "rendered": "Ylitse Admin",
@@ -113,9 +137,35 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
+              "children": "Accounts",
+              "color": "inherit",
+              "component": [Function],
+            },
+            "ref": null,
+            "rendered": "Accounts",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "Skills",
+              "color": "inherit",
+              "component": [Function],
+            },
+            "ref": null,
+            "rendered": "Skills",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
               "children": <pure(Info) />,
               "className": "Navigation-infoButton-2",
-              "color": "contrast",
+              "color": "inherit",
               "onClick": [Function],
             },
             "ref": null,
@@ -184,13 +234,25 @@ ShallowWrapper {
             <WithStyles(Typography)
               className="Navigation-flex-1"
               color="inherit"
-              type="title"
+              variant="title"
             >
               Ylitse Admin
             </WithStyles(Typography)>
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Accounts
+            </WithStyles(Button)>
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              Skills
+            </WithStyles(Button)>
             <WithStyles(IconButton)
               className="Navigation-infoButton-2"
-              color="contrast"
+              color="inherit"
               onClick={[Function]}
             >
               <pure(Info) />
@@ -231,13 +293,25 @@ ShallowWrapper {
               <WithStyles(Typography)
                 className="Navigation-flex-1"
                 color="inherit"
-                type="title"
+                variant="title"
               >
                 Ylitse Admin
               </WithStyles(Typography)>,
+              <WithStyles(Button)
+                color="inherit"
+                component={[Function]}
+              >
+                Accounts
+              </WithStyles(Button)>,
+              <WithStyles(Button)
+                color="inherit"
+                component={[Function]}
+              >
+                Skills
+              </WithStyles(Button)>,
               <WithStyles(IconButton)
                 className="Navigation-infoButton-2"
-                color="contrast"
+                color="inherit"
                 onClick={[Function]}
               >
                 <pure(Info) />
@@ -255,7 +329,7 @@ ShallowWrapper {
                 "children": "Ylitse Admin",
                 "className": "Navigation-flex-1",
                 "color": "inherit",
-                "type": "title",
+                "variant": "title",
               },
               "ref": null,
               "rendered": "Ylitse Admin",
@@ -266,9 +340,35 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
+                "children": "Accounts",
+                "color": "inherit",
+                "component": [Function],
+              },
+              "ref": null,
+              "rendered": "Accounts",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "Skills",
+                "color": "inherit",
+                "component": [Function],
+              },
+              "ref": null,
+              "rendered": "Skills",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
                 "children": <pure(Info) />,
                 "className": "Navigation-infoButton-2",
-                "color": "contrast",
+                "color": "inherit",
                 "onClick": [Function],
               },
               "ref": null,

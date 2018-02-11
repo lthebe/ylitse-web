@@ -36,7 +36,6 @@ const styles = theme => ({
     },
     button: {
         marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 3,
     },
     buttonIcon: {
         marginLeft: theme.spacing.unit,
@@ -374,7 +373,7 @@ class ProfileForm extends Component {
                     />
                 </FormGroup>
                 <Button
-                    raised
+                    variant="raised"
                     color="primary"
                     disabled={!this.state.formValid}
                     className={classes.button}

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
+import Button from 'material-ui/Button';
 import Snackbar from 'material-ui/Snackbar';
 import { withStyles } from 'material-ui/styles';
 import Toolbar from 'material-ui/Toolbar';
@@ -21,6 +23,9 @@ const styles = () => ({
         marginRight: -12,
     },
 });
+
+const AccountsLink = props => <Link to="/accounts" {...props} />;
+const SkillsLink = props => <Link to="/skills" {...props} />;
 
 class Navigation extends Component {
     static propTypes = {
@@ -80,14 +85,20 @@ class Navigation extends Component {
             <AppBar position="static">
                 <Toolbar display="flex">
                     <Typography
-                        type="title"
+                        variant="title"
                         color="inherit"
                         className={classes.flex}
                     >
                         Ylitse Admin
                     </Typography>
+                    <Button component={AccountsLink} color="inherit">
+                        Accounts
+                    </Button>
+                    <Button component={SkillsLink} color="inherit">
+                        Skills
+                    </Button>
                     <IconButton
-                        color="contrast"
+                        color="inherit"
                         className={classes.infoButton}
                         onClick={this.openAbout}
                     >

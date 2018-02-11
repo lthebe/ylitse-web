@@ -28,8 +28,10 @@ unittest-watch:
 
 test: unittest lint
 
-run: clean test
+run-dev:
 	API_URL=${API_URL} webpack-dev-server -d --port 3000 --color
+
+run: clean test run-dev
 
 dist: clean lint
 	NODE_ENV=production API_URL=${API_URL} webpack -p --progress --colors
@@ -39,4 +41,4 @@ clean:
 	rm -rf dist coverage src/bundle.*
 	jest --clearCache
 
-.PHONY: all version install list-installed lint unittest unittest-update unittest-watch test run dist clean
+.PHONY: all version install list-installed lint unittest unittest-update unittest-watch test run-dev run dist clean

@@ -4,13 +4,15 @@ exports[`ProfileSheet renders correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <ProfileSheet
-    classes={
-      Object {
-        "root": "ProfileSheet-root-1",
-      }
-    }
-  />,
+  Symbol(enzyme.__unrendered__): <WithStyles(Page)>
+    <WithStyles(Typography)
+      component="h3"
+      variant="headline"
+    >
+      Create account
+    </WithStyles(Typography)>
+    <WithStyles(ProfileForm) />
+  </WithStyles(Page)>,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
     "getNode": [Function],
@@ -21,18 +23,20 @@ ShallowWrapper {
   Symbol(enzyme.__node__): Object {
     "instance": null,
     "key": undefined,
-    "nodeType": "class",
+    "nodeType": "function",
     "props": Object {
       "children": Array [
         <WithStyles(Typography)
           component="h3"
-          type="headline"
+          variant="headline"
         >
           Create account
         </WithStyles(Typography)>,
         <WithStyles(ProfileForm) />,
       ],
-      "className": "ProfileSheet-root-1",
+      "classes": Object {
+        "root": "Page-root-1",
+      },
     },
     "ref": null,
     "rendered": Array [
@@ -43,7 +47,7 @@ ShallowWrapper {
         "props": Object {
           "children": "Create account",
           "component": "h3",
-          "type": "headline",
+          "variant": "headline",
         },
         "ref": null,
         "rendered": "Create account",
@@ -65,18 +69,20 @@ ShallowWrapper {
     Object {
       "instance": null,
       "key": undefined,
-      "nodeType": "class",
+      "nodeType": "function",
       "props": Object {
         "children": Array [
           <WithStyles(Typography)
             component="h3"
-            type="headline"
+            variant="headline"
           >
             Create account
           </WithStyles(Typography)>,
           <WithStyles(ProfileForm) />,
         ],
-        "className": "ProfileSheet-root-1",
+        "classes": Object {
+          "root": "Page-root-1",
+        },
       },
       "ref": null,
       "rendered": Array [
@@ -87,7 +93,7 @@ ShallowWrapper {
           "props": Object {
             "children": "Create account",
             "component": "h3",
-            "type": "headline",
+            "variant": "headline",
           },
           "ref": null,
           "rendered": "Create account",

@@ -260,7 +260,7 @@ ShallowWrapper {
           color="primary"
           disabled={true}
           onClick={[Function]}
-          raised={true}
+          variant="raised"
         >
           Create
           <pure(Save)
@@ -1147,7 +1147,7 @@ ShallowWrapper {
           "color": "primary",
           "disabled": true,
           "onClick": [Function],
-          "raised": true,
+          "variant": "raised",
         },
         "ref": null,
         "rendered": Array [
@@ -1427,7 +1427,7 @@ ShallowWrapper {
             color="primary"
             disabled={true}
             onClick={[Function]}
-            raised={true}
+            variant="raised"
           >
             Create
             <pure(Save)
@@ -2314,7 +2314,7 @@ ShallowWrapper {
             "color": "primary",
             "disabled": true,
             "onClick": [Function],
-            "raised": true,
+            "variant": "raised",
           },
           "ref": null,
           "rendered": Array [

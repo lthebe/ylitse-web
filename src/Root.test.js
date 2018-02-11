@@ -1,11 +1,14 @@
 import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import Root from './Root';
 
 describe('Root', () => {
+    const root = <MemoryRouter><Root /></MemoryRouter>;
+
     test('renders correctly', () => {
-        // ProfileSheet is a HOC, so diving
-        const shallowWrapper = shallow(<Root />).dive();
-        expect(shallowWrapper).toMatchSnapshot();
+        const wrapper = shallow(root).find('Root').shallow();
+
+        expect(wrapper).toMatchSnapshot();
     });
 });
