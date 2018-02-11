@@ -5,7 +5,7 @@ import Page from './Page';
 
 const SkillsPage = () => (
     <Page>
-        <Typography type="headline" component="h3">
+        <Typography variant="headline" component="h3">
             Mentor skills
         </Typography>
         {/*

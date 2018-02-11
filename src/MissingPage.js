@@ -6,10 +6,10 @@ import Page from './Page';
 
 const MissingPage = ({ location }) => (
     <Page>
-        <Typography type="display4" gutterBottom>
+        <Typography variant="display4" gutterBottom>
             Could not find
         </Typography>
-        <Typography type="display3" gutterBottom>
+        <Typography variant="display3" gutterBottom>
             <code>{location.pathname}</code>
         </Typography>
     </Page>

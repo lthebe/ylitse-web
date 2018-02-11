@@ -17,7 +17,7 @@ describe('Navigation', () => {
         const wrapper = shallow(navigation).dive().dive().shallow();
         const title = 'Ylitse Admin';
 
-        expect(wrapper.find('[type="title"]').render().text()).toBe(title);
+        expect(wrapper.find('[variant="title"]').render().text()).toBe(title);
     });
 
     test('about dialog is hidden', () => {

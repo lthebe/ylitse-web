@@ -85,7 +85,7 @@ class Navigation extends Component {
             <AppBar position="static">
                 <Toolbar display="flex">
                     <Typography
-                        type="title"
+                        variant="title"
                         color="inherit"
                         className={classes.flex}
                     >
@@ -98,7 +98,7 @@ class Navigation extends Component {
                         Skills
                     </Button>
                     <IconButton
-                        color="contrast"
+                        color="inherit"
                         className={classes.infoButton}
                         onClick={this.openAbout}
                     >

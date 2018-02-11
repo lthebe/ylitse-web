@@ -31,7 +31,7 @@ ShallowWrapper {
           <WithStyles(Typography)
             className="Navigation-flex-1"
             color="inherit"
-            type="title"
+            variant="title"
           >
             Ylitse Admin
           </WithStyles(Typography)>
@@ -49,7 +49,7 @@ ShallowWrapper {
           </WithStyles(Button)>
           <WithStyles(IconButton)
             className="Navigation-infoButton-2"
-            color="contrast"
+            color="inherit"
             onClick={[Function]}
           >
             <pure(Info) />
@@ -90,7 +90,7 @@ ShallowWrapper {
             <WithStyles(Typography)
               className="Navigation-flex-1"
               color="inherit"
-              type="title"
+              variant="title"
             >
               Ylitse Admin
             </WithStyles(Typography)>,
@@ -108,7 +108,7 @@ ShallowWrapper {
             </WithStyles(Button)>,
             <WithStyles(IconButton)
               className="Navigation-infoButton-2"
-              color="contrast"
+              color="inherit"
               onClick={[Function]}
             >
               <pure(Info) />
@@ -126,7 +126,7 @@ ShallowWrapper {
               "children": "Ylitse Admin",
               "className": "Navigation-flex-1",
               "color": "inherit",
-              "type": "title",
+              "variant": "title",
             },
             "ref": null,
             "rendered": "Ylitse Admin",
@@ -165,7 +165,7 @@ ShallowWrapper {
             "props": Object {
               "children": <pure(Info) />,
               "className": "Navigation-infoButton-2",
-              "color": "contrast",
+              "color": "inherit",
               "onClick": [Function],
             },
             "ref": null,
@@ -234,7 +234,7 @@ ShallowWrapper {
             <WithStyles(Typography)
               className="Navigation-flex-1"
               color="inherit"
-              type="title"
+              variant="title"
             >
               Ylitse Admin
             </WithStyles(Typography)>
@@ -252,7 +252,7 @@ ShallowWrapper {
             </WithStyles(Button)>
             <WithStyles(IconButton)
               className="Navigation-infoButton-2"
-              color="contrast"
+              color="inherit"
               onClick={[Function]}
             >
               <pure(Info) />
@@ -293,7 +293,7 @@ ShallowWrapper {
               <WithStyles(Typography)
                 className="Navigation-flex-1"
                 color="inherit"
-                type="title"
+                variant="title"
               >
                 Ylitse Admin
               </WithStyles(Typography)>,
@@ -311,7 +311,7 @@ ShallowWrapper {
               </WithStyles(Button)>,
               <WithStyles(IconButton)
                 className="Navigation-infoButton-2"
-                color="contrast"
+                color="inherit"
                 onClick={[Function]}
               >
                 <pure(Info) />
@@ -329,7 +329,7 @@ ShallowWrapper {
                 "children": "Ylitse Admin",
                 "className": "Navigation-flex-1",
                 "color": "inherit",
-                "type": "title",
+                "variant": "title",
               },
               "ref": null,
               "rendered": "Ylitse Admin",
@@ -368,7 +368,7 @@ ShallowWrapper {
               "props": Object {
                 "children": <pure(Info) />,
                 "className": "Navigation-infoButton-2",
-                "color": "contrast",
+                "color": "inherit",
                 "onClick": [Function],
               },
               "ref": null,

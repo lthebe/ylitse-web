@@ -7,7 +7,7 @@ ShallowWrapper {
   Symbol(enzyme.__unrendered__): <WithStyles(Page)>
     <WithStyles(Typography)
       component="h3"
-      type="headline"
+      variant="headline"
     >
       Create account
     </WithStyles(Typography)>
@@ -28,7 +28,7 @@ ShallowWrapper {
       "children": Array [
         <WithStyles(Typography)
           component="h3"
-          type="headline"
+          variant="headline"
         >
           Create account
         </WithStyles(Typography)>,
@@ -47,7 +47,7 @@ ShallowWrapper {
         "props": Object {
           "children": "Create account",
           "component": "h3",
-          "type": "headline",
+          "variant": "headline",
         },
         "ref": null,
         "rendered": "Create account",
@@ -74,7 +74,7 @@ ShallowWrapper {
         "children": Array [
           <WithStyles(Typography)
             component="h3"
-            type="headline"
+            variant="headline"
           >
             Create account
           </WithStyles(Typography)>,
@@ -93,7 +93,7 @@ ShallowWrapper {
           "props": Object {
             "children": "Create account",
             "component": "h3",
-            "type": "headline",
+            "variant": "headline",
           },
           "ref": null,
           "rendered": "Create account",

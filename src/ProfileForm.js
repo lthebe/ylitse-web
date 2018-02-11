@@ -373,7 +373,7 @@ class ProfileForm extends Component {
                     />
                 </FormGroup>
                 <Button
-                    raised
+                    variant="raised"
                     color="primary"
                     disabled={!this.state.formValid}
                     className={classes.button}

@@ -6,7 +6,7 @@ import ProfileForm from './ProfileForm';
 
 const ProfileSheet = () => (
     <Page>
-        <Typography type="headline" component="h3">
+        <Typography variant="headline" component="h3">
             Create account
         </Typography>
         <ProfileForm />

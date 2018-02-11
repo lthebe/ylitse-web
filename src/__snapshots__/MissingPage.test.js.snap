@@ -26,13 +26,13 @@ ShallowWrapper {
       "children": Array [
         <WithStyles(Typography)
           gutterBottom={true}
-          type="display4"
+          variant="display4"
         >
           Could not find
         </WithStyles(Typography)>,
         <WithStyles(Typography)
           gutterBottom={true}
-          type="display3"
+          variant="display3"
         >
           <code>
             /test
@@ -49,7 +49,7 @@ ShallowWrapper {
         "props": Object {
           "children": "Could not find",
           "gutterBottom": true,
-          "type": "display4",
+          "variant": "display4",
         },
         "ref": null,
         "rendered": "Could not find",
@@ -64,7 +64,7 @@ ShallowWrapper {
             /test
           </code>,
           "gutterBottom": true,
-          "type": "display3",
+          "variant": "display3",
         },
         "ref": null,
         "rendered": Object {
@@ -92,13 +92,13 @@ ShallowWrapper {
         "children": Array [
           <WithStyles(Typography)
             gutterBottom={true}
-            type="display4"
+            variant="display4"
           >
             Could not find
           </WithStyles(Typography)>,
           <WithStyles(Typography)
             gutterBottom={true}
-            type="display3"
+            variant="display3"
           >
             <code>
               /test
@@ -115,7 +115,7 @@ ShallowWrapper {
           "props": Object {
             "children": "Could not find",
             "gutterBottom": true,
-            "type": "display4",
+            "variant": "display4",
           },
           "ref": null,
           "rendered": "Could not find",
@@ -130,7 +130,7 @@ ShallowWrapper {
               /test
             </code>,
             "gutterBottom": true,
-            "type": "display3",
+            "variant": "display3",
           },
           "ref": null,
           "rendered": Object {
