@@ -1,17 +1,17 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import ProfileForm from './ProfileForm';
+import AccountForm from './AccountForm';
 
-describe('ProfileForm', () => {
+describe('AccountForm', () => {
     test('renders correctly', () => {
-        // ProfileForm is a HOC, so diving
-        const wrapper = shallow(<ProfileForm />).dive();
+        // AccountForm is a HOC, so diving
+        const wrapper = shallow(<AccountForm />).dive();
 
         expect(wrapper).toMatchSnapshot();
     });
 
     test('error message is shown upon post error', async () => {
-        const wrapper = shallow(<ProfileForm />).dive();
+        const wrapper = shallow(<AccountForm />).dive();
         const error = 'post error';
         window.fetch = jest.fn();
         window.fetch.mockReturnValue({
@@ -28,7 +28,7 @@ describe('ProfileForm', () => {
     });
 
     test('success message is shown upon post ', async () => {
-        const wrapper = shallow(<ProfileForm />).dive();
+        const wrapper = shallow(<AccountForm />).dive();
         const username = 'testuser';
         const res = new Response(`{"username": "${username}"}`, {
             status: 200,
@@ -54,7 +54,7 @@ describe('ProfileForm', () => {
 
     test('password validation', () => {
         // tests only if short password is indicated
-        const deepWrapper = mount(<ProfileForm />);
+        const deepWrapper = mount(<AccountForm />);
         const password = deepWrapper.find('PasswordField').find('input');
         password.instance().value = 'short';
 
@@ -64,7 +64,7 @@ describe('ProfileForm', () => {
     });
 
     test('username validation', () => {
-        const deepWrapper = mount(<ProfileForm />);
+        const deepWrapper = mount(<AccountForm />);
 
         const username = deepWrapper.find({
             name: 'username',
@@ -85,7 +85,7 @@ describe('ProfileForm', () => {
     });
 
     test('screen name validation', () => {
-        const deepWrapper = mount(<ProfileForm />);
+        const deepWrapper = mount(<AccountForm />);
         // this is not the good way to find the element though
         // if label is changed for example
         const nickname = deepWrapper.find({
@@ -106,11 +106,11 @@ describe('ProfileForm', () => {
         }).prop('error')).toBe(false);
     });
 
-    test('skills chosen', () => {
-        const deepWrapper = mount(<ProfileForm />);
-        const skillsSelect = deepWrapper.find('SelectInput').find('input');
-        skillsSelect.simulate('change');
-        // deepWrapper.update();
-        // expect(onChangeEvent).toHaveBeenCalled();
-    });
+    // test('skills chosen', () => {
+    //     const deepWrapper = mount(<AccountForm />);
+    //     const skillsSelect = deepWrapper.find('SelectInput').find('input');
+    //     skillsSelect.simulate('change');
+    //     // deepWrapper.update();
+    //     // expect(onChangeEvent).toHaveBeenCalled();
+    // });
 });

@@ -88,9 +88,17 @@ const initialFormState = {
         email: undefined,
     },
     formValid: false,
+    display: {
+        phone: false,
+        gender: false,
+        birthYear: false,
+        languages: false,
+        skills: false,
+        story: false,
+    },
 };
 
-class ProfileForm extends Component {
+class AccountForm extends Component {
     static propTypes = {
         classes: PropTypes.shape({
             row: PropTypes.string,
@@ -114,10 +122,18 @@ class ProfileForm extends Component {
 
     updateValue = ({ target }) => {
         const { name, value } = target;
-        const { errors } = this.state;
+        const { errors, display } = this.state;
         let valid;
 
         switch (name) {
+            case 'role':
+                display.phone = value === 'Mentor';
+                display.gender = value === 'Mentor';
+                display.birthYear = value === 'Mentor';
+                display.languages = value === 'Mentor';
+                display.skills = value === 'Mentor';
+                display.story = value === 'Mentor';
+                break;
             case 'username':
                 valid = value.length > 2;
                 errors.username = valid ? '' : 'Username is too short';
@@ -153,6 +169,7 @@ class ProfileForm extends Component {
             [target.name]: target.value,
             formValid: Object.values(errors).every(e => e === ''),
             errors,
+            display,
         });
     }
 
@@ -279,6 +296,7 @@ class ProfileForm extends Component {
                         className={classes.row}
                         onChange={this.updateValue}
                     />
+                    {this.state.display.phone &&
                     <TextField
                         name="phone"
                         label="Phone number"
@@ -287,7 +305,7 @@ class ProfileForm extends Component {
                         helperText={errors.phone}
                         className={classes.row}
                         onChange={this.updateValue}
-                    />
+                    />}
                     <TextField
                         name="email"
                         label="Email"
@@ -298,6 +316,7 @@ class ProfileForm extends Component {
                         className={classes.row}
                         onChange={this.updateValue}
                     />
+                    {this.state.display.gender &&
                     <FormControl
                         component="fieldset"
                         required
@@ -319,7 +338,8 @@ class ProfileForm extends Component {
                                 />
                             ))}
                         </RadioGroup>
-                    </FormControl>
+                    </FormControl>}
+                    {this.state.display.birthYear &&
                     <TextField
                         name="birthYear"
                         label="Birth year"
@@ -328,7 +348,7 @@ class ProfileForm extends Component {
                         helperText={errors.birthYear}
                         className={classes.row}
                         onChange={this.updateValue}
-                    />
+                    />}
                     <TextField
                         name="area"
                         label="Area"
@@ -336,12 +356,14 @@ class ProfileForm extends Component {
                         className={classes.row}
                         onChange={this.updateValue}
                     />
+                    {this.state.display.languages &&
                     <CheckboxGroup
                         label="Languages"
                         data={this.state.languages}
                         className={classes.checkboxRow}
                         onChange={this.updateCheckboxes('languages')}
-                    />
+                    />}
+                    {this.state.display.skills &&
                     <FormControl className={classes.formControl}>
                         <InputLabel htmlFor="name-multiple">Skills</InputLabel>
                         <Select
@@ -357,13 +379,14 @@ class ProfileForm extends Component {
                                 </MenuItem>
                             ))}
                         </Select>
-                    </FormControl>
+                    </FormControl>}
                     <CheckboxGroup
                         label="Communication channels"
                         data={this.state.channels}
                         className={classes.checkboxRow}
                         onChange={this.updateCheckboxes('channels')}
                     />
+                    {this.state.display.story &&
                     <TextField
                         name="story"
                         label="Story"
@@ -374,7 +397,7 @@ class ProfileForm extends Component {
                         rowsMax="8"
                         className={classes.row}
                         onChange={this.updateValue}
-                    />
+                    />}
                 </FormGroup>
                 <Button
                     variant="raised"
@@ -405,4 +428,4 @@ class ProfileForm extends Component {
     }
 }
 
-export default withStyles(styles)(ProfileForm);
+export default withStyles(styles)(AccountForm);
