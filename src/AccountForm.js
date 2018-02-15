@@ -11,11 +11,8 @@ import SaveIcon from 'material-ui-icons/Save';
 import Snackbar from 'material-ui/Snackbar';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
-import Select from 'material-ui/Select';
-import { MenuItem } from 'material-ui/Menu';
-import Input, { InputLabel } from 'material-ui/Input';
 
-import CheckboxGroup from './CheckboxGroup';
+import MentorForm from './MentorForm';
 import PasswordField from './PasswordField';
 
 const styles = theme => ({
@@ -50,14 +47,6 @@ const availableGenders = [
     'Male',
     'Female',
 ];
-const availableSkills = [
-    'Cooking',
-    'Baby sitting',
-    'Parenting',
-    'Legal',
-    'Education',
-    'Cleaning',
-];
 const initialFormState = {
     role: availableRoles[0],
     username: '',
@@ -88,14 +77,7 @@ const initialFormState = {
         email: undefined,
     },
     formValid: false,
-    display: {
-        phone: false,
-        gender: false,
-        birthYear: false,
-        languages: false,
-        skills: false,
-        story: false,
-    },
+    availableSkills: [],
 };
 
 class AccountForm extends Component {
@@ -120,19 +102,32 @@ class AccountForm extends Component {
         };
     }
 
+    componentDidMount() {
+        this.fetchSkills();
+    }
+
+   fetchSkills = async () => {
+       try {
+           // basically, all are same apiUrl, can I move somewhere?
+           // probably when the redux comes to play, we will
+           // take fetchSkills out somewhere as it is everywhere?
+           const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
+           const resp = await fetch(`${apiUrl}/skills`);
+           const data = await resp.json();
+           this.setState({ availableSkills: data.resources });
+       } catch (e) {
+           this.openError(e.message);
+       }
+   };
+
     updateValue = ({ target }) => {
         const { name, value } = target;
-        const { errors, display } = this.state;
+        const { errors } = this.state;
         let valid;
 
         switch (name) {
             case 'role':
-                display.phone = value === 'Mentor';
-                display.gender = value === 'Mentor';
-                display.birthYear = value === 'Mentor';
-                display.languages = value === 'Mentor';
-                display.skills = value === 'Mentor';
-                display.story = value === 'Mentor';
+                this.checkFormValidity(value);
                 break;
             case 'username':
                 valid = value.length > 2;
@@ -164,12 +159,21 @@ class AccountForm extends Component {
             default:
                 break;
         }
-
         this.setState({
             [target.name]: target.value,
-            formValid: Object.values(errors).every(e => e === ''),
             errors,
-            display,
+        }, () => this.checkFormValidity(this.state.role));
+    }
+
+    checkFormValidity = (role) => {
+        const { errors } = this.state;
+        const formValid = (role === 'Mentor') ? Object.values(errors)
+            .every(e => e === '') :
+            Object.entries(errors)
+                .filter(x => ['username', 'password', 'nickname']
+                    .includes(x[0])).every(e => e[1] === '');
+        this.setState({
+            formValid,
         });
     }
 
@@ -240,6 +244,13 @@ class AccountForm extends Component {
     render() {
         const { classes } = this.props;
         const { errors } = this.state;
+        const props = {
+            availableSkills: ['Cooking', 'Parenting'],
+            availableGenders,
+            updateCheckboxes: this.updateCheckboxes,
+            updateValue: this.updateValue,
+            updateSkills: this.updateSkills,
+        };
 
         return (
             <form autoComplete="off">
@@ -296,108 +307,8 @@ class AccountForm extends Component {
                         className={classes.row}
                         onChange={this.updateValue}
                     />
-                    {this.state.display.phone &&
-                    <TextField
-                        name="phone"
-                        label="Phone number"
-                        value={this.state.phone}
-                        error={Boolean(errors.phone)}
-                        helperText={errors.phone}
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />}
-                    <TextField
-                        name="email"
-                        label="Email"
-                        value={this.state.email}
-                        error={Boolean(errors.email)}
-                        helperText={errors.email}
-                        required
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />
-                    {this.state.display.gender &&
-                    <FormControl
-                        component="fieldset"
-                        required
-                        className={classes.radioRow}
-                    >
-                        <FormLabel component="legend">Gender</FormLabel>
-                        <RadioGroup
-                            name="gender"
-                            value={this.state.gender}
-                            row
-                            onChange={this.updateValue}
-                        >
-                            {availableGenders.map(gender => (
-                                <FormControlLabel
-                                    key={gender}
-                                    label={gender}
-                                    value={gender}
-                                    control={<Radio />}
-                                />
-                            ))}
-                        </RadioGroup>
-                    </FormControl>}
-                    {this.state.display.birthYear &&
-                    <TextField
-                        name="birthYear"
-                        label="Birth year"
-                        value={this.state.birthYear}
-                        error={Boolean(errors.birthYear)}
-                        helperText={errors.birthYear}
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />}
-                    <TextField
-                        name="area"
-                        label="Area"
-                        value={this.state.area}
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />
-                    {this.state.display.languages &&
-                    <CheckboxGroup
-                        label="Languages"
-                        data={this.state.languages}
-                        className={classes.checkboxRow}
-                        onChange={this.updateCheckboxes('languages')}
-                    />}
-                    {this.state.display.skills &&
-                    <FormControl className={classes.formControl}>
-                        <InputLabel htmlFor="name-multiple">Skills</InputLabel>
-                        <Select
-                            multiple
-                            className={classes.row}
-                            value={this.state.skills}
-                            onChange={this.updateSkills}
-                            input={<Input id="name-multiple" />}
-                        >
-                            {availableSkills.map(skill => (
-                                <MenuItem key={skill} value={skill}>
-                                    {skill}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>}
-                    <CheckboxGroup
-                        label="Communication channels"
-                        data={this.state.channels}
-                        className={classes.checkboxRow}
-                        onChange={this.updateCheckboxes('channels')}
-                    />
-                    {this.state.display.story &&
-                    <TextField
-                        name="story"
-                        label="Story"
-                        value={this.state.story}
-                        helperText="Tell something about yourself"
-                        multiline
-                        rows="1"
-                        rowsMax="8"
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />}
+                    {this.state.role === 'Mentor' &&
+                        <MentorForm {...this.state} {...props} />}
                 </FormGroup>
                 <Button
                     variant="raised"
