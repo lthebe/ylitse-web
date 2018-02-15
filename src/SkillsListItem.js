@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Card, { CardHeader, CardActions, CardContent } from 'material-ui/Card';
 import DeleteIcon from 'material-ui-icons/Delete';
 import IconButton from 'material-ui/IconButton';
 import Typography from 'material-ui/Typography';
@@ -26,11 +26,9 @@ function SkillsListItem(props) {
     return (
         <div>
             <Card className={classes.card}>
+                <CardHeader title="Skills" />
                 <CardContent>
-                    <Typography className={classes.title}>Skill</Typography>
-                    <Typography component="p">
-                        {label}
-                    </Typography>
+                    <Typography className={classes.title}>{label}</Typography>
                 </CardContent>
                 <CardActions>
                     <IconButton
