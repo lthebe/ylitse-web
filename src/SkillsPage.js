@@ -4,10 +4,10 @@ import { withStyles } from 'material-ui/styles';
 import Typography from 'material-ui/Typography';
 import CloseIcon from 'material-ui-icons/Close';
 import Snackbar from 'material-ui/Snackbar';
-import GridList, { GridListTile, GridListTileBar } from 'material-ui/GridList';
+import GridList from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import TextField from 'material-ui/TextField';
-import DeleteIcon from 'material-ui-icons/Delete';
+import SkillsListItem from './SkillsListItem';
 import Page from './Page';
 
 const styles = theme => ({
@@ -23,7 +23,7 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        width: 500,
+        width: 600,
         height: 500,
         transform: 'translateZ(0)',
     },
@@ -184,27 +184,13 @@ class SkillsPage extends Component {
                                     .includes(this.state.newSkill
                                         .toLowerCase()))
                             .map(skill => (
-                                <GridListTile
+                                <SkillsListItem
                                     key={skill.id}
-                                    cols={0.66}
-                                >
-                                    <GridListTileBar
-                                        title={skill.name}
-                                        titlePosition="top"
-                                        actionIcon={
-                                            <IconButton
-                                                onClick={() => {
-                                                    this.deleteSkill(skill.id);
-                                                }}
-                                                className={classes.icon}
-                                            >
-                                                <DeleteIcon />
-                                            </IconButton>
-                                        }
-                                        actionPosition="left"
-                                        className={classes.titleBar}
-                                    />
-                                </GridListTile>
+                                    deleteSkill={() => {
+                                        this.deleteSkill(skill.id);
+                                    }}
+                                    label={skill.name}
+                                />
                             ))}
                     </GridList>
                 </div>
