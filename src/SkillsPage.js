@@ -23,14 +23,9 @@ const styles = theme => ({
         backgroundColor: theme.palette.background.paper,
     },
     gridList: {
-        dislay: 'flex',
-        flexWrap: 'nowrap',
-        overflowX: 'auto',
-    },
-    titleBar: {
-        background:
-      'linear-gradient(to bottom, rgba(0,0,0,0.7) 0%, ' +
-      'rgba(0,0,0,0.3) 70%, rgba(0,0,0,0) 100%)',
+        width: 500,
+        height: 500,
+        transform: 'translateZ(0)',
     },
 });
 
@@ -39,7 +34,6 @@ class SkillsPage extends Component {
         classes: PropTypes.shape({
             root: PropTypes.string,
             gridList: PropTypes.string,
-            titleBar: PropTypes.string,
         }).isRequired,
     }
     constructor(props) {

@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
-import Card, { CardHeader, CardActions, CardContent } from 'material-ui/Card';
+import Card, { CardActions, CardContent } from 'material-ui/Card';
+import Typography from 'material-ui/Typography';
 import DeleteIcon from 'material-ui-icons/Delete';
 import IconButton from 'material-ui/IconButton';
 import Button from 'material-ui/Button';
-import Typography from 'material-ui/Typography';
 import Dialog, {
     DialogTitle,
     DialogContent,
@@ -14,20 +14,22 @@ import Dialog, {
 
 const styles = theme => ({
     card: {
-        minWidth: 140,
-        margin: 20,
-        minHeight: 250,
-        position: 'relative',
+        width: 140,
+        margin: 7,
+        minHeight: 100,
     },
-    title: {
-        marginBottom: 16,
-        fontSize: 14,
+    content: {
+        fontSize: 18,
+        display: 'flex',
+        wordWrap: 'break-word',
+        textAlign: 'center',
+        textOverflow: 'ellipsis',
+        whiteSpace: 'normal',
         color: theme.palette.text.secondary,
     },
     icon: {
+        margin: 0,
         color: 'blue',
-        position: 'absolute',
-        bottom: 0,
     },
 });
 
@@ -35,7 +37,7 @@ class SkillsListItem extends Component {
   static propTypes = {
       classes: PropTypes.shape({
           card: PropTypes.string,
-          title: PropTypes.string,
+          content: PropTypes.string,
           icon: PropTypes.string,
       }).isRequired,
       label: PropTypes.string.isRequired,
@@ -47,8 +49,15 @@ class SkillsListItem extends Component {
 
       this.state = {
           dialogOpen: false,
+          displayIcon: false,
       };
   }
+
+  onMouseEnter = () => {
+      this.setState({ displayIcon: true });
+  }
+
+  onMouseLeave = () => this.setState({ displayIcon: false });
 
   openDialog = () => {
       this.setState({ dialogOpen: true });
@@ -62,11 +71,20 @@ class SkillsListItem extends Component {
       const { classes, label, deleteSkill } = this.props;
       return (
           <div>
-              <Card className={classes.card}>
-                  <CardHeader title="Skills" />
+              <Card
+                  className={classes.card}
+                  onMouseEnter={this.onMouseEnter}
+                  onMouseLeave={this.onMouseLeave}
+              >
                   <CardContent>
-                      <Typography className={classes.title}>{label}</Typography>
+                      <Typography
+                          variant="headline"
+                          className={classes.content}
+                      >
+                          {label}
+                      </Typography>
                   </CardContent>
+                  {this.state.displayIcon &&
                   <CardActions>
                       <IconButton
                           onClick={this.openDialog}
@@ -74,7 +92,7 @@ class SkillsListItem extends Component {
                       >
                           <DeleteIcon />
                       </IconButton>
-                  </CardActions>
+                  </CardActions> }
               </Card>
               <Dialog
                   open={this.state.dialogOpen}
