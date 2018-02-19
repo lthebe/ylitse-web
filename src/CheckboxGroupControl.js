@@ -5,21 +5,23 @@ import {
 } from 'material-ui/Form';
 import Checkbox from 'material-ui/Checkbox';
 
-const CheckboxGroup = ({
-    label, data, className, onChange,
+const CheckboxGroupControl = ({
+    label, options, disabled, required, className, onChange,
 }) => (
     <FormControl
         component="fieldset"
+        disabled={disabled}
+        required={required}
         className={className}
     >
         <FormLabel component="legend">{label}</FormLabel>
         <FormGroup row>
-            {Object.keys(data).map(key => (
+            {Object.keys(options).map(key => (
                 <FormControlLabel
                     key={key}
                     name={key}
                     label={key}
-                    checked={data[key]}
+                    checked={options[key]}
                     control={<Checkbox onChange={onChange} />}
                 />
             ))}
@@ -28,12 +30,19 @@ const CheckboxGroup = ({
     </FormControl>
 );
 
-CheckboxGroup.propTypes = {
+CheckboxGroupControl.propTypes = {
     label: PropTypes.string.isRequired,
     // eslint-disable-next-line react/forbid-prop-types
-    data: PropTypes.object.isRequired,
+    options: PropTypes.object.isRequired,
+    disabled: PropTypes.bool,
+    required: PropTypes.bool,
     className: PropTypes.string.isRequired,
     onChange: PropTypes.func.isRequired,
 };
 
-export default CheckboxGroup;
+CheckboxGroupControl.defaultProps = {
+    disabled: false,
+    required: false,
+};
+
+export default CheckboxGroupControl;

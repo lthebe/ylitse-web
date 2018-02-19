@@ -1,19 +1,21 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
-import {
-    FormControl, FormControlLabel, FormGroup, FormLabel,
-} from 'material-ui/Form';
-import Radio, { RadioGroup } from 'material-ui/Radio';
-import TextField from 'material-ui/TextField';
-import { withStyles } from 'material-ui/styles';
-import SaveIcon from 'material-ui-icons/Save';
-import Snackbar from 'material-ui/Snackbar';
+import { FormControl, FormGroup } from 'material-ui/Form';
 import IconButton from 'material-ui/IconButton';
+import Input, { InputLabel } from 'material-ui/Input';
+import { MenuItem } from 'material-ui/Menu';
+import Select from 'material-ui/Select';
+import Snackbar from 'material-ui/Snackbar';
+import TextField from 'material-ui/TextField';
 import CloseIcon from 'material-ui-icons/Close';
+import SaveIcon from 'material-ui-icons/Save';
 
-import MentorForm from './MentorForm';
+import { withStyles } from 'material-ui/styles';
+
+import CheckboxGroupControl from './CheckboxGroupControl';
 import PasswordField from './PasswordField';
+import RadioGroupControl from './RadioGroupControl';
 
 const styles = theme => ({
     row: {
@@ -39,8 +41,8 @@ const styles = theme => ({
     },
 });
 const availableRoles = [
-    'Mentee',
     'Mentor',
+    'Mentee',
     'Admin',
 ];
 const availableGenders = [
@@ -72,9 +74,6 @@ const initialFormState = {
     errors: {
         username: undefined,
         password: undefined,
-        nickname: undefined,
-        phone: undefined,
-        email: undefined,
     },
     formValid: false,
     availableSkills: [],
@@ -106,19 +105,16 @@ class AccountForm extends Component {
         this.fetchSkills();
     }
 
-   fetchSkills = async () => {
-       try {
-           // basically, all are same apiUrl, can I move somewhere?
-           // probably when the redux comes to play, we will
-           // take fetchSkills out somewhere as it is everywhere?
-           const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
-           const resp = await fetch(`${apiUrl}/skills`);
-           const data = await resp.json();
-           this.setState({ availableSkills: data.resources });
-       } catch (e) {
-           this.openError(e.message);
-       }
-   };
+    fetchSkills = async () => {
+        try {
+            const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
+            const resp = await fetch(`${apiUrl}/skills`);
+            const data = await resp.json();
+            this.setState({ availableSkills: data.resources });
+        } catch (e) {
+            this.setState({ feedbackOpen: true, feedback: e.message });
+        }
+    };
 
     updateValue = ({ target }) => {
         const { name, value } = target;
@@ -126,9 +122,6 @@ class AccountForm extends Component {
         let valid;
 
         switch (name) {
-            case 'role':
-                this.checkFormValidity(value);
-                break;
             case 'username':
                 valid = value.length > 2;
                 errors.username = valid ? '' : 'Username is too short';
@@ -159,21 +152,11 @@ class AccountForm extends Component {
             default:
                 break;
         }
+
         this.setState({
             [target.name]: target.value,
+            formValid: Object.values(errors).every(e => e === ''),
             errors,
-        }, () => this.checkFormValidity(this.state.role));
-    }
-
-    checkFormValidity = (role) => {
-        const { errors } = this.state;
-        const formValid = (role === 'Mentor') ? Object.values(errors)
-            .every(e => e === '') :
-            Object.entries(errors)
-                .filter(x => ['username', 'password', 'nickname']
-                    .includes(x[0])).every(e => e[1] === '');
-        this.setState({
-            formValid,
         });
     }
 
@@ -241,79 +224,124 @@ class AccountForm extends Component {
         this.setState({ feedbackOpen: false });
     }
 
+    renderTextField = (name, label, required = false, password = false) => {
+        const FieldComponent = password ? PasswordField : TextField;
+
+        return (
+            <FieldComponent
+                name={name}
+                label={label}
+                value={this.state[name]}
+                error={Boolean(this.state.errors[name])}
+                helperText={this.state.errors[name]}
+                required={required}
+                className={this.props.classes.row}
+                onChange={this.updateValue}
+            />
+        );
+    }
+
+    renderCommonFields = () => {
+        const { classes } = this.props;
+        const { role } = this.state;
+
+        return (
+            <FormGroup>
+                <RadioGroupControl
+                    name="role"
+                    label="Account type"
+                    value={role}
+                    options={availableRoles}
+                    className={classes.radioRow}
+                    onChange={this.updateValue}
+                />
+                {this.renderTextField('username', 'Username', true)}
+                {this.renderTextField('password', 'Password', true, true)}
+                {this.renderTextField('nickname', 'Screen name')}
+            </FormGroup>
+        );
+    }
+
+    renderMentorFields = () => {
+        const { classes } = this.props;
+        const {
+            gender, languages, skills, availableSkills, channels, story,
+        } = this.state;
+
+        return (
+            <FormGroup>
+                {this.renderTextField('phone', 'Phone number')}
+                {this.renderTextField('email', 'Email')}
+                <RadioGroupControl
+                    name="gender"
+                    label="Gender"
+                    value={gender}
+                    options={availableGenders}
+                    className={classes.radioRow}
+                    onChange={this.updateValue}
+                />
+                {this.renderTextField('birthYear', 'Birth year')}
+                {this.renderTextField('area', 'Area')}
+                <CheckboxGroupControl
+                    label="Languages"
+                    options={languages}
+                    className={classes.checkboxRow}
+                    onChange={this.updateCheckboxes('languages')}
+                />
+                <FormControl
+                    disabled={availableSkills.length === 0}
+                    className={classes.formControl}
+                >
+                    <InputLabel htmlFor="name-multiple">Skills</InputLabel>
+                    <Select
+                        multiple
+                        className={classes.row}
+                        value={skills}
+                        onChange={this.updateSkills}
+                        input={<Input id="name-multiple" />}
+                    >
+                        {availableSkills.map(skill => (
+                            <MenuItem key={skill} value={skill}>
+                                {skill}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
+                <CheckboxGroupControl
+                    label="Communication channels"
+                    options={channels}
+                    className={classes.checkboxRow}
+                    onChange={this.updateCheckboxes('channels')}
+                />
+                <TextField
+                    name="story"
+                    label="Story"
+                    value={story}
+                    helperText="Tell something about yourself"
+                    multiline
+                    rows="1"
+                    rowsMax="8"
+                    className={classes.row}
+                    onChange={this.updateValue}
+                />
+            </FormGroup>
+        );
+    }
+
     render() {
         const { classes } = this.props;
-        const { errors } = this.state;
-        const props = {
-            availableSkills: ['Cooking', 'Parenting'],
-            availableGenders,
-            updateCheckboxes: this.updateCheckboxes,
-            updateValue: this.updateValue,
-            updateSkills: this.updateSkills,
-        };
+        const {
+            role, feedbackOpen, feedback, formValid,
+        } = this.state;
 
         return (
             <form autoComplete="off">
-                <FormGroup>
-                    <FormControl
-                        component="fieldset"
-                        required
-                        className={classes.radioRow}
-                    >
-                        <FormLabel component="legend">Account type</FormLabel>
-                        <RadioGroup
-                            name="role"
-                            value={this.state.role}
-                            row
-                            onChange={this.updateValue}
-                        >
-                            {availableRoles.map(role => (
-                                <FormControlLabel
-                                    key={role}
-                                    label={role}
-                                    value={role}
-                                    control={<Radio />}
-                                />
-                            ))}
-                        </RadioGroup>
-                    </FormControl>
-                    <TextField
-                        name="username"
-                        label="Username"
-                        value={this.state.username}
-                        error={Boolean(errors.username)}
-                        helperText={errors.username}
-                        required
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />
-                    <PasswordField
-                        name="password"
-                        label="Password"
-                        value={this.state.password}
-                        error={Boolean(errors.password)}
-                        helperText={errors.password}
-                        required
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />
-                    <TextField
-                        name="nickname"
-                        label="Screen name"
-                        value={this.state.nickname}
-                        error={Boolean(errors.nickname)}
-                        helperText={errors.nickname}
-                        required
-                        className={classes.row}
-                        onChange={this.updateValue}
-                    />
-                    {this.state.role === 'Mentor' &&
-                        <MentorForm {...this.state} {...props} />}
-                </FormGroup>
+                {this.renderCommonFields()}
+                {role === 'Mentor' && this.renderMentorFields()}
                 <Button
                     variant="raised"
                     color="primary"
-                    disabled={!this.state.formValid}
+                    disabled={!formValid}
                     className={classes.button}
                     onClick={this.sendProfile}
                 >
@@ -321,8 +349,8 @@ class AccountForm extends Component {
                     <SaveIcon className={classes.buttonIcon} />
                 </Button>
                 <Snackbar
-                    open={this.state.feedbackOpen}
-                    message={this.state.feedback}
+                    open={feedbackOpen}
+                    message={feedback}
                     autoHideDuration={3000}
                     action={
                         <IconButton

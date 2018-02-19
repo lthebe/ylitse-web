@@ -1,24 +1,24 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import CheckboxGroup from './CheckboxGroup';
+import CheckboxGroupControl from './CheckboxGroupControl';
 
-describe('CheckboxGroup', () => {
+describe('CheckboxGroupControl', () => {
     const mockFunc = jest.fn();
     const languages = { Finnish: false };
     const props = {
-        data: languages,
+        options: languages,
         className: '',
         label: 'Language',
         onChange: mockFunc,
     };
 
     test('renders correctly', () => {
-        const wrapper = shallow(<CheckboxGroup {...props} />);
+        const wrapper = shallow(<CheckboxGroupControl {...props} />);
         expect(wrapper).toMatchSnapshot();
     });
 
     test('checkbox can be checked and unchecked', () => {
-        const wrapper = mount(<CheckboxGroup {...props} />);
+        const wrapper = mount(<CheckboxGroupControl {...props} />);
         const input = wrapper.find('input[name="Finnish"]');
         input.simulate('change');
         expect(mockFunc).toHaveBeenCalled();

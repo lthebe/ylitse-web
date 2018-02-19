@@ -1,18 +1,20 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CheckboxGroup renders correctly 1`] = `
+exports[`CheckboxGroupControl renders correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <CheckboxGroup
+  Symbol(enzyme.__unrendered__): <CheckboxGroupControl
     className=""
-    data={
+    disabled={false}
+    label="Language"
+    onChange={[MockFunction]}
+    options={
       Object {
         "Finnish": false,
       }
     }
-    label="Language"
-    onChange={[MockFunction]}
+    required={false}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -49,6 +51,8 @@ ShallowWrapper {
       ],
       "className": "",
       "component": "fieldset",
+      "disabled": false,
+      "required": false,
     },
     "ref": null,
     "rendered": Array [
@@ -136,6 +140,8 @@ ShallowWrapper {
         ],
         "className": "",
         "component": "fieldset",
+        "disabled": false,
+        "required": false,
       },
       "ref": null,
       "rendered": Array [
