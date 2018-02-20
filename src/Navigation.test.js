@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter } from 'react-router-dom';
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import Navigation from './Navigation';
 
@@ -23,15 +23,6 @@ describe('Navigation', () => {
     test('about dialog is hidden', () => {
         const wrapper = shallow(navigation).dive().dive().shallow();
 
-        expect(wrapper.find('AboutDialog').prop('open')).toBe(false);
-    });
-
-    test('about dialog can be opened and closed', () => {
-        const wrapper = mount(navigation);
-
-        wrapper.find('Toolbar').find('IconButton').simulate('click');
-        expect(wrapper.find('AboutDialog').prop('open')).toBe(true);
-        wrapper.find('AboutDialog').find('Button').simulate('click');
         expect(wrapper.find('AboutDialog').prop('open')).toBe(false);
     });
 

@@ -1,5 +1,5 @@
 PATH:=${PATH}:node_modules/.bin
-API_URL=http://127.0.0.1:8080
+API_URL=http://localhost:8080
 
 all: run
 
