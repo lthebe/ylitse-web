@@ -11,6 +11,7 @@ ShallowWrapper {
         "iconButton": "Navigation-iconButton-2",
       }
     }
+    username=""
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -73,7 +74,8 @@ ShallowWrapper {
           <WithStyles(MenuItem)
             onClick={[Function]}
           >
-            Sign out
+            Sign out 
+            
           </WithStyles(MenuItem)>
         </WithStyles(Menu)>,
         <AboutDialog
@@ -246,7 +248,8 @@ ShallowWrapper {
           "children": <WithStyles(MenuItem)
             onClick={[Function]}
           >
-            Sign out
+            Sign out 
+            
           </WithStyles(MenuItem)>,
           "id": "menu-appbar",
           "onClose": [Function],
@@ -258,11 +261,17 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Sign out",
+            "children": Array [
+              "Sign out ",
+              "",
+            ],
             "onClick": [Function],
           },
           "ref": null,
-          "rendered": "Sign out",
+          "rendered": Array [
+            "Sign out ",
+            "",
+          ],
           "type": [Function],
         },
         "type": [Function],
@@ -360,7 +369,8 @@ ShallowWrapper {
             <WithStyles(MenuItem)
               onClick={[Function]}
             >
-              Sign out
+              Sign out 
+              
             </WithStyles(MenuItem)>
           </WithStyles(Menu)>,
           <AboutDialog
@@ -533,7 +543,8 @@ ShallowWrapper {
             "children": <WithStyles(MenuItem)
               onClick={[Function]}
             >
-              Sign out
+              Sign out 
+              
             </WithStyles(MenuItem)>,
             "id": "menu-appbar",
             "onClose": [Function],
@@ -545,11 +556,17 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Sign out",
+              "children": Array [
+                "Sign out ",
+                "",
+              ],
               "onClick": [Function],
             },
             "ref": null,
-            "rendered": "Sign out",
+            "rendered": Array [
+              "Sign out ",
+              "",
+            ],
             "type": [Function],
           },
           "type": [Function],

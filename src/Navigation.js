@@ -31,10 +31,15 @@ const SkillsLink = props => <Link to="/skills" {...props} />;
 
 class Navigation extends Component {
     static propTypes = {
+        username: PropTypes.string,
         classes: PropTypes.shape({
             flex: PropTypes.string,
             infoButton: PropTypes.string,
         }).isRequired,
+    }
+
+    static defaultProps = {
+        username: '',
     }
 
     constructor(props) {
@@ -99,8 +104,10 @@ class Navigation extends Component {
     }
 
     render() {
-        const { menuAnchor } = this.state;
-        const { classes } = this.props;
+        const {
+            aboutOpen, apiVersion, menuAnchor, errorOpen, errorMessage,
+        } = this.state;
+        const { username, classes } = this.props;
 
         return (
             <AppBar position="static">
@@ -141,18 +148,20 @@ class Navigation extends Component {
                     anchorEl={menuAnchor}
                     onClose={this.closeMenu}
                 >
-                    <MenuItem onClick={this.logout}>Sign out</MenuItem>
+                    <MenuItem onClick={this.logout}>
+                        Sign out {username}
+                    </MenuItem>
                 </Menu>
                 <AboutDialog
-                    open={this.state.aboutOpen}
+                    open={aboutOpen}
                     uiVersion={uiVersion}
-                    apiVersion={this.state.apiVersion}
+                    apiVersion={apiVersion}
                     onOkClick={this.closeAbout}
                     onClose={this.closeAbout}
                 />
                 <Snackbar
-                    open={this.state.errorOpen}
-                    message={this.state.errorMessage}
+                    open={errorOpen}
+                    message={errorMessage}
                     autoHideDuration={3000}
                     action={
                         <IconButton color="inherit" onClick={this.closeError}>
