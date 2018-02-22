@@ -8,9 +8,10 @@ ShallowWrapper {
     classes={
       Object {
         "flex": "Navigation-flex-1",
-        "infoButton": "Navigation-infoButton-2",
+        "iconButton": "Navigation-iconButton-2",
       }
     }
+    username=""
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -48,13 +49,35 @@ ShallowWrapper {
             Skills
           </WithStyles(Button)>
           <WithStyles(IconButton)
-            className="Navigation-infoButton-2"
+            className="Navigation-iconButton-2"
             color="inherit"
             onClick={[Function]}
           >
             <pure(Info) />
           </WithStyles(IconButton)>
+          <WithStyles(IconButton)
+            aria-haspopup="true"
+            aria-owns={null}
+            className="Navigation-iconButton-2"
+            color="inherit"
+            onClick={[Function]}
+          >
+            <pure(MoreVert) />
+          </WithStyles(IconButton)>
         </WithStyles(Toolbar)>,
+        <WithStyles(Menu)
+          anchorEl={null}
+          id="menu-appbar"
+          onClose={[Function]}
+          open={false}
+        >
+          <WithStyles(MenuItem)
+            onClick={[Function]}
+          >
+            Sign out 
+            
+          </WithStyles(MenuItem)>
+        </WithStyles(Menu)>,
         <AboutDialog
           apiVersion="N/A"
           onClose={[Function]}
@@ -107,11 +130,20 @@ ShallowWrapper {
               Skills
             </WithStyles(Button)>,
             <WithStyles(IconButton)
-              className="Navigation-infoButton-2"
+              className="Navigation-iconButton-2"
               color="inherit"
               onClick={[Function]}
             >
               <pure(Info) />
+            </WithStyles(IconButton)>,
+            <WithStyles(IconButton)
+              aria-haspopup="true"
+              aria-owns={null}
+              className="Navigation-iconButton-2"
+              color="inherit"
+              onClick={[Function]}
+            >
+              <pure(MoreVert) />
             </WithStyles(IconButton)>,
           ],
           "display": "flex",
@@ -164,7 +196,31 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": <pure(Info) />,
-              "className": "Navigation-infoButton-2",
+              "className": "Navigation-iconButton-2",
+              "color": "inherit",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {},
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "aria-haspopup": "true",
+              "aria-owns": null,
+              "children": <pure(MoreVert) />,
+              "className": "Navigation-iconButton-2",
               "color": "inherit",
               "onClick": [Function],
             },
@@ -181,6 +237,43 @@ ShallowWrapper {
             "type": [Function],
           },
         ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "anchorEl": null,
+          "children": <WithStyles(MenuItem)
+            onClick={[Function]}
+          >
+            Sign out 
+            
+          </WithStyles(MenuItem)>,
+          "id": "menu-appbar",
+          "onClose": [Function],
+          "open": false,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              "Sign out ",
+              "",
+            ],
+            "onClick": [Function],
+          },
+          "ref": null,
+          "rendered": Array [
+            "Sign out ",
+            "",
+          ],
+          "type": [Function],
+        },
         "type": [Function],
       },
       Object {
@@ -251,13 +344,35 @@ ShallowWrapper {
               Skills
             </WithStyles(Button)>
             <WithStyles(IconButton)
-              className="Navigation-infoButton-2"
+              className="Navigation-iconButton-2"
               color="inherit"
               onClick={[Function]}
             >
               <pure(Info) />
             </WithStyles(IconButton)>
+            <WithStyles(IconButton)
+              aria-haspopup="true"
+              aria-owns={null}
+              className="Navigation-iconButton-2"
+              color="inherit"
+              onClick={[Function]}
+            >
+              <pure(MoreVert) />
+            </WithStyles(IconButton)>
           </WithStyles(Toolbar)>,
+          <WithStyles(Menu)
+            anchorEl={null}
+            id="menu-appbar"
+            onClose={[Function]}
+            open={false}
+          >
+            <WithStyles(MenuItem)
+              onClick={[Function]}
+            >
+              Sign out 
+              
+            </WithStyles(MenuItem)>
+          </WithStyles(Menu)>,
           <AboutDialog
             apiVersion="N/A"
             onClose={[Function]}
@@ -310,11 +425,20 @@ ShallowWrapper {
                 Skills
               </WithStyles(Button)>,
               <WithStyles(IconButton)
-                className="Navigation-infoButton-2"
+                className="Navigation-iconButton-2"
                 color="inherit"
                 onClick={[Function]}
               >
                 <pure(Info) />
+              </WithStyles(IconButton)>,
+              <WithStyles(IconButton)
+                aria-haspopup="true"
+                aria-owns={null}
+                className="Navigation-iconButton-2"
+                color="inherit"
+                onClick={[Function]}
+              >
+                <pure(MoreVert) />
               </WithStyles(IconButton)>,
             ],
             "display": "flex",
@@ -367,7 +491,31 @@ ShallowWrapper {
               "nodeType": "class",
               "props": Object {
                 "children": <pure(Info) />,
-                "className": "Navigation-infoButton-2",
+                "className": "Navigation-iconButton-2",
+                "color": "inherit",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {},
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "aria-haspopup": "true",
+                "aria-owns": null,
+                "children": <pure(MoreVert) />,
+                "className": "Navigation-iconButton-2",
                 "color": "inherit",
                 "onClick": [Function],
               },
@@ -384,6 +532,43 @@ ShallowWrapper {
               "type": [Function],
             },
           ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "anchorEl": null,
+            "children": <WithStyles(MenuItem)
+              onClick={[Function]}
+            >
+              Sign out 
+              
+            </WithStyles(MenuItem)>,
+            "id": "menu-appbar",
+            "onClose": [Function],
+            "open": false,
+          },
+          "ref": null,
+          "rendered": Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                "Sign out ",
+                "",
+              ],
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Array [
+              "Sign out ",
+              "",
+            ],
+            "type": [Function],
+          },
           "type": [Function],
         },
         Object {

@@ -169,7 +169,6 @@ class ProfileForm extends Component {
     sendProfile = async (event) => {
         event.preventDefault();
 
-        const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
         const {
             role, username, password, nickname, phone, email, gender,
             birthYear, area, languages, skills, channels, story,
@@ -193,13 +192,18 @@ class ProfileForm extends Component {
         };
 
         try {
-            const resp = await fetch(`${apiUrl}/accounts`, {
+            const resp = await fetch('/api/accounts', {
                 headers: {
                     'Content-Type': 'application/json',
                 },
                 method: 'POST',
                 body: JSON.stringify(data),
+                credentials: 'include',
+                redirect: 'follow',
             });
+            if (resp.redirected) {
+                window.location.replace(resp.url);
+            }
             const saved = await resp.json();
 
             this.setState({

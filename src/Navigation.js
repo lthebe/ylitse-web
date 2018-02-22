@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import AppBar from 'material-ui/AppBar';
 import Button from 'material-ui/Button';
+import Menu, { MenuItem } from 'material-ui/Menu';
 import Snackbar from 'material-ui/Snackbar';
 import { withStyles } from 'material-ui/styles';
 import Toolbar from 'material-ui/Toolbar';
@@ -10,6 +11,7 @@ import Typography from 'material-ui/Typography';
 import IconButton from 'material-ui/IconButton';
 import CloseIcon from 'material-ui-icons/Close';
 import InfoIcon from 'material-ui-icons/Info';
+import MoreVertIcon from 'material-ui-icons/MoreVert';
 
 import { version as uiVersion } from '../package.json';
 import AboutDialog from './AboutDialog';
@@ -18,9 +20,9 @@ const styles = () => ({
     flex: {
         flex: 1,
     },
-    infoButton: {
+    iconButton: {
         marginLeft: 20,
-        marginRight: -12,
+        marginRight: -24,
     },
 });
 
@@ -29,10 +31,15 @@ const SkillsLink = props => <Link to="/skills" {...props} />;
 
 class Navigation extends Component {
     static propTypes = {
+        username: PropTypes.string,
         classes: PropTypes.shape({
             flex: PropTypes.string,
             infoButton: PropTypes.string,
         }).isRequired,
+    }
+
+    static defaultProps = {
+        username: '',
     }
 
     constructor(props) {
@@ -41,6 +48,7 @@ class Navigation extends Component {
         this.state = {
             aboutOpen: false,
             apiVersion: 'N/A',
+            menuAnchor: null,
             errorOpen: false,
             errorMessage: '',
         };
@@ -52,14 +60,23 @@ class Navigation extends Component {
 
     fetchVersion = async () => {
         try {
-            const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
-            const resp = await fetch(`${apiUrl}/version`);
+            const resp = await fetch('/api/version', {
+                credentials: 'include',
+                redirect: 'follow',
+            });
+            if (resp.redirected) {
+                window.location.replace(resp.url);
+            }
             const data = await resp.json();
 
             this.setState({ apiVersion: data.api });
         } catch (e) {
             this.openError(e.message);
         }
+    }
+
+    logout = () => {
+        window.location.replace('/logout');
     }
 
     openAbout = () => {
@@ -70,6 +87,14 @@ class Navigation extends Component {
         this.setState({ aboutOpen: false });
     }
 
+    openMenu = (event) => {
+        this.setState({ menuAnchor: event.currentTarget });
+    };
+
+    closeMenu = () => {
+        this.setState({ menuAnchor: null });
+    };
+
     openError = (errorMessage) => {
         this.setState({ errorMessage, errorOpen: true });
     }
@@ -79,7 +104,10 @@ class Navigation extends Component {
     }
 
     render() {
-        const { classes } = this.props;
+        const {
+            aboutOpen, apiVersion, menuAnchor, errorOpen, errorMessage,
+        } = this.state;
+        const { username, classes } = this.props;
 
         return (
             <AppBar position="static">
@@ -99,22 +127,41 @@ class Navigation extends Component {
                     </Button>
                     <IconButton
                         color="inherit"
-                        className={classes.infoButton}
+                        className={classes.iconButton}
                         onClick={this.openAbout}
                     >
                         <InfoIcon />
                     </IconButton>
+                    <IconButton
+                        aria-owns={menuAnchor ? 'menu-appbar' : null}
+                        aria-haspopup="true"
+                        color="inherit"
+                        className={classes.iconButton}
+                        onClick={this.openMenu}
+                    >
+                        <MoreVertIcon />
+                    </IconButton>
                 </Toolbar>
+                <Menu
+                    open={Boolean(menuAnchor)}
+                    id="menu-appbar"
+                    anchorEl={menuAnchor}
+                    onClose={this.closeMenu}
+                >
+                    <MenuItem onClick={this.logout}>
+                        Sign out {username}
+                    </MenuItem>
+                </Menu>
                 <AboutDialog
-                    open={this.state.aboutOpen}
+                    open={aboutOpen}
                     uiVersion={uiVersion}
-                    apiVersion={this.state.apiVersion}
+                    apiVersion={apiVersion}
                     onOkClick={this.closeAbout}
                     onClose={this.closeAbout}
                 />
                 <Snackbar
-                    open={this.state.errorOpen}
-                    message={this.state.errorMessage}
+                    open={errorOpen}
+                    message={errorMessage}
                     autoHideDuration={3000}
                     action={
                         <IconButton color="inherit" onClick={this.closeError}>

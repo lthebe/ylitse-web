@@ -2,6 +2,22 @@ const path = require('path');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const redirect = (res, loc) => {
+    res.statusCode = 302;
+    res.statusMessage = 'Found';
+    res.headers.location = loc;
+};
+
+const checkAuth = (res, req) => {
+    if (res.statusCode === 401) {
+        // not logged in, redirect to login page
+        redirect(res, '/login');
+    } else if (req.url === '/login') {
+        // just logged in, redirect to the app
+        redirect(res, '/');
+    }
+};
+
 const config = {
     context: __dirname,
     entry: [
@@ -21,6 +37,23 @@ const config = {
         inline: true,
         stats: 'minimal',
         historyApiFallback: true,
+        proxy: {
+            '/api/**': {
+                target: process.env.API_URL,
+                pathRewrite: { '^/api': '' },
+                cookieDomainRewrite: process.env.API_URL,
+                changeOrigin: true,
+                logLevel: 'debug',
+                onProxyRes: checkAuth,
+            },
+            '/logout': {
+                target: process.env.API_URL,
+                cookieDomainRewrite: process.env.API_URL,
+                changeOrigin: true,
+                logLevel: 'debug',
+                onProxyRes: proxyRes => redirect(proxyRes, '/login'),
+            },
+        },
     },
     module: {
         rules: [{
