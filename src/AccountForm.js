@@ -107,10 +107,16 @@ class AccountForm extends Component {
 
     fetchSkills = async () => {
         try {
-            const apiUrl = process.env.API_URL || 'http://127.0.0.1:8080';
-            const resp = await fetch(`${apiUrl}/skills`);
+            const resp = await fetch('/api/skills', {
+                credentials: 'include',
+                redirect: 'follow',
+            });
+            if (resp.redirected) {
+                window.location.replace(resp.url);
+            }
             const data = await resp.json();
-            this.setState({ availableSkills: data.resources });
+
+            this.setState({ availableSkills: data.resources.map(r => r.name) });
         } catch (e) {
             this.setState({ feedbackOpen: true, feedback: e.message });
         }
