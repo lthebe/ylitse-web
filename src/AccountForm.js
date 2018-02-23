@@ -264,6 +264,7 @@ class AccountForm extends Component {
                 {this.renderTextField('username', 'Username', true)}
                 {this.renderTextField('password', 'Password', true, true)}
                 {this.renderTextField('nickname', 'Screen name')}
+                {this.renderTextField('email', 'Email')}
             </FormGroup>
         );
     }
@@ -277,7 +278,6 @@ class AccountForm extends Component {
         return (
             <FormGroup>
                 {this.renderTextField('phone', 'Phone number')}
-                {this.renderTextField('email', 'Email')}
                 <RadioGroupControl
                     name="gender"
                     label="Gender"

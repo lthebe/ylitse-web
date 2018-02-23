@@ -79,6 +79,17 @@ ShallowWrapper {
             select={false}
             value=""
           />
+          <TextField
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Email"
+            name="email"
+            onChange={[Function]}
+            required={false}
+            select={false}
+            value=""
+          />
         </WithStyles(FormGroup)>,
         <WithStyles(FormGroup)>
           <TextField
@@ -87,17 +98,6 @@ ShallowWrapper {
             helperText={undefined}
             label="Phone number"
             name="phone"
-            onChange={[Function]}
-            required={false}
-            select={false}
-            value=""
-          />
-          <TextField
-            className="AccountForm-row-1"
-            error={false}
-            helperText={undefined}
-            label="Email"
-            name="email"
             onChange={[Function]}
             required={false}
             select={false}
@@ -287,6 +287,17 @@ ShallowWrapper {
               select={false}
               value=""
             />,
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Email"
+              name="email"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />,
           ],
         },
         "ref": null,
@@ -369,6 +380,25 @@ ShallowWrapper {
             "rendered": null,
             "type": [Function],
           },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Email",
+              "name": "email",
+              "onChange": [Function],
+              "required": false,
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
         ],
         "type": [Function],
       },
@@ -384,17 +414,6 @@ ShallowWrapper {
               helperText={undefined}
               label="Phone number"
               name="phone"
-              onChange={[Function]}
-              required={false}
-              select={false}
-              value=""
-            />,
-            <TextField
-              className="AccountForm-row-1"
-              error={false}
-              helperText={undefined}
-              label="Email"
-              name="email"
               onChange={[Function]}
               required={false}
               select={false}
@@ -513,25 +532,6 @@ ShallowWrapper {
               "helperText": undefined,
               "label": "Phone number",
               "name": "phone",
-              "onChange": [Function],
-              "required": false,
-              "select": false,
-              "value": "",
-            },
-            "ref": null,
-            "rendered": null,
-            "type": [Function],
-          },
-          Object {
-            "instance": null,
-            "key": undefined,
-            "nodeType": "function",
-            "props": Object {
-              "className": "AccountForm-row-1",
-              "error": false,
-              "helperText": undefined,
-              "label": "Email",
-              "name": "email",
               "onChange": [Function],
               "required": false,
               "select": false,
@@ -839,6 +839,17 @@ ShallowWrapper {
               select={false}
               value=""
             />
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Email"
+              name="email"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />
           </WithStyles(FormGroup)>,
           <WithStyles(FormGroup)>
             <TextField
@@ -847,17 +858,6 @@ ShallowWrapper {
               helperText={undefined}
               label="Phone number"
               name="phone"
-              onChange={[Function]}
-              required={false}
-              select={false}
-              value=""
-            />
-            <TextField
-              className="AccountForm-row-1"
-              error={false}
-              helperText={undefined}
-              label="Email"
-              name="email"
               onChange={[Function]}
               required={false}
               select={false}
@@ -1047,6 +1047,17 @@ ShallowWrapper {
                 select={false}
                 value=""
               />,
+              <TextField
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Email"
+                name="email"
+                onChange={[Function]}
+                required={false}
+                select={false}
+                value=""
+              />,
             ],
           },
           "ref": null,
@@ -1129,6 +1140,25 @@ ShallowWrapper {
               "rendered": null,
               "type": [Function],
             },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Email",
+                "name": "email",
+                "onChange": [Function],
+                "required": false,
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
           ],
           "type": [Function],
         },
@@ -1144,17 +1174,6 @@ ShallowWrapper {
                 helperText={undefined}
                 label="Phone number"
                 name="phone"
-                onChange={[Function]}
-                required={false}
-                select={false}
-                value=""
-              />,
-              <TextField
-                className="AccountForm-row-1"
-                error={false}
-                helperText={undefined}
-                label="Email"
-                name="email"
                 onChange={[Function]}
                 required={false}
                 select={false}
@@ -1273,25 +1292,6 @@ ShallowWrapper {
                 "helperText": undefined,
                 "label": "Phone number",
                 "name": "phone",
-                "onChange": [Function],
-                "required": false,
-                "select": false,
-                "value": "",
-              },
-              "ref": null,
-              "rendered": null,
-              "type": [Function],
-            },
-            Object {
-              "instance": null,
-              "key": undefined,
-              "nodeType": "function",
-              "props": Object {
-                "className": "AccountForm-row-1",
-                "error": false,
-                "helperText": undefined,
-                "label": "Email",
-                "name": "email",
                 "onChange": [Function],
                 "required": false,
                 "select": false,
