@@ -322,6 +322,7 @@ class AccountForm extends Component {
                 <TextField
                     name="story"
                     label="Story"
+                    color="secondary"
                     value={story}
                     helperText="Tell something about yourself"
                     multiline
@@ -346,7 +347,7 @@ class AccountForm extends Component {
                 {role === 'Mentor' && this.renderMentorFields()}
                 <Button
                     variant="raised"
-                    color="primary"
+                    color="secondary"
                     disabled={!formValid}
                     className={classes.button}
                     onClick={this.sendProfile}
