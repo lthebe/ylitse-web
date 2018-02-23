@@ -1,0 +1,247 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RadioGroupControl renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <RadioGroupControl
+    className=""
+    disabled={false}
+    label="Test label"
+    name="test"
+    onChange={[MockFunction]}
+    options={
+      Array [
+        "One",
+        "Two",
+      ]
+    }
+    required={false}
+    value="One"
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <WithStyles(FormLabel)
+          component="legend"
+        >
+          Test label
+        </WithStyles(FormLabel)>,
+        <RadioGroup
+          name="test"
+          onChange={[MockFunction]}
+          row={true}
+          value="One"
+        >
+          <WithStyles(FormControlLabel)
+            control={<WithStyles(Radio) />}
+            label="One"
+            value="One"
+          />
+          <WithStyles(FormControlLabel)
+            control={<WithStyles(Radio) />}
+            label="Two"
+            value="Two"
+          />
+        </RadioGroup>,
+      ],
+      "className": "",
+      "component": "fieldset",
+      "disabled": false,
+      "required": false,
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Test label",
+          "component": "legend",
+        },
+        "ref": null,
+        "rendered": "Test label",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <WithStyles(FormControlLabel)
+              control={<WithStyles(Radio) />}
+              label="One"
+              value="One"
+            />,
+            <WithStyles(FormControlLabel)
+              control={<WithStyles(Radio) />}
+              label="Two"
+              value="Two"
+            />,
+          ],
+          "name": "test",
+          "onChange": [MockFunction],
+          "row": true,
+          "value": "One",
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": "One",
+            "nodeType": "class",
+            "props": Object {
+              "control": <WithStyles(Radio) />,
+              "label": "One",
+              "value": "One",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": "Two",
+            "nodeType": "class",
+            "props": Object {
+              "control": <WithStyles(Radio) />,
+              "label": "Two",
+              "value": "Two",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <WithStyles(FormLabel)
+            component="legend"
+          >
+            Test label
+          </WithStyles(FormLabel)>,
+          <RadioGroup
+            name="test"
+            onChange={[MockFunction]}
+            row={true}
+            value="One"
+          >
+            <WithStyles(FormControlLabel)
+              control={<WithStyles(Radio) />}
+              label="One"
+              value="One"
+            />
+            <WithStyles(FormControlLabel)
+              control={<WithStyles(Radio) />}
+              label="Two"
+              value="Two"
+            />
+          </RadioGroup>,
+        ],
+        "className": "",
+        "component": "fieldset",
+        "disabled": false,
+        "required": false,
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Test label",
+            "component": "legend",
+          },
+          "ref": null,
+          "rendered": "Test label",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <WithStyles(FormControlLabel)
+                control={<WithStyles(Radio) />}
+                label="One"
+                value="One"
+              />,
+              <WithStyles(FormControlLabel)
+                control={<WithStyles(Radio) />}
+                label="Two"
+                value="Two"
+              />,
+            ],
+            "name": "test",
+            "onChange": [MockFunction],
+            "row": true,
+            "value": "One",
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": "One",
+              "nodeType": "class",
+              "props": Object {
+                "control": <WithStyles(Radio) />,
+                "label": "One",
+                "value": "One",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": "Two",
+              "nodeType": "class",
+              "props": Object {
+                "control": <WithStyles(Radio) />,
+                "label": "Two",
+                "value": "Two",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

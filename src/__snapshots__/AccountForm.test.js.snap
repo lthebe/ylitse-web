@@ -1,0 +1,1554 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AccountForm renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <AccountForm
+    classes={
+      Object {
+        "button": "AccountForm-button-5",
+        "buttonIcon": "AccountForm-buttonIcon-6",
+        "checkboxRow": "AccountForm-checkboxRow-3",
+        "formControl": "AccountForm-formControl-4",
+        "radioRow": "AccountForm-radioRow-2",
+        "row": "AccountForm-row-1",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "host",
+    "props": Object {
+      "autoComplete": "off",
+      "children": Array [
+        <WithStyles(FormGroup)>
+          <RadioGroupControl
+            className="AccountForm-radioRow-2"
+            disabled={false}
+            label="Account type"
+            name="role"
+            onChange={[Function]}
+            options={
+              Array [
+                "Mentor",
+                "Mentee",
+                "Admin",
+              ]
+            }
+            required={false}
+            value="Mentor"
+          />
+          <TextField
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Username"
+            name="username"
+            onChange={[Function]}
+            required={true}
+            select={false}
+            value=""
+          />
+          <WithStyles(PasswordField)
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Password"
+            name="password"
+            onChange={[Function]}
+            required={true}
+            value=""
+          />
+          <TextField
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Screen name"
+            name="nickname"
+            onChange={[Function]}
+            required={false}
+            select={false}
+            value=""
+          />
+          <TextField
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Email"
+            name="email"
+            onChange={[Function]}
+            required={false}
+            select={false}
+            value=""
+          />
+        </WithStyles(FormGroup)>,
+        <WithStyles(FormGroup)>
+          <TextField
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Phone number"
+            name="phone"
+            onChange={[Function]}
+            required={false}
+            select={false}
+            value=""
+          />
+          <RadioGroupControl
+            className="AccountForm-radioRow-2"
+            disabled={false}
+            label="Gender"
+            name="gender"
+            onChange={[Function]}
+            options={
+              Array [
+                "Male",
+                "Female",
+              ]
+            }
+            required={false}
+            value="Male"
+          />
+          <TextField
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Birth year"
+            name="birthYear"
+            onChange={[Function]}
+            required={false}
+            select={false}
+            value=""
+          />
+          <TextField
+            className="AccountForm-row-1"
+            error={false}
+            helperText={undefined}
+            label="Area"
+            name="area"
+            onChange={[Function]}
+            required={false}
+            select={false}
+            value=""
+          />
+          <CheckboxGroupControl
+            className="AccountForm-checkboxRow-3"
+            disabled={false}
+            label="Languages"
+            onChange={[Function]}
+            options={
+              Object {
+                "English": false,
+                "Finnish": false,
+                "Russian": false,
+                "Swedish": false,
+              }
+            }
+            required={false}
+          />
+          <WithStyles(FormControl)
+            className="AccountForm-formControl-4"
+            disabled={true}
+          >
+            <WithStyles(InputLabel)
+              htmlFor="name-multiple"
+            >
+              Skills
+            </WithStyles(InputLabel)>
+            <WithStyles(Select)
+              className="AccountForm-row-1"
+              input={
+                <WithStyles(Input)
+                  id="name-multiple"
+                />
+              }
+              multiple={true}
+              onChange={[Function]}
+              value={Array []}
+            />
+          </WithStyles(FormControl)>
+          <CheckboxGroupControl
+            className="AccountForm-checkboxRow-3"
+            disabled={false}
+            label="Communication channels"
+            onChange={[Function]}
+            options={
+              Object {
+                "Email": false,
+                "Phone": false,
+              }
+            }
+            required={false}
+          />
+          <TextField
+            className="AccountForm-row-1"
+            helperText="Tell something about yourself"
+            label="Story"
+            multiline={true}
+            name="story"
+            onChange={[Function]}
+            required={false}
+            rows="1"
+            rowsMax="8"
+            select={false}
+            value=""
+          />
+        </WithStyles(FormGroup)>,
+        <WithStyles(Button)
+          className="AccountForm-button-5"
+          color="primary"
+          disabled={true}
+          onClick={[Function]}
+          variant="raised"
+        >
+          Create
+          <pure(Save)
+            className="AccountForm-buttonIcon-6"
+          />
+        </WithStyles(Button)>,
+        <WithStyles(Snackbar)
+          action={
+            <WithStyles(IconButton)
+              color="inherit"
+              onClick={[Function]}
+            >
+              <pure(Close) />
+            </WithStyles(IconButton)>
+          }
+          autoHideDuration={3000}
+          message=""
+          onClose={[Function]}
+          open={false}
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <RadioGroupControl
+              className="AccountForm-radioRow-2"
+              disabled={false}
+              label="Account type"
+              name="role"
+              onChange={[Function]}
+              options={
+                Array [
+                  "Mentor",
+                  "Mentee",
+                  "Admin",
+                ]
+              }
+              required={false}
+              value="Mentor"
+            />,
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Username"
+              name="username"
+              onChange={[Function]}
+              required={true}
+              select={false}
+              value=""
+            />,
+            <WithStyles(PasswordField)
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Password"
+              name="password"
+              onChange={[Function]}
+              required={true}
+              value=""
+            />,
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Screen name"
+              name="nickname"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />,
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Email"
+              name="email"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-radioRow-2",
+              "disabled": false,
+              "label": "Account type",
+              "name": "role",
+              "onChange": [Function],
+              "options": Array [
+                "Mentor",
+                "Mentee",
+                "Admin",
+              ],
+              "required": false,
+              "value": "Mentor",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Username",
+              "name": "username",
+              "onChange": [Function],
+              "required": true,
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Password",
+              "name": "password",
+              "onChange": [Function],
+              "required": true,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Screen name",
+              "name": "nickname",
+              "onChange": [Function],
+              "required": false,
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Email",
+              "name": "email",
+              "onChange": [Function],
+              "required": false,
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Phone number"
+              name="phone"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />,
+            <RadioGroupControl
+              className="AccountForm-radioRow-2"
+              disabled={false}
+              label="Gender"
+              name="gender"
+              onChange={[Function]}
+              options={
+                Array [
+                  "Male",
+                  "Female",
+                ]
+              }
+              required={false}
+              value="Male"
+            />,
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Birth year"
+              name="birthYear"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />,
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Area"
+              name="area"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />,
+            <CheckboxGroupControl
+              className="AccountForm-checkboxRow-3"
+              disabled={false}
+              label="Languages"
+              onChange={[Function]}
+              options={
+                Object {
+                  "English": false,
+                  "Finnish": false,
+                  "Russian": false,
+                  "Swedish": false,
+                }
+              }
+              required={false}
+            />,
+            <WithStyles(FormControl)
+              className="AccountForm-formControl-4"
+              disabled={true}
+            >
+              <WithStyles(InputLabel)
+                htmlFor="name-multiple"
+              >
+                Skills
+              </WithStyles(InputLabel)>
+              <WithStyles(Select)
+                className="AccountForm-row-1"
+                input={
+                  <WithStyles(Input)
+                    id="name-multiple"
+                  />
+                }
+                multiple={true}
+                onChange={[Function]}
+                value={Array []}
+              />
+            </WithStyles(FormControl)>,
+            <CheckboxGroupControl
+              className="AccountForm-checkboxRow-3"
+              disabled={false}
+              label="Communication channels"
+              onChange={[Function]}
+              options={
+                Object {
+                  "Email": false,
+                  "Phone": false,
+                }
+              }
+              required={false}
+            />,
+            <TextField
+              className="AccountForm-row-1"
+              helperText="Tell something about yourself"
+              label="Story"
+              multiline={true}
+              name="story"
+              onChange={[Function]}
+              required={false}
+              rows="1"
+              rowsMax="8"
+              select={false}
+              value=""
+            />,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Phone number",
+              "name": "phone",
+              "onChange": [Function],
+              "required": false,
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-radioRow-2",
+              "disabled": false,
+              "label": "Gender",
+              "name": "gender",
+              "onChange": [Function],
+              "options": Array [
+                "Male",
+                "Female",
+              ],
+              "required": false,
+              "value": "Male",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Birth year",
+              "name": "birthYear",
+              "onChange": [Function],
+              "required": false,
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "error": false,
+              "helperText": undefined,
+              "label": "Area",
+              "name": "area",
+              "onChange": [Function],
+              "required": false,
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-checkboxRow-3",
+              "disabled": false,
+              "label": "Languages",
+              "onChange": [Function],
+              "options": Object {
+                "English": false,
+                "Finnish": false,
+                "Russian": false,
+                "Swedish": false,
+              },
+              "required": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": Array [
+                <WithStyles(InputLabel)
+                  htmlFor="name-multiple"
+                >
+                  Skills
+                </WithStyles(InputLabel)>,
+                <WithStyles(Select)
+                  className="AccountForm-row-1"
+                  input={
+                    <WithStyles(Input)
+                      id="name-multiple"
+                    />
+                  }
+                  multiple={true}
+                  onChange={[Function]}
+                  value={Array []}
+                />,
+              ],
+              "className": "AccountForm-formControl-4",
+              "disabled": true,
+            },
+            "ref": null,
+            "rendered": Array [
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": "Skills",
+                  "htmlFor": "name-multiple",
+                },
+                "ref": null,
+                "rendered": "Skills",
+                "type": [Function],
+              },
+              Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "children": Array [],
+                  "className": "AccountForm-row-1",
+                  "input": <WithStyles(Input)
+                    id="name-multiple"
+                  />,
+                  "multiple": true,
+                  "onChange": [Function],
+                  "value": Array [],
+                },
+                "ref": null,
+                "rendered": Array [],
+                "type": [Function],
+              },
+            ],
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-checkboxRow-3",
+              "disabled": false,
+              "label": "Communication channels",
+              "onChange": [Function],
+              "options": Object {
+                "Email": false,
+                "Phone": false,
+              },
+              "required": false,
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "className": "AccountForm-row-1",
+              "helperText": "Tell something about yourself",
+              "label": "Story",
+              "multiline": true,
+              "name": "story",
+              "onChange": [Function],
+              "required": false,
+              "rows": "1",
+              "rowsMax": "8",
+              "select": false,
+              "value": "",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            "Create",
+            <pure(Save)
+              className="AccountForm-buttonIcon-6"
+            />,
+          ],
+          "className": "AccountForm-button-5",
+          "color": "primary",
+          "disabled": true,
+          "onClick": [Function],
+          "variant": "raised",
+        },
+        "ref": null,
+        "rendered": Array [
+          "Create",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "className": "AccountForm-buttonIcon-6",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "action": <WithStyles(IconButton)
+            color="inherit"
+            onClick={[Function]}
+          >
+            <pure(Close) />
+          </WithStyles(IconButton)>,
+          "autoHideDuration": 3000,
+          "message": "",
+          "onClose": [Function],
+          "open": false,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": "form",
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "host",
+      "props": Object {
+        "autoComplete": "off",
+        "children": Array [
+          <WithStyles(FormGroup)>
+            <RadioGroupControl
+              className="AccountForm-radioRow-2"
+              disabled={false}
+              label="Account type"
+              name="role"
+              onChange={[Function]}
+              options={
+                Array [
+                  "Mentor",
+                  "Mentee",
+                  "Admin",
+                ]
+              }
+              required={false}
+              value="Mentor"
+            />
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Username"
+              name="username"
+              onChange={[Function]}
+              required={true}
+              select={false}
+              value=""
+            />
+            <WithStyles(PasswordField)
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Password"
+              name="password"
+              onChange={[Function]}
+              required={true}
+              value=""
+            />
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Screen name"
+              name="nickname"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Email"
+              name="email"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />
+          </WithStyles(FormGroup)>,
+          <WithStyles(FormGroup)>
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Phone number"
+              name="phone"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />
+            <RadioGroupControl
+              className="AccountForm-radioRow-2"
+              disabled={false}
+              label="Gender"
+              name="gender"
+              onChange={[Function]}
+              options={
+                Array [
+                  "Male",
+                  "Female",
+                ]
+              }
+              required={false}
+              value="Male"
+            />
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Birth year"
+              name="birthYear"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />
+            <TextField
+              className="AccountForm-row-1"
+              error={false}
+              helperText={undefined}
+              label="Area"
+              name="area"
+              onChange={[Function]}
+              required={false}
+              select={false}
+              value=""
+            />
+            <CheckboxGroupControl
+              className="AccountForm-checkboxRow-3"
+              disabled={false}
+              label="Languages"
+              onChange={[Function]}
+              options={
+                Object {
+                  "English": false,
+                  "Finnish": false,
+                  "Russian": false,
+                  "Swedish": false,
+                }
+              }
+              required={false}
+            />
+            <WithStyles(FormControl)
+              className="AccountForm-formControl-4"
+              disabled={true}
+            >
+              <WithStyles(InputLabel)
+                htmlFor="name-multiple"
+              >
+                Skills
+              </WithStyles(InputLabel)>
+              <WithStyles(Select)
+                className="AccountForm-row-1"
+                input={
+                  <WithStyles(Input)
+                    id="name-multiple"
+                  />
+                }
+                multiple={true}
+                onChange={[Function]}
+                value={Array []}
+              />
+            </WithStyles(FormControl)>
+            <CheckboxGroupControl
+              className="AccountForm-checkboxRow-3"
+              disabled={false}
+              label="Communication channels"
+              onChange={[Function]}
+              options={
+                Object {
+                  "Email": false,
+                  "Phone": false,
+                }
+              }
+              required={false}
+            />
+            <TextField
+              className="AccountForm-row-1"
+              helperText="Tell something about yourself"
+              label="Story"
+              multiline={true}
+              name="story"
+              onChange={[Function]}
+              required={false}
+              rows="1"
+              rowsMax="8"
+              select={false}
+              value=""
+            />
+          </WithStyles(FormGroup)>,
+          <WithStyles(Button)
+            className="AccountForm-button-5"
+            color="primary"
+            disabled={true}
+            onClick={[Function]}
+            variant="raised"
+          >
+            Create
+            <pure(Save)
+              className="AccountForm-buttonIcon-6"
+            />
+          </WithStyles(Button)>,
+          <WithStyles(Snackbar)
+            action={
+              <WithStyles(IconButton)
+                color="inherit"
+                onClick={[Function]}
+              >
+                <pure(Close) />
+              </WithStyles(IconButton)>
+            }
+            autoHideDuration={3000}
+            message=""
+            onClose={[Function]}
+            open={false}
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <RadioGroupControl
+                className="AccountForm-radioRow-2"
+                disabled={false}
+                label="Account type"
+                name="role"
+                onChange={[Function]}
+                options={
+                  Array [
+                    "Mentor",
+                    "Mentee",
+                    "Admin",
+                  ]
+                }
+                required={false}
+                value="Mentor"
+              />,
+              <TextField
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Username"
+                name="username"
+                onChange={[Function]}
+                required={true}
+                select={false}
+                value=""
+              />,
+              <WithStyles(PasswordField)
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Password"
+                name="password"
+                onChange={[Function]}
+                required={true}
+                value=""
+              />,
+              <TextField
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Screen name"
+                name="nickname"
+                onChange={[Function]}
+                required={false}
+                select={false}
+                value=""
+              />,
+              <TextField
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Email"
+                name="email"
+                onChange={[Function]}
+                required={false}
+                select={false}
+                value=""
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-radioRow-2",
+                "disabled": false,
+                "label": "Account type",
+                "name": "role",
+                "onChange": [Function],
+                "options": Array [
+                  "Mentor",
+                  "Mentee",
+                  "Admin",
+                ],
+                "required": false,
+                "value": "Mentor",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Username",
+                "name": "username",
+                "onChange": [Function],
+                "required": true,
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Password",
+                "name": "password",
+                "onChange": [Function],
+                "required": true,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Screen name",
+                "name": "nickname",
+                "onChange": [Function],
+                "required": false,
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Email",
+                "name": "email",
+                "onChange": [Function],
+                "required": false,
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              <TextField
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Phone number"
+                name="phone"
+                onChange={[Function]}
+                required={false}
+                select={false}
+                value=""
+              />,
+              <RadioGroupControl
+                className="AccountForm-radioRow-2"
+                disabled={false}
+                label="Gender"
+                name="gender"
+                onChange={[Function]}
+                options={
+                  Array [
+                    "Male",
+                    "Female",
+                  ]
+                }
+                required={false}
+                value="Male"
+              />,
+              <TextField
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Birth year"
+                name="birthYear"
+                onChange={[Function]}
+                required={false}
+                select={false}
+                value=""
+              />,
+              <TextField
+                className="AccountForm-row-1"
+                error={false}
+                helperText={undefined}
+                label="Area"
+                name="area"
+                onChange={[Function]}
+                required={false}
+                select={false}
+                value=""
+              />,
+              <CheckboxGroupControl
+                className="AccountForm-checkboxRow-3"
+                disabled={false}
+                label="Languages"
+                onChange={[Function]}
+                options={
+                  Object {
+                    "English": false,
+                    "Finnish": false,
+                    "Russian": false,
+                    "Swedish": false,
+                  }
+                }
+                required={false}
+              />,
+              <WithStyles(FormControl)
+                className="AccountForm-formControl-4"
+                disabled={true}
+              >
+                <WithStyles(InputLabel)
+                  htmlFor="name-multiple"
+                >
+                  Skills
+                </WithStyles(InputLabel)>
+                <WithStyles(Select)
+                  className="AccountForm-row-1"
+                  input={
+                    <WithStyles(Input)
+                      id="name-multiple"
+                    />
+                  }
+                  multiple={true}
+                  onChange={[Function]}
+                  value={Array []}
+                />
+              </WithStyles(FormControl)>,
+              <CheckboxGroupControl
+                className="AccountForm-checkboxRow-3"
+                disabled={false}
+                label="Communication channels"
+                onChange={[Function]}
+                options={
+                  Object {
+                    "Email": false,
+                    "Phone": false,
+                  }
+                }
+                required={false}
+              />,
+              <TextField
+                className="AccountForm-row-1"
+                helperText="Tell something about yourself"
+                label="Story"
+                multiline={true}
+                name="story"
+                onChange={[Function]}
+                required={false}
+                rows="1"
+                rowsMax="8"
+                select={false}
+                value=""
+              />,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Phone number",
+                "name": "phone",
+                "onChange": [Function],
+                "required": false,
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-radioRow-2",
+                "disabled": false,
+                "label": "Gender",
+                "name": "gender",
+                "onChange": [Function],
+                "options": Array [
+                  "Male",
+                  "Female",
+                ],
+                "required": false,
+                "value": "Male",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Birth year",
+                "name": "birthYear",
+                "onChange": [Function],
+                "required": false,
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "error": false,
+                "helperText": undefined,
+                "label": "Area",
+                "name": "area",
+                "onChange": [Function],
+                "required": false,
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-checkboxRow-3",
+                "disabled": false,
+                "label": "Languages",
+                "onChange": [Function],
+                "options": Object {
+                  "English": false,
+                  "Finnish": false,
+                  "Russian": false,
+                  "Swedish": false,
+                },
+                "required": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": Array [
+                  <WithStyles(InputLabel)
+                    htmlFor="name-multiple"
+                  >
+                    Skills
+                  </WithStyles(InputLabel)>,
+                  <WithStyles(Select)
+                    className="AccountForm-row-1"
+                    input={
+                      <WithStyles(Input)
+                        id="name-multiple"
+                      />
+                    }
+                    multiple={true}
+                    onChange={[Function]}
+                    value={Array []}
+                  />,
+                ],
+                "className": "AccountForm-formControl-4",
+                "disabled": true,
+              },
+              "ref": null,
+              "rendered": Array [
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": "Skills",
+                    "htmlFor": "name-multiple",
+                  },
+                  "ref": null,
+                  "rendered": "Skills",
+                  "type": [Function],
+                },
+                Object {
+                  "instance": null,
+                  "key": undefined,
+                  "nodeType": "class",
+                  "props": Object {
+                    "children": Array [],
+                    "className": "AccountForm-row-1",
+                    "input": <WithStyles(Input)
+                      id="name-multiple"
+                    />,
+                    "multiple": true,
+                    "onChange": [Function],
+                    "value": Array [],
+                  },
+                  "ref": null,
+                  "rendered": Array [],
+                  "type": [Function],
+                },
+              ],
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-checkboxRow-3",
+                "disabled": false,
+                "label": "Communication channels",
+                "onChange": [Function],
+                "options": Object {
+                  "Email": false,
+                  "Phone": false,
+                },
+                "required": false,
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "className": "AccountForm-row-1",
+                "helperText": "Tell something about yourself",
+                "label": "Story",
+                "multiline": true,
+                "name": "story",
+                "onChange": [Function],
+                "required": false,
+                "rows": "1",
+                "rowsMax": "8",
+                "select": false,
+                "value": "",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              "Create",
+              <pure(Save)
+                className="AccountForm-buttonIcon-6"
+              />,
+            ],
+            "className": "AccountForm-button-5",
+            "color": "primary",
+            "disabled": true,
+            "onClick": [Function],
+            "variant": "raised",
+          },
+          "ref": null,
+          "rendered": Array [
+            "Create",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "AccountForm-buttonIcon-6",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "action": <WithStyles(IconButton)
+              color="inherit"
+              onClick={[Function]}
+            >
+              <pure(Close) />
+            </WithStyles(IconButton)>,
+            "autoHideDuration": 3000,
+            "message": "",
+            "onClose": [Function],
+            "open": false,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": "form",
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
