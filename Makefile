@@ -33,8 +33,10 @@ run-dev:
 
 run: clean test run-dev
 
-dist: clean lint
-	NODE_ENV=production API_URL=${API_URL} webpack -p --progress --colors
+dist: clean test
+	NODE_ENV=production webpack -p --progress --colors
+	cp src/index.html dist/
+	cp -r src/login dist/
 
 clean:
 	find . -type f -name '*~' -exec rm -f {} \;
