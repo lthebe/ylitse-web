@@ -9,9 +9,7 @@ import Root from './Root';
 
 const theme = createMuiTheme({
     palette: {
-        primary: {
-            main: '#f67f5d',
-        },
+        primary: { main: '#f67f5d' },
         secondary: { main: '#00cca8' },
         contrastThreshold: 2,
         tonalOffset: 0.1,
@@ -22,8 +20,19 @@ const theme = createMuiTheme({
             hint: '#c0c0c0',
             divider: '#e6e7e8',
         },
-        overrides: {
-            /* TODO: override text fields to secondary color */
+    },
+    overrides: {
+        MuiFormLabel: {
+            focused: {
+                color: '#2aa08e',
+            },
+        },
+        MuiInput: {
+            inkbar: {
+                '&:after': {
+                    backgroundColor: '#2aa08e',
+                },
+            },
         },
     },
 });

@@ -191,6 +191,7 @@ ShallowWrapper {
           />
           <TextField
             className="AccountForm-row-1"
+            color="secondary"
             helperText="Tell something about yourself"
             label="Story"
             multiline={true}
@@ -205,7 +206,7 @@ ShallowWrapper {
         </WithStyles(FormGroup)>,
         <WithStyles(Button)
           className="AccountForm-button-5"
-          color="primary"
+          color="secondary"
           disabled={true}
           onClick={[Function]}
           variant="raised"
@@ -507,6 +508,7 @@ ShallowWrapper {
             />,
             <TextField
               className="AccountForm-row-1"
+              color="secondary"
               helperText="Tell something about yourself"
               label="Story"
               multiline={true}
@@ -707,6 +709,7 @@ ShallowWrapper {
             "nodeType": "function",
             "props": Object {
               "className": "AccountForm-row-1",
+              "color": "secondary",
               "helperText": "Tell something about yourself",
               "label": "Story",
               "multiline": true,
@@ -737,7 +740,7 @@ ShallowWrapper {
             />,
           ],
           "className": "AccountForm-button-5",
-          "color": "primary",
+          "color": "secondary",
           "disabled": true,
           "onClick": [Function],
           "variant": "raised",
@@ -951,6 +954,7 @@ ShallowWrapper {
             />
             <TextField
               className="AccountForm-row-1"
+              color="secondary"
               helperText="Tell something about yourself"
               label="Story"
               multiline={true}
@@ -965,7 +969,7 @@ ShallowWrapper {
           </WithStyles(FormGroup)>,
           <WithStyles(Button)
             className="AccountForm-button-5"
-            color="primary"
+            color="secondary"
             disabled={true}
             onClick={[Function]}
             variant="raised"
@@ -1267,6 +1271,7 @@ ShallowWrapper {
               />,
               <TextField
                 className="AccountForm-row-1"
+                color="secondary"
                 helperText="Tell something about yourself"
                 label="Story"
                 multiline={true}
@@ -1467,6 +1472,7 @@ ShallowWrapper {
               "nodeType": "function",
               "props": Object {
                 "className": "AccountForm-row-1",
+                "color": "secondary",
                 "helperText": "Tell something about yourself",
                 "label": "Story",
                 "multiline": true,
@@ -1497,7 +1503,7 @@ ShallowWrapper {
               />,
             ],
             "className": "AccountForm-button-5",
-            "color": "primary",
+            "color": "secondary",
             "disabled": true,
             "onClick": [Function],
             "variant": "raised",
