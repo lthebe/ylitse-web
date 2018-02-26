@@ -75,8 +75,19 @@ class Navigation extends Component {
         }
     }
 
-    logout = () => {
-        window.location.replace('/logout');
+    logout = async () => {
+        try {
+            const resp = await fetch('/api/logout', {
+                credentials: 'include',
+                redirect: 'follow',
+            });
+            if (resp.redirected) {
+                window.location.replace(resp.url);
+            }
+        } catch (e) {
+            this.openError(e.message);
+        }
+        window.location.replace('/');
     }
 
     openAbout = () => {
