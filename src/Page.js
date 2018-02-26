@@ -6,8 +6,8 @@ import { withStyles } from 'material-ui/styles';
 const styles = theme => ({
     root: theme.mixins.gutters({
         marginTop: theme.spacing.unit * 4,
-        marginLeft: '25%',
-        marginRight: '25%',
+        marginLeft: '20%',
+        marginRight: '20%',
         paddingTop: 24,
         paddingBottom: 24,
     }),

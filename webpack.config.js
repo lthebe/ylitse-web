@@ -9,7 +9,7 @@ const redirect = (res, loc) => {
 };
 
 const checkAuth = (res, req) => {
-    if (req.url !== '/login' && res.statusCode !== 200) {
+    if (req.url !== '/login' && [401].includes(res.statusCode)) {
         // not logged in, redirect to login page
         redirect(res, '/login');
     }
