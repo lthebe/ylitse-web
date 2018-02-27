@@ -1,0 +1,261 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkillsPage renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SkillsPage
+    classes={
+      Object {
+        "input": "SkillsPage-input-1",
+      }
+    }
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "class",
+    "props": Object {
+      "children": Array [
+        <WithStyles(Typography)
+          component="h3"
+          variant="headline"
+        >
+          Mentor skills
+        </WithStyles(Typography)>,
+        <TextField
+          className="SkillsPage-input-1"
+          error={false}
+          helperText={undefined}
+          label="Add a skill"
+          name="newSkillName"
+          onChange={[Function]}
+          onKeyDown={[Function]}
+          required={false}
+          select={false}
+          value=""
+        />,
+        <WithStyles(GridList)
+          className="SkillsPage-input-1"
+        />,
+        undefined,
+        <WithStyles(Snackbar)
+          action={
+            <WithStyles(IconButton)
+              color="inherit"
+              onClick={[Function]}
+            >
+              <pure(Close) />
+            </WithStyles(IconButton)>
+          }
+          autoHideDuration={3000}
+          message=""
+          onClose={[Function]}
+          open={false}
+        />,
+      ],
+    },
+    "ref": null,
+    "rendered": Array [
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": "Mentor skills",
+          "component": "h3",
+          "variant": "headline",
+        },
+        "ref": null,
+        "rendered": "Mentor skills",
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "className": "SkillsPage-input-1",
+          "error": false,
+          "helperText": undefined,
+          "label": "Add a skill",
+          "name": "newSkillName",
+          "onChange": [Function],
+          "onKeyDown": [Function],
+          "required": false,
+          "select": false,
+          "value": "",
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [],
+          "className": "SkillsPage-input-1",
+        },
+        "ref": null,
+        "rendered": Array [],
+        "type": [Function],
+      },
+      undefined,
+      Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "action": <WithStyles(IconButton)
+            color="inherit"
+            onClick={[Function]}
+          >
+            <pure(Close) />
+          </WithStyles(IconButton)>,
+          "autoHideDuration": 3000,
+          "message": "",
+          "onClose": [Function],
+          "open": false,
+        },
+        "ref": null,
+        "rendered": null,
+        "type": [Function],
+      },
+    ],
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": Array [
+          <WithStyles(Typography)
+            component="h3"
+            variant="headline"
+          >
+            Mentor skills
+          </WithStyles(Typography)>,
+          <TextField
+            className="SkillsPage-input-1"
+            error={false}
+            helperText={undefined}
+            label="Add a skill"
+            name="newSkillName"
+            onChange={[Function]}
+            onKeyDown={[Function]}
+            required={false}
+            select={false}
+            value=""
+          />,
+          <WithStyles(GridList)
+            className="SkillsPage-input-1"
+          />,
+          undefined,
+          <WithStyles(Snackbar)
+            action={
+              <WithStyles(IconButton)
+                color="inherit"
+                onClick={[Function]}
+              >
+                <pure(Close) />
+              </WithStyles(IconButton)>
+            }
+            autoHideDuration={3000}
+            message=""
+            onClose={[Function]}
+            open={false}
+          />,
+        ],
+      },
+      "ref": null,
+      "rendered": Array [
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": "Mentor skills",
+            "component": "h3",
+            "variant": "headline",
+          },
+          "ref": null,
+          "rendered": "Mentor skills",
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "className": "SkillsPage-input-1",
+            "error": false,
+            "helperText": undefined,
+            "label": "Add a skill",
+            "name": "newSkillName",
+            "onChange": [Function],
+            "onKeyDown": [Function],
+            "required": false,
+            "select": false,
+            "value": "",
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [],
+            "className": "SkillsPage-input-1",
+          },
+          "ref": null,
+          "rendered": Array [],
+          "type": [Function],
+        },
+        undefined,
+        Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "action": <WithStyles(IconButton)
+              color="inherit"
+              onClick={[Function]}
+            >
+              <pure(Close) />
+            </WithStyles(IconButton)>,
+            "autoHideDuration": 3000,
+            "message": "",
+            "onClose": [Function],
+            "open": false,
+          },
+          "ref": null,
+          "rendered": null,
+          "type": [Function],
+        },
+      ],
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;

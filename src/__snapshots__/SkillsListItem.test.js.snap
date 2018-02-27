@@ -1,0 +1,249 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SkillListItem renders correctly 1`] = `
+ShallowWrapper {
+  "length": 1,
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <SkillsListItem
+    classes={
+      Object {
+        "card": "SkillsListItem-card-2",
+        "cardContent": "SkillsListItem-cardContent-3",
+        "icon": "SkillsListItem-icon-5",
+        "iconButton": "SkillsListItem-iconButton-4",
+        "text": "SkillsListItem-text-1",
+      }
+    }
+    label="MySkill"
+    onDelete={[Function]}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "children": <WithStyles(CardContent)
+        className="SkillsListItem-cardContent-3"
+      >
+        <WithStyles(Typography)
+          className="SkillsListItem-text-1"
+        >
+          MySkill
+          <WithStyles(IconButton)
+            className="SkillsListItem-iconButton-4"
+            color="default"
+            onClick={[Function]}
+          >
+            <pure(Delete)
+              className="SkillsListItem-icon-5"
+            />
+          </WithStyles(IconButton)>
+        </WithStyles(Typography)>
+      </WithStyles(CardContent)>,
+      "className": "SkillsListItem-card-2",
+      "onMouseEnter": [Function],
+      "onMouseLeave": [Function],
+      "raised": false,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "class",
+      "props": Object {
+        "children": <WithStyles(Typography)
+          className="SkillsListItem-text-1"
+        >
+          MySkill
+          <WithStyles(IconButton)
+            className="SkillsListItem-iconButton-4"
+            color="default"
+            onClick={[Function]}
+          >
+            <pure(Delete)
+              className="SkillsListItem-icon-5"
+            />
+          </WithStyles(IconButton)>
+        </WithStyles(Typography)>,
+        "className": "SkillsListItem-cardContent-3",
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": Array [
+            "MySkill",
+            <WithStyles(IconButton)
+              className="SkillsListItem-iconButton-4"
+              color="default"
+              onClick={[Function]}
+            >
+              <pure(Delete)
+                className="SkillsListItem-icon-5"
+              />
+            </WithStyles(IconButton)>,
+          ],
+          "className": "SkillsListItem-text-1",
+        },
+        "ref": null,
+        "rendered": Array [
+          "MySkill",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": <pure(Delete)
+                className="SkillsListItem-icon-5"
+              />,
+              "className": "SkillsListItem-iconButton-4",
+              "color": "default",
+              "onClick": [Function],
+            },
+            "ref": null,
+            "rendered": Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "SkillsListItem-icon-5",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+            "type": [Function],
+          },
+        ],
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+    "type": [Function],
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <WithStyles(CardContent)
+          className="SkillsListItem-cardContent-3"
+        >
+          <WithStyles(Typography)
+            className="SkillsListItem-text-1"
+          >
+            MySkill
+            <WithStyles(IconButton)
+              className="SkillsListItem-iconButton-4"
+              color="default"
+              onClick={[Function]}
+            >
+              <pure(Delete)
+                className="SkillsListItem-icon-5"
+              />
+            </WithStyles(IconButton)>
+          </WithStyles(Typography)>
+        </WithStyles(CardContent)>,
+        "className": "SkillsListItem-card-2",
+        "onMouseEnter": [Function],
+        "onMouseLeave": [Function],
+        "raised": false,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "class",
+        "props": Object {
+          "children": <WithStyles(Typography)
+            className="SkillsListItem-text-1"
+          >
+            MySkill
+            <WithStyles(IconButton)
+              className="SkillsListItem-iconButton-4"
+              color="default"
+              onClick={[Function]}
+            >
+              <pure(Delete)
+                className="SkillsListItem-icon-5"
+              />
+            </WithStyles(IconButton)>
+          </WithStyles(Typography)>,
+          "className": "SkillsListItem-cardContent-3",
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "class",
+          "props": Object {
+            "children": Array [
+              "MySkill",
+              <WithStyles(IconButton)
+                className="SkillsListItem-iconButton-4"
+                color="default"
+                onClick={[Function]}
+              >
+                <pure(Delete)
+                  className="SkillsListItem-icon-5"
+                />
+              </WithStyles(IconButton)>,
+            ],
+            "className": "SkillsListItem-text-1",
+          },
+          "ref": null,
+          "rendered": Array [
+            "MySkill",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": <pure(Delete)
+                  className="SkillsListItem-icon-5"
+                />,
+                "className": "SkillsListItem-iconButton-4",
+                "color": "default",
+                "onClick": [Function],
+              },
+              "ref": null,
+              "rendered": Object {
+                "instance": null,
+                "key": undefined,
+                "nodeType": "class",
+                "props": Object {
+                  "className": "SkillsListItem-icon-5",
+                },
+                "ref": null,
+                "rendered": null,
+                "type": [Function],
+              },
+              "type": [Function],
+            },
+          ],
+          "type": [Function],
+        },
+        "type": [Function],
+      },
+      "type": [Function],
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+      },
+    },
+  },
+}
+`;
