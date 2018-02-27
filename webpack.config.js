@@ -36,9 +36,9 @@ const config = {
         historyApiFallback: true,
         proxy: {
             '/api/**': {
-                target: process.env.API_URL,
+                target: process.env.DEV_URL,
                 pathRewrite: { '^/api': '' },
-                cookieDomainRewrite: process.env.API_URL,
+                cookieDomainRewrite: process.env.DEV_URL,
                 changeOrigin: true,
                 logLevel: 'debug',
                 onProxyRes: checkAuth,
@@ -72,8 +72,8 @@ const config = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
+                REV: JSON.stringify(process.env.REV),
                 NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-                API_URL: JSON.stringify(process.env.API_URL),
             },
         }),
         new ExtractTextPlugin({

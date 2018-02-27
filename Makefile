@@ -1,10 +1,11 @@
 PATH:=${PATH}:node_modules/.bin
-API_URL=http://localhost:8080
+DEV_URL=http://localhost:8080
+REV=${shell git rev-parse HEAD}
 
 all: run
 
 version:
-	@echo $(shell grep '"version":' package.json | cut -d\" -f4)
+	@echo ${shell grep '"version":' package.json | cut -d\" -f4}
 
 install:
 	npm install --force fsevents
@@ -29,12 +30,12 @@ unittest-watch:
 test: unittest lint
 
 run-dev:
-	API_URL=${API_URL} webpack-dev-server -d --port 3000 --color
+	DEV_URL=${DEV_URL} REV=${REV} webpack-dev-server -d --port 3000 --color
 
 run: clean test run-dev
 
 dist: clean test
-	NODE_ENV=production webpack -p --progress --colors
+	NODE_ENV=production REV=${REV} webpack -p --progress --colors
 	cp src/index.html dist/
 	cp -r src/login dist/
 

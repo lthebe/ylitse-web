@@ -13,7 +13,7 @@ import CloseIcon from 'material-ui-icons/Close';
 import InfoIcon from 'material-ui-icons/Info';
 import MoreVertIcon from 'material-ui-icons/MoreVert';
 
-import { version as uiVersion } from '../package.json';
+import { version } from '../package.json';
 import AboutDialog from './AboutDialog';
 
 const styles = () => ({
@@ -120,6 +120,11 @@ class Navigation extends Component {
             aboutOpen, apiVersion, menuAnchor, errorOpen, errorMessage,
         } = this.state;
         const { username, classes } = this.props;
+        let uiVersion = version;
+
+        if (process.env.REV) {
+            uiVersion = `${uiVersion}:${process.env.REV}`;
+        }
 
         return (
             <AppBar position="static">
