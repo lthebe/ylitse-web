@@ -4,6 +4,7 @@ import { Switch, Redirect, Route } from 'react-router-dom';
 import Navigation from './Navigation';
 import MissingPage from './MissingPage';
 import SkillsPage from './SkillsPage';
+import AccountsPage from './AccountsPage';
 import ProfileSheet from './ProfileSheet';
 
 class Root extends Component {
@@ -32,7 +33,7 @@ class Root extends Component {
 
             this.setState({ username: data.username });
         } catch (e) {
-            console.log(e.message);
+            // console.log(e.message);
         }
     }
 
@@ -54,6 +55,7 @@ class Root extends Component {
                     <Route path="/" exact><Redirect to="/accounts" /></Route>
                     <Route path="/accounts" exact component={ProfileSheet} />
                     <Route path="/skills" exact component={SkillsPage} />
+                    <Route path="/allaccounts" exact component={AccountsPage} />
                     <Route component={MissingPage} />
                 </Switch>
             </main>

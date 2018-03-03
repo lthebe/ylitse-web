@@ -28,6 +28,7 @@ const styles = () => ({
 
 const AccountsLink = props => <Link to="/accounts" {...props} />;
 const SkillsLink = props => <Link to="/skills" {...props} />;
+const AllAccountsLink = props => <Link to="allaccounts" {...props} />;
 
 class Navigation extends Component {
     static propTypes = {
@@ -131,10 +132,13 @@ class Navigation extends Component {
                         Ylitse Admin
                     </Typography>
                     <Button component={AccountsLink} color="inherit">
-                        Accounts
+                        Account
                     </Button>
                     <Button component={SkillsLink} color="inherit">
                         Skills
+                    </Button>
+                    <Button component={AllAccountsLink} color="inherit">
+                        All Accounts
                     </Button>
                     <IconButton
                         color="inherit"
