@@ -3,20 +3,36 @@ import PropTypes from 'prop-types';
 import Button from 'material-ui/Button';
 import IconButton from 'material-ui/IconButton';
 import Snackbar from 'material-ui/Snackbar';
-import Typography from 'material-ui/Typography';
-import CloseIcon from 'material-ui-icons/Close';
-import AddIcon from 'material-ui-icons/Add';
+import { withStyles } from 'material-ui/styles';
 import Table, {
     TableRow, TableHead, TableCell, TableBody,
 } from 'material-ui/Table';
-import { withStyles } from 'material-ui/styles';
+import Typography from 'material-ui/Typography';
+import CloseIcon from 'material-ui-icons/Close';
+import PersonAddIcon from 'material-ui-icons/PersonAdd';
 
 import Page from './Page';
 import AccountListItem from './AccountListItem';
 
 const styles = theme => ({
+    table: {
+        overflowX: 'auto',
+    },
+    firstCell: {
+        paddingLeft: 0,
+    },
+    lastCell: {
+        '&:last-child': {
+            paddingRight: [0, '!important'],
+            textAlign: ['right', '!important'],
+        },
+    },
     button: {
-        marginTop: theme.spacing.unit * 2,
+        marginTop: theme.spacing.unit * 3,
+        marginBottom: theme.spacing.unit * 3,
+    },
+    buttonIcon: {
+        marginLeft: theme.spacing.unit,
     },
 });
 
@@ -24,6 +40,8 @@ class AccountsPage extends Component {
     static propTypes = {
         classes: PropTypes.shape({
             button: PropTypes.string,
+            firstCell: PropTypes.string,
+            lastCell: PropTypes.string,
         }).isRequired,
     }
     constructor(props) {
@@ -77,35 +95,41 @@ class AccountsPage extends Component {
                 <Typography variant="headline" component="h3">
                     Accounts
                 </Typography>
-                {accounts.length ?
-                    <Table>
+                <Button
+                    variant="raised"
+                    color="primary"
+                    className={classes.button}
+                >
+                    Add new
+                    <PersonAddIcon className={classes.buttonIcon} />
+                </Button>
+                {accounts.length > 0 &&
+                    <Table className={classes.table}>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Role</TableCell>
+                                <TableCell className={classes.firstCell}>
+                                    Role
+                                </TableCell>
                                 <TableCell>Username</TableCell>
                                 <TableCell>Email</TableCell>
-                                <TableCell>Actions</TableCell>
+                                <TableCell className={classes.lastCell}>
+                                    Actions
+                                </TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {accounts.map(account => (
                                 <AccountListItem
                                     key={account.id}
-                                    role={account.role}
-                                    username={account.username}
-                                    email={account.email}
+                                    account={account}
                                 />
                             ))}
                         </TableBody>
-                    </Table> : <Typography>No accounts</Typography>}
-                <Button
-                    variant="raised"
-                    color="primary"
-                    className={classes.button}
-                >
-                    Add Account
-                    <AddIcon />
-                </Button>
+                    </Table>
+                }
+                {accounts.length === 0 &&
+                    <Typography variant="display3">No accounts</Typography>
+                }
                 <Snackbar
                     open={feedbackOpen}
                     message={feedbackMessage}

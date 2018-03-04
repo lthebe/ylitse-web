@@ -1,13 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SkillsPage renders correctly 1`] = `
+exports[`AccountsPage renders correctly 1`] = `
 ShallowWrapper {
   "length": 1,
   Symbol(enzyme.__root__): [Circular],
-  Symbol(enzyme.__unrendered__): <SkillsPage
+  Symbol(enzyme.__unrendered__): <AccountsPage
     classes={
       Object {
-        "input": "SkillsPage-input-1",
+        "button": "AccountsPage-button-4",
+        "buttonIcon": "AccountsPage-buttonIcon-5",
+        "firstCell": "AccountsPage-firstCell-2",
+        "lastCell": "AccountsPage-lastCell-3",
+        "table": "AccountsPage-table-1",
       }
     }
   />,
@@ -28,27 +32,24 @@ ShallowWrapper {
           component="h3"
           variant="headline"
         >
-          Mentor skills
+          Accounts
         </WithStyles(Typography)>,
-        <TextField
-          className="SkillsPage-input-1"
-          error={false}
-          helperText={undefined}
-          label="Add a skill"
-          name="newSkillName"
-          onChange={[Function]}
-          onKeyDown={[Function]}
-          required={false}
-          select={false}
-          value=""
-        />,
+        <WithStyles(Button)
+          className="AccountsPage-button-4"
+          color="primary"
+          variant="raised"
+        >
+          Add new
+          <pure(PersonAdd)
+            className="AccountsPage-buttonIcon-5"
+          />
+        </WithStyles(Button)>,
         false,
         <WithStyles(Typography)
           variant="display3"
         >
-          No mentor skills
+          No accounts
         </WithStyles(Typography)>,
-        undefined,
         <WithStyles(Snackbar)
           action={
             <WithStyles(IconButton)
@@ -72,32 +73,44 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Mentor skills",
+          "children": "Accounts",
           "component": "h3",
           "variant": "headline",
         },
         "ref": null,
-        "rendered": "Mentor skills",
+        "rendered": "Accounts",
         "type": [Function],
       },
       Object {
         "instance": null,
         "key": undefined,
-        "nodeType": "function",
+        "nodeType": "class",
         "props": Object {
-          "className": "SkillsPage-input-1",
-          "error": false,
-          "helperText": undefined,
-          "label": "Add a skill",
-          "name": "newSkillName",
-          "onChange": [Function],
-          "onKeyDown": [Function],
-          "required": false,
-          "select": false,
-          "value": "",
+          "children": Array [
+            "Add new",
+            <pure(PersonAdd)
+              className="AccountsPage-buttonIcon-5"
+            />,
+          ],
+          "className": "AccountsPage-button-4",
+          "color": "primary",
+          "variant": "raised",
         },
         "ref": null,
-        "rendered": null,
+        "rendered": Array [
+          "Add new",
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "className": "AccountsPage-buttonIcon-5",
+            },
+            "ref": null,
+            "rendered": null,
+            "type": [Function],
+          },
+        ],
         "type": [Function],
       },
       false,
@@ -106,14 +119,13 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "No mentor skills",
+          "children": "No accounts",
           "variant": "display3",
         },
         "ref": null,
-        "rendered": "No mentor skills",
+        "rendered": "No accounts",
         "type": [Function],
       },
-      undefined,
       Object {
         "instance": null,
         "key": undefined,
@@ -148,27 +160,24 @@ ShallowWrapper {
             component="h3"
             variant="headline"
           >
-            Mentor skills
+            Accounts
           </WithStyles(Typography)>,
-          <TextField
-            className="SkillsPage-input-1"
-            error={false}
-            helperText={undefined}
-            label="Add a skill"
-            name="newSkillName"
-            onChange={[Function]}
-            onKeyDown={[Function]}
-            required={false}
-            select={false}
-            value=""
-          />,
+          <WithStyles(Button)
+            className="AccountsPage-button-4"
+            color="primary"
+            variant="raised"
+          >
+            Add new
+            <pure(PersonAdd)
+              className="AccountsPage-buttonIcon-5"
+            />
+          </WithStyles(Button)>,
           false,
           <WithStyles(Typography)
             variant="display3"
           >
-            No mentor skills
+            No accounts
           </WithStyles(Typography)>,
-          undefined,
           <WithStyles(Snackbar)
             action={
               <WithStyles(IconButton)
@@ -192,32 +201,44 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Mentor skills",
+            "children": "Accounts",
             "component": "h3",
             "variant": "headline",
           },
           "ref": null,
-          "rendered": "Mentor skills",
+          "rendered": "Accounts",
           "type": [Function],
         },
         Object {
           "instance": null,
           "key": undefined,
-          "nodeType": "function",
+          "nodeType": "class",
           "props": Object {
-            "className": "SkillsPage-input-1",
-            "error": false,
-            "helperText": undefined,
-            "label": "Add a skill",
-            "name": "newSkillName",
-            "onChange": [Function],
-            "onKeyDown": [Function],
-            "required": false,
-            "select": false,
-            "value": "",
+            "children": Array [
+              "Add new",
+              <pure(PersonAdd)
+                className="AccountsPage-buttonIcon-5"
+              />,
+            ],
+            "className": "AccountsPage-button-4",
+            "color": "primary",
+            "variant": "raised",
           },
           "ref": null,
-          "rendered": null,
+          "rendered": Array [
+            "Add new",
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "className": "AccountsPage-buttonIcon-5",
+              },
+              "ref": null,
+              "rendered": null,
+              "type": [Function],
+            },
+          ],
           "type": [Function],
         },
         false,
@@ -226,14 +247,13 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "No mentor skills",
+            "children": "No accounts",
             "variant": "display3",
           },
           "ref": null,
-          "rendered": "No mentor skills",
+          "rendered": "No accounts",
           "type": [Function],
         },
-        undefined,
         Object {
           "instance": null,
           "key": undefined,

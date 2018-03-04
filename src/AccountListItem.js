@@ -2,25 +2,54 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { TableCell, TableRow } from 'material-ui/Table';
 import IconButton from 'material-ui/IconButton';
-import UpdateIcon from 'material-ui-icons/Update';
+import { withStyles } from 'material-ui/styles';
 import DeleteIcon from 'material-ui-icons/Delete';
+import EditIcon from 'material-ui-icons/Edit';
 
-const AccountListItem = ({ role, username, email }) => (
+const styles = () => ({
+    firstCell: {
+        paddingLeft: 0,
+    },
+    lastCell: {
+        '&:last-child': {
+            paddingRight: [0, '!important'],
+            textAlign: ['right', '!important'],
+            whiteSpace: 'nowrap',
+        },
+    },
+    lastIconButton: {
+        marginRight: -16,
+        fontSize: 22,
+    },
+    icon: {
+        fontSize: 22,
+    },
+});
+
+const AccountListItem = ({ account, classes }) => (
     <TableRow>
-        <TableCell>{role}</TableCell>
-        <TableCell>{username}</TableCell>
-        <TableCell>{email}</TableCell>
-        <TableCell>
-            <IconButton><UpdateIcon onClick={() => {}} /></IconButton>
-            <IconButton onClick={() => {}}><DeleteIcon /></IconButton>
+        <TableCell className={classes.firstCell}>{account.role}</TableCell>
+        <TableCell>{account.username}</TableCell>
+        <TableCell>{account.email}</TableCell>
+        <TableCell className={classes.lastCell}>
+            <IconButton><EditIcon className={classes.icon} /></IconButton>
+            <IconButton className={classes.lastIconButton}>
+                <DeleteIcon className={classes.icon} />
+            </IconButton>
         </TableCell>
     </TableRow>
 );
 
 AccountListItem.propTypes = {
-    role: PropTypes.string.isRequired,
-    username: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
+    account: PropTypes.shape({
+        role: PropTypes.string,
+        username: PropTypes.string,
+        email: PropTypes.string,
+    }).isRequired,
+    classes: PropTypes.shape({
+        firstCell: PropTypes.string,
+        lastCell: PropTypes.string,
+    }).isRequired,
 };
 
-export default AccountListItem;
+export default withStyles(styles)(AccountListItem);

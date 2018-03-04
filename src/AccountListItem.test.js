@@ -5,12 +5,12 @@ import AccountListItem from './AccountListItem';
 
 describe('AccountListItem', () => {
     test('renders correctly', () => {
-        const props = {
+        const account = {
             username: 'admin',
             role: 'admin',
             email: 'admin@admin.com',
         };
-        const wrapper = shallow(<AccountListItem {...props} />);
+        const wrapper = shallow(<AccountListItem account={account} />);
 
         expect(wrapper).toMatchSnapshot();
     });
