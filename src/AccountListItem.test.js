@@ -10,7 +10,7 @@ describe('AccountListItem', () => {
             role: 'admin',
             email: 'admin@admin.com',
         };
-        const wrapper = shallow(<AccountListItem {...props} />).dive();
+        const wrapper = shallow(<AccountListItem {...props} />);
 
         expect(wrapper).toMatchSnapshot();
     });
