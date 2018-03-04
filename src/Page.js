@@ -10,6 +10,7 @@ const styles = theme => ({
         marginRight: '20%',
         paddingTop: 24,
         paddingBottom: 24,
+        overflowX: 'auto',
     }),
 });
 

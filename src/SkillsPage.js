@@ -208,15 +208,20 @@ class SkillsPage extends Component {
                     onChange={this.updateText}
                     onKeyDown={this.addSkill}
                 />
-                <GridList className={classes.input}>
-                    {skills.map(skill => (
-                        <SkillsListItem
-                            key={skill.id}
-                            label={skill.name}
-                            onDelete={() => this.openConfirmation(skill.id)}
-                        />
-                    ))}
-                </GridList>
+                {skills.length > 0 &&
+                    <GridList className={classes.input}>
+                        {skills.map(skill => (
+                            <SkillsListItem
+                                key={skill.id}
+                                label={skill.name}
+                                onDelete={() => this.openConfirmation(skill.id)}
+                            />
+                        ))}
+                    </GridList>
+                }
+                {skills.length === 0 &&
+                    <Typography variant="display3">No mentor skills</Typography>
+                }
                 {selectedSkill &&
                     <Dialog
                         open={confirmationOpen}

@@ -26,13 +26,13 @@ ShallowWrapper {
       "children": Array [
         <WithStyles(Typography)
           gutterBottom={true}
-          variant="display4"
+          variant="display3"
         >
-          Could not find
+          Could not find page:
         </WithStyles(Typography)>,
         <WithStyles(Typography)
           gutterBottom={true}
-          variant="display3"
+          variant="display2"
         >
           <code>
             /test
@@ -47,12 +47,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Could not find",
+          "children": "Could not find page:",
           "gutterBottom": true,
-          "variant": "display4",
+          "variant": "display3",
         },
         "ref": null,
-        "rendered": "Could not find",
+        "rendered": "Could not find page:",
         "type": [Function],
       },
       Object {
@@ -64,7 +64,7 @@ ShallowWrapper {
             /test
           </code>,
           "gutterBottom": true,
-          "variant": "display3",
+          "variant": "display2",
         },
         "ref": null,
         "rendered": Object {
@@ -92,13 +92,13 @@ ShallowWrapper {
         "children": Array [
           <WithStyles(Typography)
             gutterBottom={true}
-            variant="display4"
+            variant="display3"
           >
-            Could not find
+            Could not find page:
           </WithStyles(Typography)>,
           <WithStyles(Typography)
             gutterBottom={true}
-            variant="display3"
+            variant="display2"
           >
             <code>
               /test
@@ -113,12 +113,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Could not find",
+            "children": "Could not find page:",
             "gutterBottom": true,
-            "variant": "display4",
+            "variant": "display3",
           },
           "ref": null,
-          "rendered": "Could not find",
+          "rendered": "Could not find page:",
           "type": [Function],
         },
         Object {
@@ -130,7 +130,7 @@ ShallowWrapper {
               /test
             </code>,
             "gutterBottom": true,
-            "variant": "display3",
+            "variant": "display2",
           },
           "ref": null,
           "rendered": Object {

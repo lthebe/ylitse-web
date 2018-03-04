@@ -40,13 +40,19 @@ ShallowWrapper {
             color="inherit"
             component={[Function]}
           >
-            Accounts
+            Account
           </WithStyles(Button)>
           <WithStyles(Button)
             color="inherit"
             component={[Function]}
           >
             Skills
+          </WithStyles(Button)>
+          <WithStyles(Button)
+            color="inherit"
+            component={[Function]}
+          >
+            All Accounts
           </WithStyles(Button)>
           <WithStyles(IconButton)
             className="Navigation-iconButton-2"
@@ -121,13 +127,19 @@ ShallowWrapper {
               color="inherit"
               component={[Function]}
             >
-              Accounts
+              Account
             </WithStyles(Button)>,
             <WithStyles(Button)
               color="inherit"
               component={[Function]}
             >
               Skills
+            </WithStyles(Button)>,
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              All Accounts
             </WithStyles(Button)>,
             <WithStyles(IconButton)
               className="Navigation-iconButton-2"
@@ -169,12 +181,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Accounts",
+              "children": "Account",
               "color": "inherit",
               "component": [Function],
             },
             "ref": null,
-            "rendered": "Accounts",
+            "rendered": "Account",
             "type": [Function],
           },
           Object {
@@ -188,6 +200,19 @@ ShallowWrapper {
             },
             "ref": null,
             "rendered": "Skills",
+            "type": [Function],
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "class",
+            "props": Object {
+              "children": "All Accounts",
+              "color": "inherit",
+              "component": [Function],
+            },
+            "ref": null,
+            "rendered": "All Accounts",
             "type": [Function],
           },
           Object {
@@ -335,13 +360,19 @@ ShallowWrapper {
               color="inherit"
               component={[Function]}
             >
-              Accounts
+              Account
             </WithStyles(Button)>
             <WithStyles(Button)
               color="inherit"
               component={[Function]}
             >
               Skills
+            </WithStyles(Button)>
+            <WithStyles(Button)
+              color="inherit"
+              component={[Function]}
+            >
+              All Accounts
             </WithStyles(Button)>
             <WithStyles(IconButton)
               className="Navigation-iconButton-2"
@@ -416,13 +447,19 @@ ShallowWrapper {
                 color="inherit"
                 component={[Function]}
               >
-                Accounts
+                Account
               </WithStyles(Button)>,
               <WithStyles(Button)
                 color="inherit"
                 component={[Function]}
               >
                 Skills
+              </WithStyles(Button)>,
+              <WithStyles(Button)
+                color="inherit"
+                component={[Function]}
+              >
+                All Accounts
               </WithStyles(Button)>,
               <WithStyles(IconButton)
                 className="Navigation-iconButton-2"
@@ -464,12 +501,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Accounts",
+                "children": "Account",
                 "color": "inherit",
                 "component": [Function],
               },
               "ref": null,
-              "rendered": "Accounts",
+              "rendered": "Account",
               "type": [Function],
             },
             Object {
@@ -483,6 +520,19 @@ ShallowWrapper {
               },
               "ref": null,
               "rendered": "Skills",
+              "type": [Function],
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "class",
+              "props": Object {
+                "children": "All Accounts",
+                "color": "inherit",
+                "component": [Function],
+              },
+              "ref": null,
+              "rendered": "All Accounts",
               "type": [Function],
             },
             Object {
