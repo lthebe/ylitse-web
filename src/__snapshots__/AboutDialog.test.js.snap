@@ -37,7 +37,7 @@ ShallowWrapper {
         </WithStyles(DialogContent)>,
         <WithStyles(DialogActions)>
           <WithStyles(Button)
-            color="primary"
+            color="secondary"
             onClick={[Function]}
           >
             OK
@@ -119,7 +119,7 @@ ShallowWrapper {
         "nodeType": "class",
         "props": Object {
           "children": <WithStyles(Button)
-            color="primary"
+            color="secondary"
             onClick={[Function]}
           >
             OK
@@ -132,7 +132,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": "OK",
-            "color": "primary",
+            "color": "secondary",
             "onClick": [Function],
           },
           "ref": null,
@@ -166,7 +166,7 @@ ShallowWrapper {
           </WithStyles(DialogContent)>,
           <WithStyles(DialogActions)>
             <WithStyles(Button)
-              color="primary"
+              color="secondary"
               onClick={[Function]}
             >
               OK
@@ -248,7 +248,7 @@ ShallowWrapper {
           "nodeType": "class",
           "props": Object {
             "children": <WithStyles(Button)
-              color="primary"
+              color="secondary"
               onClick={[Function]}
             >
               OK
@@ -261,7 +261,7 @@ ShallowWrapper {
             "nodeType": "class",
             "props": Object {
               "children": "OK",
-              "color": "primary",
+              "color": "secondary",
               "onClick": [Function],
             },
             "ref": null,

@@ -97,7 +97,7 @@ class AccountsPage extends Component {
                 </Typography>
                 <Button
                     variant="raised"
-                    color="primary"
+                    color="secondary"
                     className={classes.button}
                 >
                     Add new
@@ -148,4 +148,5 @@ class AccountsPage extends Component {
         );
     }
 }
+
 export default withStyles(styles)(AccountsPage);

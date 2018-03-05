@@ -238,7 +238,7 @@ class SkillsPage extends Component {
                                 Cancel
                             </Button>
                             <Button
-                                color="secondary"
+                                color="primary"
                                 onClick={() => this.deleteSkill(selectedSkill)}
                             >
                                 Delete

@@ -18,7 +18,7 @@ const AboutDialog = ({ uiVersion, apiVersion, onOkClick, ...props }) => (
             </DialogContentText>
         </DialogContent>
         <DialogActions>
-            <Button color="primary" onClick={onOkClick}>
+            <Button color="secondary" onClick={onOkClick}>
                 OK
             </Button>
         </DialogActions>
