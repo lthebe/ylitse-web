@@ -100,7 +100,7 @@ class AccountsPage extends Component {
                 accounts: prevState.accounts.filter(s => s.id !== id),
                 confirmationOpen: false,
                 feedbackOpen: true,
-                feedbackMessage: `${deleted.username} account deleted`,
+                feedbackMessage: `${deleted.username}'s account deleted`,
             }));
         } catch (e) {
             this.openFeedback(e.message);
@@ -132,11 +132,12 @@ class AccountsPage extends Component {
             accounts, feedbackOpen, feedbackMessage, selectedAccount,
             confirmationOpen,
         } = this.state;
+        const selectedUsername = selectedAccount && selectedAccount.username;
 
         return (
             <Page>
                 <Typography variant="headline" component="h3">
-                    Accounts
+                    User accounts
                 </Typography>
                 <Button
                     variant="raised"
@@ -171,17 +172,17 @@ class AccountsPage extends Component {
                         </TableBody>
                     </Table>
                 }
-                {selectedAccount &&
+                {accounts.length === 0 &&
+                    <Typography variant="display3">No user accounts</Typography>
+                }
+                {selectedUsername &&
                     <ConfirmationDialog
                         open={confirmationOpen}
-                        label={`Delete ${selectedAccount.username} account?`}
+                        label={`Really delete ${selectedUsername}'s account?`}
                         okLabel="Delete"
                         onOkClick={this.deleteAccount(selectedAccount)}
                         onClose={this.closeConfirmation}
                     />
-                }
-                {accounts.length === 0 &&
-                    <Typography variant="display3">No accounts</Typography>
                 }
                 <Snackbar
                     open={feedbackOpen}

@@ -32,7 +32,7 @@ ShallowWrapper {
           component="h3"
           variant="headline"
         >
-          Accounts
+          User accounts
         </WithStyles(Typography)>,
         <WithStyles(Button)
           className="AccountsPage-button-4"
@@ -45,12 +45,12 @@ ShallowWrapper {
           />
         </WithStyles(Button)>,
         false,
-        undefined,
         <WithStyles(Typography)
           variant="display3"
         >
-          No accounts
+          No user accounts
         </WithStyles(Typography)>,
+        undefined,
         <WithStyles(Snackbar)
           action={
             <WithStyles(IconButton)
@@ -74,12 +74,12 @@ ShallowWrapper {
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "Accounts",
+          "children": "User accounts",
           "component": "h3",
           "variant": "headline",
         },
         "ref": null,
-        "rendered": "Accounts",
+        "rendered": "User accounts",
         "type": [Function],
       },
       Object {
@@ -115,19 +115,19 @@ ShallowWrapper {
         "type": [Function],
       },
       false,
-      undefined,
       Object {
         "instance": null,
         "key": undefined,
         "nodeType": "class",
         "props": Object {
-          "children": "No accounts",
+          "children": "No user accounts",
           "variant": "display3",
         },
         "ref": null,
-        "rendered": "No accounts",
+        "rendered": "No user accounts",
         "type": [Function],
       },
+      undefined,
       Object {
         "instance": null,
         "key": undefined,
@@ -162,7 +162,7 @@ ShallowWrapper {
             component="h3"
             variant="headline"
           >
-            Accounts
+            User accounts
           </WithStyles(Typography)>,
           <WithStyles(Button)
             className="AccountsPage-button-4"
@@ -175,12 +175,12 @@ ShallowWrapper {
             />
           </WithStyles(Button)>,
           false,
-          undefined,
           <WithStyles(Typography)
             variant="display3"
           >
-            No accounts
+            No user accounts
           </WithStyles(Typography)>,
+          undefined,
           <WithStyles(Snackbar)
             action={
               <WithStyles(IconButton)
@@ -204,12 +204,12 @@ ShallowWrapper {
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "Accounts",
+            "children": "User accounts",
             "component": "h3",
             "variant": "headline",
           },
           "ref": null,
-          "rendered": "Accounts",
+          "rendered": "User accounts",
           "type": [Function],
         },
         Object {
@@ -245,19 +245,19 @@ ShallowWrapper {
           "type": [Function],
         },
         false,
-        undefined,
         Object {
           "instance": null,
           "key": undefined,
           "nodeType": "class",
           "props": Object {
-            "children": "No accounts",
+            "children": "No user accounts",
             "variant": "display3",
           },
           "ref": null,
-          "rendered": "No accounts",
+          "rendered": "No user accounts",
           "type": [Function],
         },
+        undefined,
         Object {
           "instance": null,
           "key": undefined,
