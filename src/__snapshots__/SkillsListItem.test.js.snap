@@ -38,7 +38,6 @@ ShallowWrapper {
           MySkill
           <WithStyles(IconButton)
             className="SkillsListItem-iconButton-4"
-            color="default"
             onClick={[Function]}
           >
             <pure(Delete)
@@ -48,8 +47,6 @@ ShallowWrapper {
         </WithStyles(Typography)>
       </WithStyles(CardContent)>,
       "className": "SkillsListItem-card-2",
-      "onMouseEnter": [Function],
-      "onMouseLeave": [Function],
       "raised": false,
     },
     "ref": null,
@@ -64,7 +61,6 @@ ShallowWrapper {
           MySkill
           <WithStyles(IconButton)
             className="SkillsListItem-iconButton-4"
-            color="default"
             onClick={[Function]}
           >
             <pure(Delete)
@@ -84,7 +80,6 @@ ShallowWrapper {
             "MySkill",
             <WithStyles(IconButton)
               className="SkillsListItem-iconButton-4"
-              color="default"
               onClick={[Function]}
             >
               <pure(Delete)
@@ -106,7 +101,6 @@ ShallowWrapper {
                 className="SkillsListItem-icon-5"
               />,
               "className": "SkillsListItem-iconButton-4",
-              "color": "default",
               "onClick": [Function],
             },
             "ref": null,
@@ -145,7 +139,6 @@ ShallowWrapper {
             MySkill
             <WithStyles(IconButton)
               className="SkillsListItem-iconButton-4"
-              color="default"
               onClick={[Function]}
             >
               <pure(Delete)
@@ -155,8 +148,6 @@ ShallowWrapper {
           </WithStyles(Typography)>
         </WithStyles(CardContent)>,
         "className": "SkillsListItem-card-2",
-        "onMouseEnter": [Function],
-        "onMouseLeave": [Function],
         "raised": false,
       },
       "ref": null,
@@ -171,7 +162,6 @@ ShallowWrapper {
             MySkill
             <WithStyles(IconButton)
               className="SkillsListItem-iconButton-4"
-              color="default"
               onClick={[Function]}
             >
               <pure(Delete)
@@ -191,7 +181,6 @@ ShallowWrapper {
               "MySkill",
               <WithStyles(IconButton)
                 className="SkillsListItem-iconButton-4"
-                color="default"
                 onClick={[Function]}
               >
                 <pure(Delete)
@@ -213,7 +202,6 @@ ShallowWrapper {
                   className="SkillsListItem-icon-5"
                 />,
                 "className": "SkillsListItem-iconButton-4",
-                "color": "default",
                 "onClick": [Function],
               },
               "ref": null,

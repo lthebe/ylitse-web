@@ -79,7 +79,7 @@ class AccountsPage extends Component {
         }
     };
 
-    deleteAccount = async ({ id }) => {
+    deleteAccount = ({ id }) => async () => {
         try {
             const resp = await fetch(`/api/accounts/${id}`, {
                 method: 'DELETE',
@@ -115,7 +115,7 @@ class AccountsPage extends Component {
         this.setState({ feedbackOpen: false });
     }
 
-    openConfirmation = (id) => {
+    openConfirmation = id => () => {
         this.setState(prevState => ({
             selectedAccount: prevState.accounts.find(s => s.id === id),
             confirmationOpen: true,
@@ -165,8 +165,7 @@ class AccountsPage extends Component {
                                 <AccountListItem
                                     key={account.id}
                                     account={account}
-                                    onDelete={
-                                        () => this.openConfirmation(account.id)}
+                                    onDelete={this.openConfirmation(account.id)}
                                 />
                             ))}
                         </TableBody>
@@ -174,12 +173,11 @@ class AccountsPage extends Component {
                 }
                 {selectedAccount &&
                     <ConfirmationDialog
-                        onAction={() => this.deleteAccount(selectedAccount)}
-                        onCloseConfirmation={this.closeConfirmation}
-                        confirmationOpen={confirmationOpen}
-                        buttonLabel="Delete"
-                        label={
-                            `Delete ${selectedAccount.username} account?`}
+                        open={confirmationOpen}
+                        label={`Delete ${selectedAccount.username} account?`}
+                        okLabel="Delete"
+                        onOkClick={this.deleteAccount(selectedAccount)}
+                        onClose={this.closeConfirmation}
                     />
                 }
                 {accounts.length === 0 &&

@@ -1,16 +1,16 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import Button from 'material-ui/Button';
 import Dialog, {
     DialogActions, DialogContent, DialogContentText, DialogTitle,
 } from 'material-ui/Dialog';
-import Button from 'material-ui/Button';
 
 const ConfirmationDialog = ({
-    onCloseConfirmation, confirmationOpen, label, onAction, buttonLabel,
+    label, okLabel, onOkClick, onClose, ...props
 }) => (
     <Dialog
-        open={confirmationOpen}
-        onClose={onCloseConfirmation}
+        onClose={onClose}
+        {...props}
     >
         <DialogTitle>Confirm</DialogTitle>
         <DialogContent>
@@ -19,25 +19,26 @@ const ConfirmationDialog = ({
             </DialogContentText>
         </DialogContent>
         <DialogActions>
-            <Button onClick={onCloseConfirmation}>
-              Cancel
+            <Button onClick={onClose}>
+                Cancel
             </Button>
-            <Button
-                color="secondary"
-                onClick={onAction}
-            >
-                {buttonLabel}
+            <Button color="primary" onClick={onOkClick}>
+                {okLabel}
             </Button>
         </DialogActions>
     </Dialog>
 );
 
 ConfirmationDialog.propTypes = {
-    onCloseConfirmation: PropTypes.func.isRequired,
-    confirmationOpen: PropTypes.bool.isRequired,
+    open: PropTypes.bool.isRequired,
     label: PropTypes.string.isRequired,
-    onAction: PropTypes.func.isRequired,
-    buttonLabel: PropTypes.string.isRequired,
+    okLabel: PropTypes.string,
+    onOkClick: PropTypes.func.isRequired,
+    onClose: PropTypes.func.isRequired,
+};
+
+ConfirmationDialog.defaultProps = {
+    okLabel: 'OK',
 };
 
 export default ConfirmationDialog;

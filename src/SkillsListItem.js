@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import Card, { CardContent } from 'material-ui/Card';
 import IconButton from 'material-ui/IconButton';
@@ -21,6 +21,9 @@ const styles = theme => ({
         paddingBottom: [6, '!important'],
     },
     iconButton: {
+        '&:hover': {
+            color: theme.palette.secondary.main,
+        },
         marginLeft: 8,
         marginRight: -10,
     },
@@ -29,60 +32,36 @@ const styles = theme => ({
     },
 });
 
-class SkillsListItem extends Component {
-    static propTypes = {
-        label: PropTypes.string.isRequired,
-        classes: PropTypes.shape({
-            text: PropTypes.string,
-            card: PropTypes.string,
-            cardContent: PropTypes.string,
-            iconButton: PropTypes.string,
-            icon: PropTypes.string,
-        }).isRequired,
-        onDelete: PropTypes.func.isRequired,
-    }
-
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            actionsVisible: false,
-        };
-    }
-
-    onMouseEnter = () => {
-        this.setState({ actionsVisible: true });
-    }
-
-    onMouseLeave = () => this.setState({ actionsVisible: false });
-
-    render() {
-        const { label, classes, onDelete } = this.props;
-        const { actionsVisible } = this.state;
-
-        return (
-            <Card
-                className={classes.card}
-                onMouseEnter={this.onMouseEnter}
-                onMouseLeave={this.onMouseLeave}
+const SkillsListItem = ({ label, classes, onDelete }) => (
+    <Card
+        className={classes.card}
+    >
+        <CardContent className={classes.cardContent}>
+            <Typography
+                className={classes.text}
             >
-                <CardContent className={classes.cardContent}>
-                    <Typography
-                        className={classes.text}
-                    >
-                        {label}
-                        <IconButton
-                            color={actionsVisible ? 'secondary' : 'default'}
-                            className={classes.iconButton}
-                            onClick={onDelete}
-                        >
-                            <DeleteIcon className={classes.icon} />
-                        </IconButton>
-                    </Typography>
-                </CardContent>
-            </Card>
-        );
-    }
-}
+                {label}
+                <IconButton
+                    className={classes.iconButton}
+                    onClick={onDelete}
+                >
+                    <DeleteIcon className={classes.icon} />
+                </IconButton>
+            </Typography>
+        </CardContent>
+    </Card>
+);
+
+SkillsListItem.propTypes = {
+    label: PropTypes.string.isRequired,
+    classes: PropTypes.shape({
+        text: PropTypes.string,
+        card: PropTypes.string,
+        cardContent: PropTypes.string,
+        iconButton: PropTypes.string,
+        icon: PropTypes.string,
+    }).isRequired,
+    onDelete: PropTypes.func.isRequired,
+};
 
 export default withStyles(styles)(SkillsListItem);

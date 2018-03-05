@@ -6,7 +6,7 @@ import { withStyles } from 'material-ui/styles';
 import DeleteIcon from 'material-ui-icons/Delete';
 import EditIcon from 'material-ui-icons/Edit';
 
-const styles = () => ({
+const styles = theme => ({
     firstCell: {
         paddingLeft: 0,
     },
@@ -17,9 +17,12 @@ const styles = () => ({
             whiteSpace: 'nowrap',
         },
     },
-    lastIconButton: {
+    iconButton: {
+        '&:hover': {
+            color: theme.palette.secondary.main,
+        },
+        marginLeft: 5,
         marginRight: -16,
-        fontSize: 22,
     },
     icon: {
         fontSize: 22,
@@ -32,8 +35,10 @@ const AccountListItem = ({ account, classes, onDelete }) => (
         <TableCell>{account.username}</TableCell>
         <TableCell>{account.email}</TableCell>
         <TableCell className={classes.lastCell}>
-            <IconButton><EditIcon className={classes.icon} /></IconButton>
-            <IconButton onClick={onDelete} className={classes.lastIconButton}>
+            <IconButton className={classes.iconButton}>
+                <EditIcon className={classes.icon} />
+            </IconButton>
+            <IconButton className={classes.iconButton} onClick={onDelete}>
                 <DeleteIcon className={classes.icon} />
             </IconButton>
         </TableCell>

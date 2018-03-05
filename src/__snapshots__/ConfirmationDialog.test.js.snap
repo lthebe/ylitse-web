@@ -6,10 +6,11 @@ ShallowWrapper {
   Symbol(enzyme.__root__): [Circular],
   Symbol(enzyme.__unrendered__): <ConfirmationDialog
     buttonLabel="Delete"
-    confirmationOpen={false}
     label="ConfirmationDialog"
-    onAction={[MockFunction]}
-    onCloseConfirmation={[MockFunction]}
+    okLabel="OK"
+    onClose={[MockFunction]}
+    onOkClick={[MockFunction]}
+    open={false}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -23,6 +24,7 @@ ShallowWrapper {
     "key": undefined,
     "nodeType": "class",
     "props": Object {
+      "buttonLabel": "Delete",
       "children": Array [
         <WithStyles(DialogTitle)>
           Confirm
@@ -39,10 +41,10 @@ ShallowWrapper {
             Cancel
           </WithStyles(Button)>
           <WithStyles(Button)
-            color="secondary"
+            color="primary"
             onClick={[MockFunction]}
           >
-            Delete
+            OK
           </WithStyles(Button)>
         </WithStyles(DialogActions)>,
       ],
@@ -97,10 +99,10 @@ ShallowWrapper {
               Cancel
             </WithStyles(Button)>,
             <WithStyles(Button)
-              color="secondary"
+              color="primary"
               onClick={[MockFunction]}
             >
-              Delete
+              OK
             </WithStyles(Button)>,
           ],
         },
@@ -123,12 +125,12 @@ ShallowWrapper {
             "key": undefined,
             "nodeType": "class",
             "props": Object {
-              "children": "Delete",
-              "color": "secondary",
+              "children": "OK",
+              "color": "primary",
               "onClick": [MockFunction],
             },
             "ref": null,
-            "rendered": "Delete",
+            "rendered": "OK",
             "type": [Function],
           },
         ],
@@ -143,6 +145,7 @@ ShallowWrapper {
       "key": undefined,
       "nodeType": "class",
       "props": Object {
+        "buttonLabel": "Delete",
         "children": Array [
           <WithStyles(DialogTitle)>
             Confirm
@@ -159,10 +162,10 @@ ShallowWrapper {
               Cancel
             </WithStyles(Button)>
             <WithStyles(Button)
-              color="secondary"
+              color="primary"
               onClick={[MockFunction]}
             >
-              Delete
+              OK
             </WithStyles(Button)>
           </WithStyles(DialogActions)>,
         ],
@@ -217,10 +220,10 @@ ShallowWrapper {
                 Cancel
               </WithStyles(Button)>,
               <WithStyles(Button)
-                color="secondary"
+                color="primary"
                 onClick={[MockFunction]}
               >
-                Delete
+                OK
               </WithStyles(Button)>,
             ],
           },
@@ -243,12 +246,12 @@ ShallowWrapper {
               "key": undefined,
               "nodeType": "class",
               "props": Object {
-                "children": "Delete",
-                "color": "secondary",
+                "children": "OK",
+                "color": "primary",
                 "onClick": [MockFunction],
               },
               "ref": null,
-              "rendered": "Delete",
+              "rendered": "OK",
               "type": [Function],
             },
           ],
