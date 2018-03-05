@@ -45,6 +45,7 @@ ShallowWrapper {
           />
         </WithStyles(Button)>,
         false,
+        undefined,
         <WithStyles(Typography)
           variant="display3"
         >
@@ -114,6 +115,7 @@ ShallowWrapper {
         "type": [Function],
       },
       false,
+      undefined,
       Object {
         "instance": null,
         "key": undefined,
@@ -173,6 +175,7 @@ ShallowWrapper {
             />
           </WithStyles(Button)>,
           false,
+          undefined,
           <WithStyles(Typography)
             variant="display3"
           >
@@ -242,6 +245,7 @@ ShallowWrapper {
           "type": [Function],
         },
         false,
+        undefined,
         Object {
           "instance": null,
           "key": undefined,

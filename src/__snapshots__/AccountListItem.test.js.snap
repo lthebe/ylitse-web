@@ -12,6 +12,7 @@ ShallowWrapper {
         "username": "admin",
       }
     }
+    onDelete={[Function]}
   />,
   Symbol(enzyme.__renderer__): Object {
     "batchedUpdates": [Function],
@@ -33,9 +34,10 @@ ShallowWrapper {
       "classes": Object {
         "firstCell": "AccountListItem-firstCell-1",
         "icon": "AccountListItem-icon-4",
+        "iconButton": "AccountListItem-iconButton-3",
         "lastCell": "AccountListItem-lastCell-2",
-        "lastIconButton": "AccountListItem-lastIconButton-3",
       },
+      "onDelete": [Function],
     },
     "ref": null,
     "rendered": null,
@@ -55,9 +57,10 @@ ShallowWrapper {
         "classes": Object {
           "firstCell": "AccountListItem-firstCell-1",
           "icon": "AccountListItem-icon-4",
+          "iconButton": "AccountListItem-iconButton-3",
           "lastCell": "AccountListItem-lastCell-2",
-          "lastIconButton": "AccountListItem-lastIconButton-3",
         },
+        "onDelete": [Function],
       },
       "ref": null,
       "rendered": null,

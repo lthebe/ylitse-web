@@ -13,6 +13,7 @@ import PersonAddIcon from 'material-ui-icons/PersonAdd';
 
 import Page from './Page';
 import AccountListItem from './AccountListItem';
+import ConfirmationDialog from './ConfirmationDialog';
 
 const styles = theme => ({
     table: {
@@ -49,6 +50,8 @@ class AccountsPage extends Component {
 
         this.state = {
             accounts: [],
+            selectedAccount: undefined,
+            confirmationOpen: false,
             feedbackOpen: false,
             feedbackMessage: '',
         };
@@ -76,6 +79,34 @@ class AccountsPage extends Component {
         }
     };
 
+    deleteAccount = ({ id }) => async () => {
+        try {
+            const resp = await fetch(`/api/accounts/${id}`, {
+                method: 'DELETE',
+                credentials: 'include',
+                redirect: 'follow',
+            });
+            if (resp.redirected) {
+                window.location.replace(resp.url);
+            }
+            const deleted = this.state.accounts.find(s => s.id === id);
+            if (!resp.ok) {
+                this.openFeedback(`Can't delete ${deleted.username} account`);
+                this.setState({ confirmationOpen: false });
+                return;
+            }
+
+            this.setState(prevState => ({
+                accounts: prevState.accounts.filter(s => s.id !== id),
+                confirmationOpen: false,
+                feedbackOpen: true,
+                feedbackMessage: `${deleted.username} account deleted`,
+            }));
+        } catch (e) {
+            this.openFeedback(e.message);
+        }
+    }
+
     openFeedback = (feedbackMessage) => {
         this.setState({ feedbackMessage, feedbackOpen: true });
     }
@@ -84,10 +115,22 @@ class AccountsPage extends Component {
         this.setState({ feedbackOpen: false });
     }
 
+    openConfirmation = id => () => {
+        this.setState(prevState => ({
+            selectedAccount: prevState.accounts.find(s => s.id === id),
+            confirmationOpen: true,
+        }));
+    }
+
+    closeConfirmation = () => {
+        this.setState({ selectedAccount: undefined, confirmationOpen: false });
+    }
+
     render() {
         const { classes } = this.props;
         const {
-            accounts, feedbackOpen, feedbackMessage,
+            accounts, feedbackOpen, feedbackMessage, selectedAccount,
+            confirmationOpen,
         } = this.state;
 
         return (
@@ -122,10 +165,20 @@ class AccountsPage extends Component {
                                 <AccountListItem
                                     key={account.id}
                                     account={account}
+                                    onDelete={this.openConfirmation(account.id)}
                                 />
                             ))}
                         </TableBody>
                     </Table>
+                }
+                {selectedAccount &&
+                    <ConfirmationDialog
+                        open={confirmationOpen}
+                        label={`Delete ${selectedAccount.username} account?`}
+                        okLabel="Delete"
+                        onOkClick={this.deleteAccount(selectedAccount)}
+                        onClose={this.closeConfirmation}
+                    />
                 }
                 {accounts.length === 0 &&
                     <Typography variant="display3">No accounts</Typography>

@@ -1,19 +1,16 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Button from 'material-ui/Button';
-import Dialog, {
-    DialogActions, DialogContent, DialogContentText, DialogTitle,
-} from 'material-ui/Dialog';
 import GridList from 'material-ui/GridList';
 import IconButton from 'material-ui/IconButton';
 import Snackbar from 'material-ui/Snackbar';
+import { withStyles } from 'material-ui/styles';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 import CloseIcon from 'material-ui-icons/Close';
-import { withStyles } from 'material-ui/styles';
 
 import Page from './Page';
 import SkillsListItem from './SkillsListItem';
+import ConfirmationDialog from './ConfirmationDialog';
 
 const styles = theme => ({
     input: {
@@ -139,7 +136,7 @@ class SkillsPage extends Component {
         }));
     }
 
-    deleteSkill = async ({ id }) => {
+    deleteSkill = ({ id }) => async () => {
         try {
             const resp = await fetch(`/api/skills/${id}`, {
                 method: 'DELETE',
@@ -167,7 +164,7 @@ class SkillsPage extends Component {
         }
     }
 
-    openConfirmation = (id) => {
+    openConfirmation = id => () => {
         this.setState(prevState => ({
             selectedSkill: prevState.skills.find(s => s.id === id),
             confirmationOpen: true,
@@ -214,7 +211,7 @@ class SkillsPage extends Component {
                             <SkillsListItem
                                 key={skill.id}
                                 label={skill.name}
-                                onDelete={() => this.openConfirmation(skill.id)}
+                                onDelete={this.openConfirmation(skill.id)}
                             />
                         ))}
                     </GridList>
@@ -223,28 +220,13 @@ class SkillsPage extends Component {
                     <Typography variant="display3">No mentor skills</Typography>
                 }
                 {selectedSkill &&
-                    <Dialog
+                    <ConfirmationDialog
                         open={confirmationOpen}
+                        label={`Really delete ${selectedSkill.name} skill?`}
+                        okLabel="Delete"
+                        onOkClick={this.deleteSkill(selectedSkill)}
                         onClose={this.closeConfirmation}
-                    >
-                        <DialogTitle>Confirm</DialogTitle>
-                        <DialogContent>
-                            <DialogContentText>
-                                Really delete {selectedSkill.name} skill?
-                            </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                            <Button onClick={this.closeConfirmation}>
-                                Cancel
-                            </Button>
-                            <Button
-                                color="primary"
-                                onClick={() => this.deleteSkill(selectedSkill)}
-                            >
-                                Delete
-                            </Button>
-                        </DialogActions>
-                    </Dialog>
+                    />
                 }
                 <Snackbar
                     open={feedbackOpen}
