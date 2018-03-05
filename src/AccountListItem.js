@@ -26,14 +26,14 @@ const styles = () => ({
     },
 });
 
-const AccountListItem = ({ account, classes }) => (
+const AccountListItem = ({ account, classes, onDelete }) => (
     <TableRow>
         <TableCell className={classes.firstCell}>{account.role}</TableCell>
         <TableCell>{account.username}</TableCell>
         <TableCell>{account.email}</TableCell>
         <TableCell className={classes.lastCell}>
             <IconButton><EditIcon className={classes.icon} /></IconButton>
-            <IconButton className={classes.lastIconButton}>
+            <IconButton onClick={onDelete} className={classes.lastIconButton}>
                 <DeleteIcon className={classes.icon} />
             </IconButton>
         </TableCell>
@@ -50,6 +50,7 @@ AccountListItem.propTypes = {
         firstCell: PropTypes.string,
         lastCell: PropTypes.string,
     }).isRequired,
+    onDelete: PropTypes.func.isRequired,
 };
 
 export default withStyles(styles)(AccountListItem);
