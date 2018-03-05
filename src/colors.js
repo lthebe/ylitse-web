@@ -1,0 +1,12 @@
+export const GREEN_PRIMARY = '#00cca8';
+export const GREEN_SECONDARY = '#2aa08e';
+export const ORANGE = '#f67f5d';
+export const BEIGE = '#ffefe4';
+export const YELLOW = '#ffc952';
+export const GREY_VERY_LIGHT = '#f4f5f5';
+export const GREY_LIGHT = '#f0f1f1';
+export const GREY_10 = '#e6e7e8';
+export const GREY_30 = '#c0c0c0';
+export const GREY_50 = '#888888';
+export const GREY_DARK = '#505050';
+export const WHITE = '#fff';

@@ -6,12 +6,14 @@ import Typography from 'material-ui/Typography';
 import DeleteIcon from 'material-ui-icons/Delete';
 import { withStyles } from 'material-ui/styles';
 
-const styles = () => ({
+const styles = theme => ({
     text: {
+        noWrap: true,
         fontSize: 16,
     },
     card: {
-        margin: [[10, 12, 5, 3]],
+        background: theme.palette.background.default,
+        margin: [[5, 7, 5, 3]],
         paddingLeft: 8,
     },
     cardContent: {

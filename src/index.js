@@ -5,32 +5,43 @@ import { createMuiTheme, MuiThemeProvider } from 'material-ui/styles';
 import 'whatwg-fetch';
 import 'typeface-roboto/index.css';
 
+import * as colors from './colors';
 import Root from './Root';
 
 const theme = createMuiTheme({
     palette: {
-        primary: { main: '#f67f5d' },
-        secondary: { main: '#00cca8' },
+        primary: {
+            main: colors.ORANGE,
+            contrastText: colors.WHITE,
+        },
+        secondary: {
+            main: colors.GREEN_PRIMARY,
+            dark: colors.GREEN_SECONDARY,
+            contrastText: colors.WHITE,
+        },
         contrastThreshold: 2,
         tonalOffset: 0.1,
+        background: {
+            default: colors.GREY_VERY_LIGHT,
+        },
         text: {
-            primary: '#505050',
-            secondary: '#888888',
-            disabled: '#c0c0c0',
-            hint: '#c0c0c0',
-            divider: '#e6e7e8',
+            primary: colors.GREY_DARK,
+            secondary: colors.GREY_50,
+            disabled: colors.GREY_30,
+            hint: colors.GREY_30,
+            divider: colors.GREY_10,
         },
     },
     overrides: {
         MuiFormLabel: {
             focused: {
-                color: '#2aa08e',
+                color: colors.GREEN_SECONDARY,
             },
         },
         MuiInput: {
             inkbar: {
                 '&:after': {
-                    backgroundColor: '#2aa08e',
+                    backgroundColor: colors.GREEN_SECONDARY,
                 },
             },
         },
